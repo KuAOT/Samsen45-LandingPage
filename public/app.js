@@ -111,7 +111,7 @@
   window.addEventListener('resize',check);
 })();
 
-/* ===================== COSMOS — universe of specialists ===================== */
+/* ===================== COSMOS — shared memories of Samsen 45 ===================== */
 (function(){
   const map=document.getElementById('dotmap'); if(!map) return;
   const svg=document.getElementById('dotlines');
@@ -120,14 +120,14 @@
   const NS='http://www.w3.org/2000/svg';
   const R1=24, R2=39;
 
-  // six fields radiating from the logo hub, each branching into specialists
+  // six constellations of shared school memories — what connects us, not what separates us
   const FIELDS=[
-    {n:'การแพทย์', a:-90, c:'#EB649B', subs:['แพทย์','ทันตแพทย์','เภสัชกร','พยาบาล']},
-    {n:'วิศวกรรม', a:-30, c:'#64A231', subs:['โยธา','ไฟฟ้า','ซอฟต์แวร์','เครื่องกล']},
-    {n:'ธุรกิจ',   a: 30, c:'#9ED11F', subs:['การเงิน','การตลาด','สตาร์ทอัพ']},
-    {n:'การศึกษา', a: 90, c:'#E6B800', subs:['ครู','อาจารย์','นักวิจัย']},
-    {n:'ศิลปะ',    a:150, c:'#7AA84F', subs:['ดีไซน์','ดนตรี','ภาพยนตร์']},
-    {n:'ราชการ',  a:210, c:'#D44D84', subs:['ปกครอง','ทหาร','นักการทูต']}
+    {n:'วัยเรียน',    a:-90, c:'#EB649B', subs:['ห้องเรียน','กระดานดำ','ม้านั่ง','ตารางสอน']},
+    {n:'ช่วงพัก',    a:-30, c:'#F5B921', subs:['โรงอาหาร','หน้าโรงเรียน','ขนม','เรื่องฮา']},
+    {n:'กีฬาสี',     a: 30, c:'#64A231', subs:['เชียร์ลีด','วิ่งผลัด','ตะโกนเชียร์']},
+    {n:'กิจกรรม',   a: 90, c:'#34A8DE', subs:['ค่ายนักเรียน','ชมรม','ดนตรีสด']},
+    {n:'เพื่อน',     a:150, c:'#E84545', subs:['ซนด้วยกัน','แซวกัน','ช่วยกัน','อยู่เคียงกัน']},
+    {n:'วันจบ',      a:210, c:'#8E63CE', subs:['รูปหมู่','คืนนั้น','น้ำตาปนยิ้ม']}
   ];
 
   const rad=d=>d*Math.PI/180;
@@ -169,7 +169,7 @@
     node.style.left=fx+'%';node.style.top=fy+'%';
     node.style.setProperty('--c',f.c);
     node.style.setProperty('--d',(0.5+fi*0.07).toFixed(2)+'s');
-    node.innerHTML='<div class="d"></div><span class="lab">'+f.n+'</span>';
+    node.innerHTML='<div class="d"></div>';
     nodes.appendChild(node);
 
     const n=f.subs.length, spread=38, step=n>1?spread/(n-1):0, start=-spread/2;
@@ -184,7 +184,7 @@
       sn.style.setProperty('--c',f.c);
       sn.style.setProperty('--d',(1.05+fi*0.09+si2*0.05).toFixed(2)+'s');
       sn.style.setProperty('--p',(Math.random()*3).toFixed(2)+'s');
-      sn.innerHTML='<div class="d"></div><span class="lab">'+s+'</span>';
+      sn.innerHTML='<div class="d"></div>';
       nodes.appendChild(sn);
     });
   });
