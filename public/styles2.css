@@ -322,6 +322,11 @@ footer{position:relative;margin-top:60px;background:var(--ink);color:#fff;z-inde
   .nav>.btn-cta{display:none}
   .menu-btn{display:flex}
   .mobile-menu{display:block}
+  .hero-media{margin:50px auto 26px}
+  .floatcard.a{top:-54px}
+  .floatcard.b{bottom:-4px;top:auto}
+  .stack2{left:8px}
+  .wrap{padding-inline:32px}
   .infogrid{grid-template-columns:1fr;max-width:420px}
   .register{padding:46px 26px}
   .register .smiley{width:60px;height:60px;top:14px;right:14px}
