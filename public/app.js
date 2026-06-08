@@ -17,7 +17,7 @@
     pts = Array.from({length:density},()=>({
       x:Math.random()*w, y:Math.random()*h,
       vx:(Math.random()-.5)*.18, vy:(Math.random()-.5)*.18,
-      r:Math.random()*2.4+1.2,
+      r:Math.random()*0.8+0.5,
       c: Math.floor(Math.random()*COLORS.length)
     }));
   }
