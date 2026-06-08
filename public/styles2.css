@@ -284,6 +284,31 @@ footer{position:relative;margin-top:60px;background:var(--ink);color:#fff;z-inde
 .footbar{border-top:1px solid rgba(255,255,255,.12);padding:18px 0;font-size:12.5px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .footbar a:hover{color:#fff}
 
+/* ============ REG MODAL ============ */
+.reg-overlay{position:fixed;inset:0;z-index:150;background:rgba(27,32,21,.55);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .3s}
+.reg-overlay.show{opacity:1;pointer-events:auto}
+.reg-modal{position:relative;background:var(--paper);border-radius:28px;max-width:480px;width:100%;
+  padding:52px 44px 40px;box-shadow:var(--shadow-lg);text-align:center;
+  transform:translateY(20px) scale(.97);transition:transform .38s cubic-bezier(.2,1.2,.4,1)}
+.reg-overlay.show .reg-modal{transform:none}
+.reg-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:10px;
+  border:1.5px solid var(--line);background:var(--bg-soft);color:var(--ink-soft);
+  font-size:15px;cursor:pointer;display:grid;place-items:center;transition:.15s}
+.reg-close:hover{background:var(--line)}
+.reg-mark{width:56px;height:56px;margin:0 auto 22px;object-fit:contain;
+  filter:drop-shadow(0 4px 14px color-mix(in srgb,var(--brand) 42%,transparent))}
+.reg-modal .eyebrow{display:block;margin-bottom:12px}
+.reg-modal h2{font-size:clamp(26px,5vw,34px);margin-bottom:20px}
+.reg-modal p{color:var(--ink-soft);font-size:15.5px;margin-bottom:12px;text-wrap:pretty}
+.reg-modal p strong{color:var(--brand-d);font-family:var(--font-display)}
+.reg-modal .btn{margin:14px auto 0;display:inline-flex}
+.reg-note{margin-top:20px;font-size:12.5px;color:var(--ink-faint);font-weight:600;letter-spacing:.04em}
+@media(max-width:640px){
+  .reg-modal{padding:44px 26px 34px;border-radius:22px}
+}
+
 /* ============ TWEAKS PANEL ============ */
 #tw{position:fixed;right:16px;bottom:16px;z-index:90;width:248px;display:none;flex-direction:column;
   background:rgba(251,252,248,.82);color:var(--ink);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);

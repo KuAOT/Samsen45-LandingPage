@@ -38,14 +38,14 @@
     <a href="#about">ธีมงาน</a>
     <a href="#faq">คำถามที่พบบ่อย</a>
   </nav>
-  <a href="https://ss45.kunatechnology.co.th/" target="_blank" rel="noopener" class="btn btn-cta">ลงทะเบียน</a>
+  <a href="#" class="btn btn-cta reg-trigger">ลงทะเบียน</a>
   <button class="menu-btn" id="menuBtn" aria-label="เปิดเมนู"><i></i></button>
 </header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#event">รายละเอียดงาน</a>
   <a href="#about">ธีมงาน</a>
   <a href="#faq">คำถามที่พบบ่อย</a>
-  <a href="https://ss45.kunatechnology.co.th/" target="_blank" rel="noopener" class="btn btn-cta">ลงทะเบียนเข้าร่วม</a>
+  <a href="#" class="btn btn-cta reg-trigger">ลงทะเบียนเข้าร่วม</a>
 </div>
 
 <main>
@@ -68,7 +68,7 @@
           <div class="dateinfo"><b>เสาร์ที่ 8 สิงหาคม 2569</b>17.00 น. เป็นต้นไป<br />Best Western Plus จตุจักร</div>
         </div>
         <div class="cta-row">
-          <a href="https://ss45.kunatechnology.co.th/" target="_blank" rel="noopener" class="btn btn-cta btn-lg">ลงทะเบียนเข้าร่วม</a>
+          <a href="#" class="btn btn-cta btn-lg reg-trigger">ลงทะเบียนเข้าร่วม</a>
           <a href="#event" class="btn btn-ghost btn-lg">ดูรายละเอียด</a>
         </div>
         <div class="scrollcue"><span class="ln"></span> เลื่อนลงเพื่อเชื่อมเรื่องราว</div>
@@ -126,7 +126,7 @@
           <h3>บัตรเข้างาน</h3>
           <div class="big">ลงทะเบียนออนไลน์</div>
           <p>จองและชำระเงินผ่านระบบ<br />ที่นั่งมีจำนวนจำกัด</p>
-          <a class="maplink" href="https://ss45.kunatechnology.co.th/" target="_blank" rel="noopener">ลงทะเบียน →</a>
+          <a class="maplink reg-trigger" href="#">ลงทะเบียน →</a>
         </div>
       </div>
     </div>
@@ -236,7 +236,7 @@
           <div class="step"><b>2</b> เลือกจำนวนบัตร</div>
           <div class="step"><b>3</b> ชำระเงินออนไลน์</div>
         </div>
-        <a href="https://ss45.kunatechnology.co.th/" target="_blank" rel="noopener" class="btn btn-lg">ลงทะเบียน · ซื้อบัตร →</a>
+        <a href="#" class="btn btn-lg reg-trigger">ลงทะเบียน · ซื้อบัตร →</a>
         <div class="micro">🔒 ระบบลงทะเบียนและชำระเงินออนไลน์ที่ปลอดภัย</div>
       </div>
     </div>
@@ -293,6 +293,20 @@
 </footer>
 </div>
 
+<!-- ============ REG MODAL ============ -->
+<div class="reg-overlay" id="regOverlay" role="dialog" aria-modal="true" aria-labelledby="regTitle">
+  <div class="reg-modal">
+    <button class="reg-close" id="regClose" aria-label="ปิด">✕</button>
+    <img class="reg-mark" src="assets/logo-mark-green.png" alt="" aria-hidden="true" />
+    <span class="eyebrow">กำลังเตรียมพร้อม · Coming Soon</span>
+    <h2 id="regTitle">กำลังต่อจุด<br />ให้พร้อมสำหรับคุณ</h2>
+    <p>ระบบลงทะเบียนกำลังถูกสร้างขึ้นอย่างพิถีพิถัน — เราอยากให้ทุกอย่างสมบูรณ์แบบ ตั้งแต่คลิกแรกจนถึงค่ำคืนที่เราได้กลับมาเจอกัน</p>
+    <p>จอง <strong>เสาร์ที่ 8 สิงหาคม 2569</strong> เอาไว้ในใจก่อนเลย แล้วคอยติดตามประกาศเปิดรับลงทะเบียนได้ที่กลุ่ม Facebook ชาวสามเสน 45</p>
+    <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="btn btn-cta btn-lg">ติดตามที่กลุ่ม Facebook →</a>
+    <div class="reg-note">✦&ensp;เปิดรับลงทะเบียนเร็วๆ นี้ — เราจะแจ้งให้ทราบทันที</div>
+  </div>
+</div>
+
 <!-- ============ TWEAKS PANEL ============ -->
 <aside id="tw">
   <div class="hd"><b>ปรับแต่งดีไซน์ · Tweaks</b><button class="x" id="twClose" aria-label="ปิด">✕</button></div>
@@ -338,6 +352,18 @@
 
 <script src="app.js"></script>
 <script src="tweaks.js"></script>
+<script>
+(function(){
+  var overlay=document.getElementById('regOverlay');
+  var closeBtn=document.getElementById('regClose');
+  function open(e){e.preventDefault();overlay.classList.add('show');document.body.style.overflow='hidden';}
+  function close(){overlay.classList.remove('show');document.body.style.overflow='';}
+  document.querySelectorAll('.reg-trigger').forEach(function(el){el.addEventListener('click',open);});
+  closeBtn.addEventListener('click',close);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
 
 <template id="__bundler_thumbnail" data-bg-color="#64A231">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
