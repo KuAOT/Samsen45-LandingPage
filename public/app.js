@@ -161,31 +161,31 @@
   // build the two-level tree
   FIELDS.forEach((f,fi)=>{
     const fx=px(f.a,R1), fy=py(f.a,R1);
-    line(50,50,fx,fy,'l1',f.c,(0.15+fi*0.07).toFixed(2));
     const co=Math.cos(rad(f.a)), si=Math.sin(rad(f.a));
     const side = co>0.4?'r' : co<-0.4?'l' : (si>0?'b':'t');
     const node=document.createElement('div');
     node.className='cn l1 lab-'+side;
     node.style.left=fx+'%';node.style.top=fy+'%';
     node.style.setProperty('--c',f.c);
-    node.style.setProperty('--d',(0.5+fi*0.07).toFixed(2)+'s');
+    node.style.setProperty('--d',(0.1+fi*0.07).toFixed(2)+'s');
     node.innerHTML='<div class="d"></div>';
     nodes.appendChild(node);
+    line(50,50,fx,fy,'l1',f.c,(0.45+fi*0.07).toFixed(2));
 
     const n=f.subs.length, spread=38, step=n>1?spread/(n-1):0, start=-spread/2;
     f.subs.forEach((s,si2)=>{
       const aa=f.a+(n>1?start+step*si2:0);
       const rr=R2+(si2%2?2.4:-1.6);
       const sx=px(aa,rr), sy=py(aa,rr);
-      line(fx,fy,sx,sy,'l2',f.c,(0.75+fi*0.09+si2*0.05).toFixed(2));
       const sn=document.createElement('div');
       sn.className='cn l2';
       sn.style.left=sx+'%';sn.style.top=sy+'%';
       sn.style.setProperty('--c',f.c);
-      sn.style.setProperty('--d',(1.05+fi*0.09+si2*0.05).toFixed(2)+'s');
+      sn.style.setProperty('--d',(0.5+fi*0.09+si2*0.05).toFixed(2)+'s');
       sn.style.setProperty('--p',(Math.random()*3).toFixed(2)+'s');
       sn.innerHTML='<div class="d"></div>';
       nodes.appendChild(sn);
+      line(fx,fy,sx,sy,'l2',f.c,(0.85+fi*0.09+si2*0.05).toFixed(2));
     });
   });
 

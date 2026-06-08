@@ -136,7 +136,7 @@
   stroke-linecap:round}
 
 /* connecting lines, drawn in on scroll */
-.cosmos .link{fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;
+.cosmos .link{fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:-1;
   transition:stroke-dashoffset .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
 .cosmos.lit .link{stroke-dashoffset:0}
 .cosmos .link.l1{stroke:var(--lk,var(--brand-l));stroke-width:.55;opacity:.78}
@@ -152,7 +152,7 @@
   background:#fff url('assets/hub-logo-green.png') center/132% no-repeat;
   box-shadow:0 8px 26px rgba(100,162,49,.26),0 0 0 1px var(--line),0 0 0 9px color-mix(in srgb,var(--brand) 8%,transparent);
   opacity:0;transform:translate(-50%,-50%) scale(.55);
-  transition:opacity .6s ease,transform .75s cubic-bezier(.2,1.4,.4,1)}
+  transition:opacity .6s ease 1.6s,transform .75s cubic-bezier(.2,1.4,.4,1) 1.6s}
 [data-primary="pink"] .cosmos-hub{background-image:url('assets/hub-logo-pink.png')}
 .cosmos.lit .cosmos-hub{opacity:1;transform:translate(-50%,-50%) scale(1)}
 .cosmos-hub::before{content:"";position:absolute;left:50%;top:50%;width:148%;aspect-ratio:1;
