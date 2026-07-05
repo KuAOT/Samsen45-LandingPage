@@ -121,6 +121,25 @@
 .acts{display:flex;flex-direction:column;gap:11px;margin-top:24px}
 .act{display:flex;align-items:center;gap:13px;font-size:15.5px;font-weight:500}
 .act .tick{width:26px;height:26px;border-radius:8px;background:var(--brand-soft);color:var(--brand-d);display:grid;place-items:center;flex:none;font-size:13px}
+/* ============ MERCH — Collect the Dots souvenirs ============ */
+.merch{margin-top:60px}
+.merch-head{text-align:center;max-width:640px;margin:0 auto 32px}
+.merch-head .eyebrow{display:inline-block;margin-bottom:12px}
+.merch-head h3{font-family:var(--font-display);font-weight:700;font-size:clamp(21px,3vw,27px);line-height:1.22;color:var(--ink);text-wrap:balance}
+.merch-sub{font-size:15px;color:var(--ink-soft);margin-top:12px;text-wrap:pretty}
+.merch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:980px;margin:0 auto}
+.merch-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.25s;display:flex;flex-direction:column}
+.merch-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--brand-l)}
+.merch-media{aspect-ratio:4/3;background:url(assets/bg-scatter.png) center/230px repeat,var(--brand-soft)}
+.merch-media img{width:100%;height:100%;object-fit:cover;display:block}
+.merch-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:7px;flex:1}
+.merch-tag{align-self:flex-start;font-size:12.5px;font-weight:700;letter-spacing:.02em;padding:4px 11px;border-radius:999px}
+.merch-tag.in{background:var(--brand-soft);color:var(--brand-d)}
+.merch-tag.pre{background:var(--brand2-soft);color:var(--pink-d)}
+.merch-card h4{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--ink);margin-top:2px}
+.merch-body p{font-size:14px;color:var(--ink-soft);line-height:1.5}
+.merch-deadline{margin-top:auto;padding-top:8px;font-size:13px;font-weight:700;color:var(--pink-d)}
+.merch-note{text-align:center;font-size:13.5px;color:var(--ink-faint);margin-top:22px;text-wrap:pretty}
 .dotmap{position:relative}
 /* ============ COSMOS — universe of specialists ============ */
 .cosmos{position:relative;width:100%;max-width:460px;aspect-ratio:1/1;margin:0 auto;border-radius:26px;
@@ -353,6 +372,8 @@ footer{position:relative;margin-top:60px;background:var(--ink);color:#fff;z-inde
   .stack2{left:8px}
   .wrap{padding-inline:32px}
   .infogrid{grid-template-columns:1fr;max-width:420px}
+  .merch-grid{grid-template-columns:1fr;max-width:420px}
+  .merch{margin-top:44px}
   .register{padding:46px 26px}
   .register .smiley{width:60px;height:60px;top:14px;right:14px}
   .cd-cell{width:calc(50% - 7px);max-width:160px}
