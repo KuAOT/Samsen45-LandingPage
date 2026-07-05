@@ -289,6 +289,7 @@
 .register .eyebrow{color:var(--brand-d)}
 .register h2{font-size:clamp(30px,5vw,52px);margin:14px 0 18px}
 .register p{font-size:17.5px;color:var(--ink-soft);max-width:560px;margin:0 auto}
+.register p strong{color:var(--brand-d);font-weight:800;white-space:nowrap}
 .steps{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:26px 0 30px}
 .step{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid color-mix(in srgb,var(--brand) 22%,var(--line));border-radius:999px;padding:8px 17px 8px 8px;font-size:14px;font-weight:500}
 .step b{width:25px;height:25px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:13px}
