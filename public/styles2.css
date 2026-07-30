@@ -139,10 +139,30 @@
 .merch-tag{align-self:flex-start;font-size:12.5px;font-weight:700;letter-spacing:.02em;padding:4px 11px;border-radius:999px}
 .merch-tag.in{background:var(--brand-soft);color:var(--brand-d)}
 .merch-tag.pre{background:var(--brand2-soft);color:var(--pink-d)}
+.merch-tag.closed{background:var(--bg-soft);color:var(--ink-faint);border:1px solid var(--line)}
+.merch-card.is-closed .merch-media img{filter:grayscale(.55);opacity:.72}
+.merch-card.is-closed:hover .merch-media img{filter:grayscale(.2);opacity:.9}
 .merch-card h4{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--ink);margin-top:2px}
 .merch-body p{font-size:14px;color:var(--ink-soft);line-height:1.5}
 .merch-deadline{margin-top:auto;padding-top:8px;font-size:13px;font-weight:700;color:var(--pink-d)}
+.merch-deadline.done{color:var(--ink-faint);font-weight:600}
 .merch-note{text-align:center;font-size:13.5px;color:var(--ink-faint);margin-top:22px;text-wrap:pretty}
+/* ============ PRIZE — activities & lucky draw ============ */
+.prize{display:grid;grid-template-columns:1fr .6fr;gap:36px;align-items:center;max-width:980px;margin:56px auto 0;
+  background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:32px 34px;box-shadow:var(--shadow)}
+.prize-copy .eyebrow{display:inline-block;margin-bottom:12px}
+.prize-copy h3{font-family:var(--font-display);font-weight:700;font-size:clamp(21px,3vw,27px);line-height:1.22;color:var(--ink);text-wrap:balance}
+.prize-copy>p{font-size:15px;color:var(--ink-soft);margin-top:12px;text-wrap:pretty}
+.prize-acts{margin-top:20px;gap:10px}
+.prize-acts .act{font-size:15px}
+.prize-acts .tick{background:var(--brand2-soft);font-size:14px}
+.prize-copy .maplink{display:inline-block;margin-top:20px}
+.prize-shot{margin:0}
+.prize-media{position:relative;aspect-ratio:2/3;border-radius:18px;overflow:hidden;
+  background:url(assets/bg-scatter.png) center/230px repeat,var(--brand2-soft)}
+.prize-fallback{position:absolute;inset:0;display:grid;place-items:center;font-size:64px;opacity:.5}
+.prize-media img{position:relative;width:100%;height:100%;object-fit:cover;display:block}
+.prize-shot figcaption{margin-top:12px;text-align:center;font-size:12.5px;font-weight:600;color:var(--ink-faint)}
 /* ============ SPONSOR ============ */
 .spon-head{text-align:center;max-width:680px;margin:0 auto 34px}
 .spon-head .eyebrow{display:inline-block;margin-bottom:14px}
@@ -412,6 +432,10 @@ footer{position:relative;margin-top:60px;background:var(--ink);color:#fff;z-inde
   .infogrid{grid-template-columns:1fr;max-width:420px}
   .merch-grid{grid-template-columns:1fr;max-width:420px}
   .merch{margin-top:44px}
+  .prize{grid-template-columns:1fr;gap:26px;max-width:420px;margin-top:44px;padding:26px 22px;text-align:center}
+  .prize-copy .eyebrow{margin-inline:auto}
+  .prize-acts{max-width:320px;margin-inline:auto;text-align:left}
+  .prize-shot{max-width:260px;margin-inline:auto}
   .spon-grid{grid-template-columns:1fr;max-width:360px}
   .spon-contact{padding:26px 20px}
   .register{padding:46px 26px}
