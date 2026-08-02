@@ -20,8 +20,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Kanit:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="styles2.css" />
+<link rel="stylesheet" href="styles.css?v=20260802" />
+<link rel="stylesheet" href="styles2.css?v=20260802" />
 <!-- Firebase -->
 <script type="module">
   // Import the functions you need from the SDKs you need
@@ -74,7 +74,7 @@
     <a href="#sponsor">ผู้สนับสนุน</a>
     <a href="#faq">คำถามที่พบบ่อย</a>
   </nav>
-  <a href="https://register.samsen45.com/bookings/create/9" target="_blank" rel="noopener" class="btn btn-cta reg-trigger">ลงทะเบียน</a>
+  <span class="btn btn-soldout" role="status">บัตรเต็มแล้ว</span>
   <button class="menu-btn" id="menuBtn" aria-label="เปิดเมนู"><i></i></button>
 </header>
 <div class="mobile-menu" id="mobileMenu">
@@ -82,7 +82,7 @@
   <a href="#about">ธีมงาน</a>
   <a href="#sponsor">ผู้สนับสนุน</a>
   <a href="#faq">คำถามที่พบบ่อย</a>
-  <a href="https://register.samsen45.com/bookings/create/9" target="_blank" rel="noopener" class="btn btn-cta reg-trigger">ลงทะเบียนเข้าร่วม</a>
+  <span class="btn btn-soldout" role="status">บัตรจำหน่ายหมดแล้ว</span>
 </div>
 
 <main>
@@ -105,9 +105,10 @@
           <div class="dateinfo"><b>เสาร์ที่ 8 สิงหาคม 2569</b>17.00 น. เป็นต้นไป<br />Best Western Plus จตุจักร</div>
         </div>
         <div class="cta-row">
-          <a href="https://register.samsen45.com/bookings/create/9" target="_blank" rel="noopener" class="btn btn-cta btn-lg reg-trigger">ลงทะเบียนเข้าร่วม</a>
-          <a href="#event" class="btn btn-ghost btn-lg">ดูรายละเอียด</a>
+          <span class="btn btn-soldout btn-lg" role="status">บัตรจำหน่ายหมดแล้ว</span>
+          <a href="#event" class="btn btn-cta btn-lg">ดูรายละเอียดงาน</a>
         </div>
+        <p class="soldout-note">ขอบคุณทุกคนที่จองเข้ามาจนเต็มจำนวน — แล้วเจอกันวันงานนะ · <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">ติดตามข่าวสารที่กลุ่ม Facebook</a></p>
         <div class="scrollcue"><span class="ln"></span> เลื่อนลงเพื่อเชื่อมเรื่องราว</div>
       </div>
       <div class="hero-media reveal">
@@ -162,8 +163,18 @@
           <div class="ic">🎟️</div>
           <h3>บัตรเข้างาน</h3>
           <div class="big">฿1,450 / ท่าน</div>
-          <p>รวมบุฟเฟ่ต์ เครื่องดื่ม และของที่ระลึก 2 ชิ้น<br />เด็กไม่เกิน 15 ปีเข้าฟรี · ที่นั่งจำกัด</p>
-          <a class="maplink reg-trigger" href="https://register.samsen45.com/bookings/create/9" target="_blank" rel="noopener">ลงทะเบียน →</a>
+          <p>รวมบุฟเฟ่ต์ เครื่องดื่ม และของที่ระลึก 2 ชิ้น<br />เด็กไม่เกิน 15 ปีเข้าฟรี</p>
+          <span class="info-soldout">✓ บัตรจำหน่ายหมดแล้ว</span>
+        </div>
+      </div>
+
+      <!-- dress code — announced in the FB group -->
+      <div class="dress reveal">
+        <div class="dress-sw" aria-hidden="true"><span class="sw p"></span><span class="sw g"></span></div>
+        <div class="dress-copy">
+          <span class="eyebrow">ธีมการแต่งกาย · Dress Code</span>
+          <h3><em class="c-p">ชมพู</em> หรือ <em class="c-g">เขียว</em></h3>
+          <p>สีประจำงานคือชมพูและเขียว — หยิบสีไหนมาก็ได้ตามใจ หรือถ้าไม่มี ก็มาในลุคที่คุณมั่นใจที่สุดได้เลย ไม่ต้องกังวล</p>
         </div>
       </div>
     </div>
@@ -313,16 +324,16 @@
       <div class="register reveal">
         <div class="dots"></div>
         <img class="smiley" src="assets/smiley.png" alt="Samsen 45 Forever" />
-        <span class="eyebrow">พร้อมหรือยัง?</span>
-        <h2>กลับมาเชื่อมจุด<br />กับพวกเราสิ</h2>
-        <p>บัตรผู้ใหญ่ <strong>฿1,450 / ท่าน</strong> — รวมบุฟเฟ่ต์ เครื่องดื่ม และของที่ระลึก 2 ชิ้น (เด็กไม่เกิน 15 ปีเข้าฟรี) ลงทะเบียนผ่านระบบออนไลน์ ใช้เวลาไม่กี่นาที</p>
+        <span class="eyebrow">ที่นั่งเต็มแล้ว</span>
+        <h2>บัตรจำหน่าย<br />หมดแล้ว</h2>
+        <p>ที่นั่งทั้ง 250 ที่ถูกจองเต็มเรียบร้อย — ขอบคุณเพื่อน ๆ ทุกคนที่ตอบรับกันล้นหลาม ไม่มีจำหน่ายบัตรหน้างาน สำหรับคนที่ได้บัตรแล้ว เตรียมตัวมาสนุกกันได้เลย</p>
         <div class="steps">
-          <div class="step"><b>1</b> กรอกข้อมูล</div>
-          <div class="step"><b>2</b> เลือกจำนวนบัตร</div>
-          <div class="step"><b>3</b> ชำระเงินออนไลน์</div>
+          <div class="step"><b>1</b> พกบัตร/QR มาด้วย</div>
+          <div class="step"><b>2</b> แต่งชมพูหรือเขียว</div>
+          <div class="step"><b>3</b> เจอกัน 17.00 น.</div>
         </div>
-        <a href="https://register.samsen45.com/bookings/create/9" target="_blank" rel="noopener" class="btn btn-lg reg-trigger">ลงทะเบียน · ซื้อบัตร →</a>
-        <div class="micro">🔒 ระบบลงทะเบียนและชำระเงินออนไลน์ที่ปลอดภัย</div>
+        <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="btn btn-lg">ติดตามข่าวสารก่อนวันงาน →</a>
+        <div class="micro">💬 อัปเดตทั้งหมดประกาศที่กลุ่ม Facebook · Samsen 45</div>
       </div>
     </div>
   </section>
@@ -411,12 +422,12 @@
         <h2>มีคำถาม? เราพร้อมตอบ</h2>
       </div>
       <div class="faqlist reveal solo">
-          <div class="qa open"><button>ใครเข้าร่วมงานได้บ้าง?<span class="plus"></span></button><div class="ans"><p>ศิษย์เก่าสามเสนวิทยาลัย รุ่น 45 ทุกคน รวมถึงคู่และครอบครัวที่อยากมาร่วมสังสรรค์ เพียงลงทะเบียนตามจำนวนผู้เข้าร่วม</p></div></div>
-          <div class="qa"><button>ราคาบัตรเท่าไหร่ และชำระเงินอย่างไร?<span class="plus"></span></button><div class="ans"><p>บัตรผู้ใหญ่ท่านละ 1,450 บาท (รวมบุฟเฟ่ต์อาหาร เครื่องดื่มซอฟต์ดริงก์และแอลกอฮอล์ พร้อมของที่ระลึก 2 ชิ้น) ส่วนเด็กอายุไม่เกิน 15 ปีเข้าฟรี ชำระเงินผ่านระบบออนไลน์ด้วยการสแกน QR แล้วแนบสลิป โดยชำระภายใน 2 วันหลังจอง มิฉะนั้นระบบจะปล่อยที่นั่งให้ผู้อื่นต่อไป</p></div></div>
-          <div class="qa"><button>แต่งกายอย่างไรดี?<span class="plus"></span></button><div class="ans"><p>แต่งกายสุภาพตามสบายในสไตล์ที่คุณมั่นใจ หากมีธีมการแต่งกายพิเศษ จะประกาศเพิ่มเติมในกลุ่ม Facebook ก่อนวันงาน</p></div></div>
-          <div class="qa"><button>พาเพื่อน คู่ หรือครอบครัวมาได้ไหม?<span class="plus"></span></button><div class="ans"><p>ได้แน่นอน เพียงลงทะเบียนและซื้อบัตรตามจำนวนผู้ที่มาร่วมงาน สำหรับเด็กอายุไม่เกิน 15 ปีเข้าฟรี แต่รบกวนกดเลือก “บัตรเด็ก” ในระบบด้วย เพื่อให้ทีมงานเตรียมที่นั่งและอาหารได้พอดี</p></div></div>
+          <div class="qa open"><button>ใครเข้าร่วมงานได้บ้าง?<span class="plus"></span></button><div class="ans"><p>ศิษย์เก่าสามเสนวิทยาลัย รุ่น 45 ทุกคน รวมถึงคู่และครอบครัวที่ลงทะเบียนไว้แล้ว ทั้งนี้บัตรจำหน่ายหมดและปิดรับลงทะเบียนเรียบร้อยแล้ว</p></div></div>
+          <div class="qa"><button>ราคาบัตรเท่าไหร่ และชำระเงินอย่างไร?<span class="plus"></span></button><div class="ans"><p><b>ขณะนี้บัตรจำหน่ายหมดแล้ว</b> ไม่สามารถซื้อเพิ่มได้ทั้งทางออนไลน์และหน้างาน สำหรับข้อมูลอ้างอิง บัตรผู้ใหญ่ราคาท่านละ 1,450 บาท (รวมบุฟเฟ่ต์อาหาร เครื่องดื่มซอฟต์ดริงก์และแอลกอฮอล์ พร้อมของที่ระลึก 2 ชิ้น) และเด็กอายุไม่เกิน 15 ปีเข้าฟรี ผู้ที่จองไว้แล้วและชำระเงินเรียบร้อย สามารถใช้บัตร/QR เข้างานได้ตามปกติ</p></div></div>
+          <div class="qa"><button>แต่งกายอย่างไรดี?<span class="plus"></span></button><div class="ans"><p>ธีมการแต่งกายของงานคือ <b>สีชมพู</b> หรือ <b>สีเขียว</b> ซึ่งเป็นสีประจำงาน ใส่สีไหนก็ได้ตามที่ชอบ หรือถ้าไม่มีสีธีม ก็แต่งกายสุภาพตามสบายในลุคที่คุณมั่นใจที่สุดได้เลย ไม่ได้บังคับ</p></div></div>
+          <div class="qa"><button>พาเพื่อน คู่ หรือครอบครัวมาได้ไหม?<span class="plus"></span></button><div class="ans"><p>ได้ตามจำนวนบัตรที่จองไว้แล้วเท่านั้น เนื่องจากบัตรจำหน่ายหมดแล้วจึงไม่สามารถซื้อเพิ่มได้ หากต้องการเปลี่ยนแปลงรายชื่อผู้ร่วมงานหรือจำนวนเด็ก (อายุไม่เกิน 15 ปี เข้าฟรี) รบกวนแจ้งทีมงานที่กลุ่ม Facebook ก่อนวันงาน เพื่อเตรียมที่นั่งและอาหารได้พอดี</p></div></div>
           <div class="qa"><button>เดินทางและที่จอดรถเป็นอย่างไร?<span class="plus"></span></button><div class="ans"><p>งานจัดที่ Best Western Plus จตุจักร ใจกลางกรุงเทพฯ เดินทางสะดวกและมีที่จอดรถบริเวณโรงแรม ดูตำแหน่งได้จากปุ่มแผนที่ในหัวข้อรายละเอียดงาน</p></div></div>
-          <div class="qa"><button>ปิดรับลงทะเบียนเมื่อไหร่?<span class="plus"></span></button><div class="ans"><p>งานรับผู้ร่วมงานจำนวนจำกัดเพียง 250 ท่าน และไม่มีขายบัตรหน้างาน ต้องซื้อผ่านระบบออนไลน์ล่วงหน้าเท่านั้น จึงแนะนำให้ลงทะเบียนแต่เนิ่น ๆ เพราะเมื่อบัตรเต็มจะปิดรับทันที ทั้งนี้วันปิดรับอย่างเป็นทางการจะแจ้งในระบบและกลุ่ม Facebook</p></div></div>
+          <div class="qa"><button>ยังลงทะเบียนได้อยู่ไหม?<span class="plus"></span></button><div class="ans"><p>ปิดรับลงทะเบียนแล้ว เนื่องจากงานรับผู้ร่วมงานจำนวนจำกัดเพียง 250 ท่าน และที่นั่งถูกจองเต็มเรียบร้อย ทั้งนี้ไม่มีจำหน่ายบัตรหน้างาน หากมีที่นั่งว่างเพิ่มหรือมีความคืบหน้าใด ๆ ทีมงานจะประกาศที่กลุ่ม Facebook ของรุ่นเป็นช่องทางแรก</p></div></div>
         </div>
         <p class="faq-more reveal">ยังมีข้อสงสัย? ทักมาได้ที่ <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">Facebook · กลุ่ม Samsen 45</a> หรือ <a href="mailto:samsen45@gmail.com">samsen45@gmail.com</a></p>
     </div>
@@ -502,8 +513,8 @@
   </div>
 </aside>
 
-<script src="app.js"></script>
-<script src="tweaks.js"></script>
+<script src="app.js?v=20260802"></script>
+<script src="tweaks.js?v=20260802"></script>
 <!-- Reg modal script disabled — registration links go straight to register.samsen45.com
 <script>
 (function(){

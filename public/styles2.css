@@ -26,6 +26,10 @@
 .dateinfo{font-size:14px;color:var(--ink-soft);line-height:1.45;border-left:2px solid var(--brand-l);padding-left:14px}
 .dateinfo b{color:var(--ink);font-weight:600;display:block;font-size:15.5px}
 .hero .cta-row{display:flex;gap:13px;margin-top:32px;flex-wrap:wrap}
+.soldout-note{margin-top:16px;font-size:14px;color:var(--ink-soft);max-width:34em}
+.soldout-note a{font-weight:600;color:var(--brand-d);text-decoration:underline;text-underline-offset:3px}
+[data-hero="photo"] .soldout-note{color:rgba(255,255,255,.82)}
+[data-hero="photo"] .soldout-note a{color:#fff}
 .scrollcue{margin-top:34px;display:inline-flex;align-items:center;gap:10px;color:var(--ink-faint);font-size:13px;font-weight:500}
 .scrollcue .ln{width:34px;height:1.5px;background:var(--brand-l);position:relative;overflow:hidden}
 .scrollcue .ln::after{content:"";position:absolute;inset:0;width:40%;background:var(--brand);animation:cue 1.8s ease-in-out infinite}
@@ -111,6 +115,19 @@
 .info p{font-size:14.5px;color:var(--ink-soft)}
 .info .maplink{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-weight:600;font-size:14px;color:var(--brand-d)}
 .info .maplink:hover{gap:9px}
+.info-soldout{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:5px 13px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--line);color:var(--ink-faint);font-size:13px;font-weight:700}
+/* dress code callout */
+.dress{display:flex;align-items:center;gap:26px;max-width:980px;margin:22px auto 0;padding:22px 26px;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+.dress-sw{display:flex;flex:none}
+.dress-sw .sw{width:46px;height:46px;border-radius:50%;border:3px solid var(--paper)}
+.dress-sw .sw.p{background:var(--pink)}
+.dress-sw .sw.g{background:var(--green);margin-left:-16px}
+.dress-copy .eyebrow{display:block;margin-bottom:6px}
+.dress-copy h3{font-size:22px;line-height:1.2}
+.dress-copy h3 em{font-style:normal}
+.dress-copy .c-p{color:var(--pink-d)}
+.dress-copy .c-g{color:var(--green-d)}
+.dress-copy p{font-size:14.5px;color:var(--ink-soft);margin-top:7px;text-wrap:pretty}
 
 /* ============ ABOUT + DOTMAP ============ */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center;max-width:1040px;margin:0 auto}
@@ -315,7 +332,7 @@
 .step b{width:25px;height:25px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:13px}
 .register .btn-lg{background:var(--brand);color:#fff;box-shadow:0 18px 40px -16px rgba(0,0,0,.3)}
 .register .btn-lg:hover{filter:brightness(.97);transform:translateY(-2px)}
-.register .micro{margin-top:16px;font-size:13px;color:var(--ink-soft);display:inline-flex;align-items:center;gap:7px}
+.register .micro{margin-top:16px;font-size:13px;color:var(--ink-soft);display:flex;justify-content:center;align-items:center;gap:7px;flex-wrap:wrap}
 
 /* ============ FAQ + CONTACT ============ */
 .faq-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;max-width:1040px;margin:0 auto;align-items:start}
@@ -421,7 +438,7 @@ footer{position:relative;margin-top:60px;background:var(--ink);color:#fff;z-inde
 }
 @media (max-width:640px){
   .nav-links{display:none}
-  .nav>.btn-cta{display:none}
+  .nav>.btn-cta,.nav>.btn-soldout{display:none}
   .menu-btn{display:flex}
   .mobile-menu{display:block}
   .hero-media{margin:50px auto 26px}
@@ -430,6 +447,8 @@ footer{position:relative;margin-top:60px;background:var(--ink);color:#fff;z-inde
   .stack2{left:8px}
   .wrap{padding-inline:32px}
   .infogrid{grid-template-columns:1fr;max-width:420px}
+  .dress{flex-direction:column;text-align:center;gap:16px;max-width:420px;padding:24px 22px}
+  .dress-copy .eyebrow{display:inline-block}
   .merch-grid{grid-template-columns:1fr;max-width:420px}
   .merch{margin-top:44px}
   .prize{grid-template-columns:1fr;gap:26px;max-width:420px;margin-top:44px;padding:26px 22px;text-align:center}
