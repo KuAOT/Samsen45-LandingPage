@@ -1,4 +1,4 @@
-# Logs
+bring the # Logs
 logs
 *.log
 npm-debug.log*
@@ -70,6 +70,3 @@ node_modules/
 
 # macOS
 .DS_Store
-
-# CodeGraph index
-.codegraph/
