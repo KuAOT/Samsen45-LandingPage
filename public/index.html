@@ -20,8 +20,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Kanit:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=20260802" />
-<link rel="stylesheet" href="styles2.css?v=20260802" />
+<link rel="stylesheet" href="styles.css?v=20260804" />
+<link rel="stylesheet" href="styles2.css?v=20260804" />
 <!-- Firebase -->
 <script type="module">
   // Import the functions you need from the SDKs you need
@@ -46,11 +46,12 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
-  // Track clicks on registration buttons (GA4 event)
+  // Track clicks on registration / my-ticket buttons (GA4 events)
   document.addEventListener("click", (e) => {
-    const trigger = e.target.closest(".reg-trigger");
+    const trigger = e.target.closest(".reg-trigger,.ticket-trigger");
     if (!trigger) return;
-    logEvent(analytics, "register_click", {
+    const name = trigger.classList.contains("ticket-trigger") ? "ticket_click" : "register_click";
+    logEvent(analytics, name, {
       link_url: trigger.href,
       link_text: (trigger.textContent || "").trim(),
       location: trigger.closest("[id]")?.id || "unknown"
@@ -74,7 +75,7 @@
     <a href="#sponsor">ผู้สนับสนุน</a>
     <a href="#faq">คำถามที่พบบ่อย</a>
   </nav>
-  <span class="btn btn-soldout" role="status">บัตรเต็มแล้ว</span>
+  <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="btn btn-cta ticket-trigger">บัตรของฉัน</a>
   <button class="menu-btn" id="menuBtn" aria-label="เปิดเมนู"><i></i></button>
 </header>
 <div class="mobile-menu" id="mobileMenu">
@@ -82,7 +83,7 @@
   <a href="#about">ธีมงาน</a>
   <a href="#sponsor">ผู้สนับสนุน</a>
   <a href="#faq">คำถามที่พบบ่อย</a>
-  <span class="btn btn-soldout" role="status">บัตรจำหน่ายหมดแล้ว</span>
+  <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="btn btn-cta ticket-trigger">บัตรของฉัน · พิมพ์ QR</a>
 </div>
 
 <main>
@@ -106,9 +107,9 @@
         </div>
         <div class="cta-row">
           <span class="btn btn-soldout btn-lg" role="status">บัตรจำหน่ายหมดแล้ว</span>
-          <a href="#event" class="btn btn-cta btn-lg">ดูรายละเอียดงาน</a>
+          <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="btn btn-cta btn-lg ticket-trigger">บัตรของฉัน · พิมพ์ QR →</a>
         </div>
-        <p class="soldout-note">ขอบคุณทุกคนที่จองเข้ามาจนเต็มจำนวน — แล้วเจอกันวันงานนะ · <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">ติดตามข่าวสารที่กลุ่ม Facebook</a></p>
+        <p class="soldout-note">ขอบคุณทุกคนที่จองเข้ามาจนเต็มจำนวน — แล้วเจอกันวันงานนะ · ผู้ที่จองบัตรไว้แล้ว <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="ticket-trigger">เข้าระบบเพื่อดูหรือพิมพ์ QR</a> ได้ตลอดเวลา · <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">ติดตามข่าวสารที่กลุ่ม Facebook</a></p>
         <div class="scrollcue"><span class="ln"></span> เลื่อนลงเพื่อเชื่อมเรื่องราว</div>
       </div>
       <div class="hero-media reveal">
@@ -165,6 +166,7 @@
           <div class="big">฿1,450 / ท่าน</div>
           <p>รวมบุฟเฟ่ต์ เครื่องดื่ม และของที่ระลึก 2 ชิ้น<br />เด็กไม่เกิน 15 ปีเข้าฟรี</p>
           <span class="info-soldout">✓ บัตรจำหน่ายหมดแล้ว</span>
+          <a class="maplink ticket-trigger" href="https://register.samsen45.com/" target="_blank" rel="noopener">จองไว้แล้ว? ดู/พิมพ์บัตร QR →</a>
         </div>
       </div>
 
@@ -326,14 +328,14 @@
         <img class="smiley" src="assets/smiley.png" alt="Samsen 45 Forever" />
         <span class="eyebrow">ที่นั่งเต็มแล้ว</span>
         <h2>บัตรจำหน่าย<br />หมดแล้ว</h2>
-        <p>ที่นั่งทั้ง 250 ที่ถูกจองเต็มเรียบร้อย — ขอบคุณเพื่อน ๆ ทุกคนที่ตอบรับกันล้นหลาม ไม่มีจำหน่ายบัตรหน้างาน สำหรับคนที่ได้บัตรแล้ว เตรียมตัวมาสนุกกันได้เลย</p>
+        <p>ที่นั่งทั้ง 250 ที่ถูกจองเต็มเรียบร้อย — ขอบคุณเพื่อน ๆ ทุกคนที่ตอบรับกันล้นหลาม ไม่มีจำหน่ายบัตรหน้างาน สำหรับคนที่ได้บัตรแล้ว เข้าระบบลงทะเบียนเพื่อดูหรือพิมพ์บัตร QR เตรียมไว้ก่อนวันงานได้เลย</p>
         <div class="steps">
-          <div class="step"><b>1</b> พกบัตร/QR มาด้วย</div>
+          <div class="step"><b>1</b> เข้าระบบ ดู/พิมพ์ QR</div>
           <div class="step"><b>2</b> แต่งชมพูหรือเขียว</div>
           <div class="step"><b>3</b> เจอกัน 17.00 น.</div>
         </div>
-        <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="btn btn-lg">ติดตามข่าวสารก่อนวันงาน →</a>
-        <div class="micro">💬 อัปเดตทั้งหมดประกาศที่กลุ่ม Facebook · Samsen 45</div>
+        <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="btn btn-lg ticket-trigger">เข้าระบบ · ดูบัตร QR ของฉัน →</a>
+        <div class="micro">🎟️ ใช้อีเมลและรหัสผ่านที่ลงทะเบียนไว้ · <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">ติดตามข่าวสารที่กลุ่ม Facebook</a></div>
       </div>
     </div>
   </section>
@@ -423,6 +425,7 @@
       </div>
       <div class="faqlist reveal solo">
           <div class="qa open"><button>ใครเข้าร่วมงานได้บ้าง?<span class="plus"></span></button><div class="ans"><p>ศิษย์เก่าสามเสนวิทยาลัย รุ่น 45 ทุกคน รวมถึงคู่และครอบครัวที่ลงทะเบียนไว้แล้ว ทั้งนี้บัตรจำหน่ายหมดและปิดรับลงทะเบียนเรียบร้อยแล้ว</p></div></div>
+          <div class="qa"><button>จะดูหรือพิมพ์บัตร QR ได้ที่ไหน?<span class="plus"></span></button><div class="ans"><p>ผู้ที่จองบัตรและชำระเงินเรียบร้อยแล้ว เข้าไปที่ <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="ticket-trigger">register.samsen45.com</a> แล้วลงชื่อเข้าใช้ด้วยอีเมลและรหัสผ่านที่ใช้ตอนลงทะเบียน จะเห็นบัตรพร้อม QR ของตัวเอง สามารถบันทึกภาพหรือสั่งพิมพ์เก็บไว้ได้ วันงานแสดง QR จากมือถือหรือกระดาษก็ได้เหมือนกัน หากเข้าระบบไม่ได้หรือลืมรหัสผ่าน ทักทีมงานที่กลุ่ม Facebook ได้เลย</p></div></div>
           <div class="qa"><button>ราคาบัตรเท่าไหร่ และชำระเงินอย่างไร?<span class="plus"></span></button><div class="ans"><p><b>ขณะนี้บัตรจำหน่ายหมดแล้ว</b> ไม่สามารถซื้อเพิ่มได้ทั้งทางออนไลน์และหน้างาน สำหรับข้อมูลอ้างอิง บัตรผู้ใหญ่ราคาท่านละ 1,450 บาท (รวมบุฟเฟ่ต์อาหาร เครื่องดื่มซอฟต์ดริงก์และแอลกอฮอล์ พร้อมของที่ระลึก 2 ชิ้น) และเด็กอายุไม่เกิน 15 ปีเข้าฟรี ผู้ที่จองไว้แล้วและชำระเงินเรียบร้อย สามารถใช้บัตร/QR เข้างานได้ตามปกติ</p></div></div>
           <div class="qa"><button>แต่งกายอย่างไรดี?<span class="plus"></span></button><div class="ans"><p>ธีมการแต่งกายของงานคือ <b>สีชมพู</b> หรือ <b>สีเขียว</b> ซึ่งเป็นสีประจำงาน ใส่สีไหนก็ได้ตามที่ชอบ หรือถ้าไม่มีสีธีม ก็แต่งกายสุภาพตามสบายในลุคที่คุณมั่นใจที่สุดได้เลย ไม่ได้บังคับ</p></div></div>
           <div class="qa"><button>พาเพื่อน คู่ หรือครอบครัวมาได้ไหม?<span class="plus"></span></button><div class="ans"><p>ได้ตามจำนวนบัตรที่จองไว้แล้วเท่านั้น เนื่องจากบัตรจำหน่ายหมดแล้วจึงไม่สามารถซื้อเพิ่มได้ หากต้องการเปลี่ยนแปลงรายชื่อผู้ร่วมงานหรือจำนวนเด็ก (อายุไม่เกิน 15 ปี เข้าฟรี) รบกวนแจ้งทีมงานที่กลุ่ม Facebook ก่อนวันงาน เพื่อเตรียมที่นั่งและอาหารได้พอดี</p></div></div>
@@ -513,8 +516,8 @@
   </div>
 </aside>
 
-<script src="app.js?v=20260802"></script>
-<script src="tweaks.js?v=20260802"></script>
+<script src="app.js?v=20260804"></script>
+<script src="tweaks.js?v=20260804"></script>
 <!-- Reg modal script disabled — registration links go straight to register.samsen45.com
 <script>
 (function(){
