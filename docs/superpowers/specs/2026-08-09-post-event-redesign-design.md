@@ -4,7 +4,7 @@
 
 ## Context
 
-The reunion ran on Saturday 8 August 2026 at Best Western Plus Chatuchak and was a
+The reunion ran on Saturday 8 August 2026 at Best Western Chatuchak and was a
 success — 250 seats sold out, ~1,200 photos captured. The landing page still sells
 tickets to a future event. Every tense on the page is wrong.
 

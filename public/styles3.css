@@ -17,7 +17,7 @@
   box-shadow:var(--shadow);border:1px solid var(--line)}
 .hero-mosaic figure:nth-child(1){grid-row:span 2;border-radius:20px}
 .hero-mosaic figure:nth-child(4){grid-column:1}
-.hero-mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.hero-mosaic img{width:100%;height:100%;object-fit:cover;object-position:var(--op,center);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 .hero-mosaic figure:hover img{transform:scale(1.045)}
 .hero-mosaic .tape{position:absolute;left:12px;bottom:10px;z-index:2;color:#fff;font-size:12px;font-weight:600;
   letter-spacing:.02em;text-shadow:0 1px 8px rgba(0,0,0,.6)}
@@ -115,19 +115,32 @@
 .booth-head .eyebrow{display:block;margin-bottom:9px}
 .booth-head h3{font-size:clamp(22px,3vw,30px)}
 .booth-head p{color:var(--ink-soft);font-size:15px;margin-top:9px;max-width:46em;text-wrap:pretty}
-.booth-strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 0 16px;
-  scrollbar-width:thin;scrollbar-color:var(--brand-l) transparent}
-.booth-strip::-webkit-scrollbar{height:8px}
-.booth-strip::-webkit-scrollbar-thumb{background:var(--brand-l);border-radius:8px}
-.booth-strip::-webkit-scrollbar-track{background:transparent}
-.booth-strip .shot{flex:0 0 auto;width:clamp(260px,30vw,380px);scroll-snap-align:start;border-radius:14px;
-  overflow:hidden;border:1px solid var(--line);background:var(--bg-soft);cursor:zoom-in;padding:0;
-  box-shadow:var(--shadow)}
-/* height:auto is required — the img height attribute would otherwise beat aspect-ratio and crop the shot */
-.booth-strip .shot img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block;transition:transform .6s}
-.booth-strip .shot:hover img{transform:scale(1.05)}
-.booth-strip .shot:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
-.booth-hint{font-size:13px;color:var(--ink-faint);text-align:center;margin-top:2px}
+/* One clip moves at a time. A wall of looping video reads as noise on a memories
+   page, and constant motion is a vestibular-discomfort trigger — hence the toggle. */
+.boomer{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:16px;align-items:start;
+  max-width:880px;margin:0 auto}
+.boomer-stage{position:relative;margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+  background:var(--bg-soft);box-shadow:var(--shadow-lg);aspect-ratio:3/2}
+.boomer-stage video{width:100%;height:100%;object-fit:cover;display:block;background:var(--bg-soft)}
+.boom-badge{position:absolute;left:14px;bottom:13px;z-index:2;font-family:var(--font-display);
+  font-size:10px;font-weight:700;letter-spacing:.18em;color:#fff;background:rgba(18,22,12,.5);
+  backdrop-filter:blur(6px);padding:4px 10px;border-radius:999px}
+.boom-toggle{position:absolute;right:14px;bottom:13px;z-index:3;width:38px;height:38px;border:none;
+  border-radius:50%;cursor:pointer;background:rgba(18,22,12,.5);backdrop-filter:blur(6px);
+  display:grid;place-items:center;transition:background .18s}
+.boom-toggle:hover{background:rgba(18,22,12,.72)}
+.boom-toggle::before{content:"";width:12px;height:12px;background:#fff;
+  clip-path:polygon(0 0,38% 0,38% 100%,0 100%,0 0,62% 0,100% 0,100% 100%,62% 100%,62% 0)}
+.boom-toggle[aria-pressed="false"]::before{clip-path:polygon(12% 0,100% 50%,12% 100%)}
+
+.boomer-thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.bt{padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;
+  background:var(--bg-soft);display:block;transition:.18s;opacity:.62}
+.bt img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
+.bt:hover{opacity:1;border-color:var(--brand-l)}
+.bt.is-active{opacity:1;border-color:var(--brand);box-shadow:0 0 0 2px color-mix(in srgb,var(--brand) 34%,transparent)}
+.bt:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.booth-hint{font-size:13px;color:var(--ink-faint);text-align:center;margin-top:14px}
 
 /* ============ DRIVE — the full archive ============ */
 .drives{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:940px;margin:0 auto}
@@ -146,7 +159,14 @@
   color:var(--brand-d);align-self:flex-start}
 .drive.alt .go{color:var(--pink-d)}
 .drive .go:hover{gap:11px}
-.drive-note{max-width:940px;margin:16px auto 0;text-align:center;font-size:14px;color:var(--ink-soft)}
+/* the community folder is the one that still wants something from the reader */
+.drive.open{border-color:color-mix(in srgb,var(--pink) 45%,var(--line))}
+.drive.open .n small{display:block;margin:6px 0 0 0;font-size:12.5px;color:var(--pink-d)}
+.drive-upload{max-width:940px;margin:20px auto 0;text-align:center;font-size:15px;color:var(--ink);
+  background:var(--pink-xl);border:1px dashed color-mix(in srgb,var(--pink) 52%,transparent);
+  border-radius:14px;padding:14px 20px;text-wrap:pretty}
+.drive-upload b{color:var(--pink-d)}
+.drive-note{max-width:940px;margin:14px auto 0;text-align:center;font-size:14px;color:var(--ink-soft)}
 .drive-note a{color:var(--brand-d);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 
 /* ============ SURVEY — the one thing we still need from you ============ */
@@ -211,6 +231,8 @@
 @media (max-width:720px){
   .drives,.books{grid-template-columns:1fr;max-width:460px}
   .booth-head{flex-direction:column;align-items:flex-start}
+  .boomer{grid-template-columns:1fr}
+  .boomer-thumbs{grid-template-columns:repeat(6,1fr)}
 }
 @media (max-width:640px){
   .masonry{columns:2;column-gap:9px}
@@ -222,9 +244,10 @@
   .moments .moment:nth-child(5){grid-column:span 2;aspect-ratio:16/9}
   .hero-mosaic{gap:7px}
   .booth{margin-top:44px}
+  .boomer-thumbs{grid-template-columns:repeat(4,1fr);gap:6px}
 }
 @media (prefers-reduced-motion:reduce){
-  .hero-mosaic img,.moment img,.masonry .shot img,.booth-strip .shot img{transition:none}
-  .hero-mosaic figure:hover img,.moment:hover img,.masonry .shot:hover img,.booth-strip .shot:hover img{transform:none}
+  .hero-mosaic img,.moment img,.masonry .shot img{transition:none}
+  .hero-mosaic figure:hover img,.moment:hover img,.masonry .shot:hover img{transform:none}
   .stat:hover,.drive:hover,.book:hover{transform:none}
 }

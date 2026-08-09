@@ -239,7 +239,7 @@
   img.addEventListener('error',()=>lb.classList.remove('loading'));
 
   function open(btn){
-    group=[...btn.closest('#masonry,#boothStrip').querySelectorAll('.shot')];
+    group=[...btn.closest('#masonry').querySelectorAll('.shot')];
     idx=group.indexOf(btn);
     lastFocus=btn;
     paint();
@@ -281,22 +281,52 @@
   },{passive:true});
 })();
 
-/* ===================== PHOTO-BOOTH STRIP — drag to scroll ===================== */
+/* ===================== PHOTO-BOOTH BOOMERANG =====================
+   Deliberately one clip at a time: a grid of looping video reads as noise beside
+   the stills, and constant motion is a vestibular-discomfort trigger. Only the
+   selected clip is ever fetched, so the section costs ~750KB instead of 8.5MB.
+   Scroll-driven rather than IntersectionObserver, matching the reveal code above. */
 (function(){
-  const strip=document.getElementById('boothStrip'); if(!strip) return;
-  let down=false, x0=0, left0=0, moved=0;
-  strip.addEventListener('pointerdown',e=>{
-    if(e.pointerType==='touch') return;         // native scrolling already handles touch
-    down=true; moved=0; x0=e.clientX; left0=strip.scrollLeft; strip.style.cursor='grabbing';
+  const wrap=document.getElementById('boomer'); if(!wrap) return;
+  const vid=document.getElementById('boomVid');
+  const toggle=document.getElementById('boomToggle');
+  const thumbs=[...document.querySelectorAll('#boomThumbs .bt')];
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let wantPlay=!reduce;                    // the viewer's intent, not the current state
+  toggle.setAttribute('aria-pressed', String(wantPlay));
+  toggle.setAttribute('aria-label', wantPlay?'หยุดเล่นคลิป':'เล่นคลิป');
+
+  function tryPlay(){
+    if(!wantPlay) return;
+    if(!vid.src) vid.src=vid.dataset.src;  // fetch only once actually wanted
+    const p=vid.play();
+    if(p&&p.catch) p.catch(()=>{});        // refusal or no codec: the poster stays
+  }
+  function inView(){
+    const r=wrap.getBoundingClientRect();
+    return r.top < innerHeight*0.9 && r.bottom > innerHeight*0.1;
+  }
+  function sync(){ inView() ? tryPlay() : vid.pause(); }
+
+  thumbs.forEach(bt=>bt.addEventListener('click',()=>{
+    thumbs.forEach(o=>o.classList.remove('is-active'));
+    bt.classList.add('is-active');
+    vid.poster=bt.dataset.poster;
+    vid.removeAttribute('src');
+    vid.dataset.src=bt.dataset.src;
+    vid.load();                            // drop the previous clip before the next
+    tryPlay();
+  }));
+
+  toggle.addEventListener('click',()=>{
+    wantPlay=!wantPlay;
+    toggle.setAttribute('aria-pressed', String(wantPlay));
+    toggle.setAttribute('aria-label', wantPlay?'หยุดเล่นคลิป':'เล่นคลิป');
+    wantPlay ? tryPlay() : vid.pause();
   });
-  strip.addEventListener('pointermove',e=>{
-    if(!down) return;
-    const dx=e.clientX-x0; moved=Math.max(moved,Math.abs(dx));
-    strip.scrollLeft=left0-dx;
-  });
-  const end=()=>{ down=false; strip.style.cursor=''; };
-  strip.addEventListener('pointerup',end);
-  strip.addEventListener('pointerleave',end);
-  // a drag should not also open the lightbox
-  strip.addEventListener('click',e=>{ if(moved>6){ e.stopPropagation(); e.preventDefault(); } },true);
+
+  sync();
+  addEventListener('scroll',sync,{passive:true});
+  addEventListener('resize',sync);
 })();
