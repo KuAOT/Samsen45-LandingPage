@@ -111,119 +111,22 @@
   window.addEventListener('resize',check);
 })();
 
-/* ===================== COSMOS — shared memories of Samsen 45 ===================== */
+/* ===================== SINCE — time elapsed since the night ===================== */
 (function(){
-  const map=document.getElementById('dotmap'); if(!map) return;
-  const svg=document.getElementById('dotlines');
-  const nodes=document.getElementById('cosmosNodes');
-  if(!svg||!nodes) return;
-  const NS='http://www.w3.org/2000/svg';
-  const R1=24, R2=39;
-
-  // six constellations of shared school memories — what connects us, not what separates us
-  const FIELDS=[
-    {n:'วัยเรียน',    a:-90, c:'#EB649B', subs:['ห้องเรียน','กระดานดำ','ม้านั่ง','ตารางสอน']},
-    {n:'ช่วงพัก',    a:-30, c:'#F5B921', subs:['โรงอาหาร','หน้าโรงเรียน','ขนม','เรื่องฮา']},
-    {n:'กีฬาสี',     a: 30, c:'#64A231', subs:['เชียร์ลีด','วิ่งผลัด','ตะโกนเชียร์']},
-    {n:'กิจกรรม',   a: 90, c:'#34A8DE', subs:['ค่ายนักเรียน','ชมรม','ดนตรีสด']},
-    {n:'เพื่อน',     a:150, c:'#E84545', subs:['ซนด้วยกัน','แซวกัน','ช่วยกัน','อยู่เคียงกัน']},
-    {n:'วันจบ',      a:210, c:'#8E63CE', subs:['รูปหมู่','คืนนั้น','น้ำตาปนยิ้ม']}
-  ];
-
-  const rad=d=>d*Math.PI/180;
-  const px=(a,r)=>(50+r*Math.cos(rad(a)));
-  const py=(a,r)=>(50+r*Math.sin(rad(a)));
-
-  function line(x1,y1,x2,y2,cls,color,delay){
-    const l=document.createElementNS(NS,'line');
-    l.setAttribute('x1',x1);l.setAttribute('y1',y1);l.setAttribute('x2',x2);l.setAttribute('y2',y2);
-    l.setAttribute('pathLength','1');l.setAttribute('class','link '+cls);
-    l.style.setProperty('--lk',color);l.style.setProperty('--d',delay+'s');
-    svg.appendChild(l);
-  }
-  function circ(cx,cy,r,cls){
-    const c=document.createElementNS(NS,'circle');
-    c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',r);c.setAttribute('class',cls);
-    return c;
-  }
-
-  // rotating concentric orbit rings
-  const orbits=document.createElementNS(NS,'g');orbits.setAttribute('class','orbits');
-  orbits.appendChild(circ(50,50,R1,'orbit'));
-  orbits.appendChild(circ(50,50,R2,'orbit'));
-  svg.appendChild(orbits);
-
-  // ambient background stars (distant specialists)
-  [[20,22],[78,17],[84,54],[29,83],[69,85],[14,59],[50,7],[91,37],[9,40],[58,29],[41,69],[73,47],[34,16],[66,15]]
-    .forEach(s=>{const st=circ(s[0],s[1],(0.55+Math.random()*0.5).toFixed(2),'star');
-      st.style.setProperty('--p',(Math.random()*3).toFixed(2)+'s');svg.appendChild(st);});
-
-  // build the two-level tree
-  FIELDS.forEach((f,fi)=>{
-    const fx=px(f.a,R1), fy=py(f.a,R1);
-    const co=Math.cos(rad(f.a)), si=Math.sin(rad(f.a));
-    const side = co>0.4?'r' : co<-0.4?'l' : (si>0?'b':'t');
-    const node=document.createElement('div');
-    node.className='cn l1 lab-'+side;
-    node.style.left=fx+'%';node.style.top=fy+'%';
-    node.style.setProperty('--c',f.c);
-    node.style.setProperty('--d',(0.1+fi*0.07).toFixed(2)+'s');
-    node.innerHTML='<div class="d"></div>';
-    nodes.appendChild(node);
-    line(50,50,fx,fy,'l1',f.c,(0.45+fi*0.07).toFixed(2));
-
-    const n=f.subs.length, spread=38, step=n>1?spread/(n-1):0, start=-spread/2;
-    f.subs.forEach((s,si2)=>{
-      const aa=f.a+(n>1?start+step*si2:0);
-      const rr=R2+(si2%2?2.4:-1.6);
-      const sx=px(aa,rr), sy=py(aa,rr);
-      const sn=document.createElement('div');
-      sn.className='cn l2';
-      sn.style.left=sx+'%';sn.style.top=sy+'%';
-      sn.style.setProperty('--c',f.c);
-      sn.style.setProperty('--d',(0.5+fi*0.09+si2*0.05).toFixed(2)+'s');
-      sn.style.setProperty('--p',(Math.random()*3).toFixed(2)+'s');
-      sn.innerHTML='<div class="d"></div>';
-      nodes.appendChild(sn);
-      line(fx,fy,sx,sy,'l2',f.c,(0.85+fi*0.09+si2*0.05).toFixed(2));
-    });
-  });
-
-  // light up when scrolled into view (IO + scroll fallback for embedded webviews)
-  const lit=()=>map.classList.add('lit');
-  const io=new IntersectionObserver(e=>{if(e[0].isIntersecting){lit();io.disconnect();}},{threshold:.3});
-  io.observe(map);
-  function chk(){if(map.getBoundingClientRect().top<window.innerHeight*0.85){lit();window.removeEventListener('scroll',chk);}}
-  chk();window.addEventListener('scroll',chk,{passive:true});
-})();
-
-/* ===================== TEAM-GRID EMBLEM — draw in on scroll ===================== */
-(function(){
-  const el=document.getElementById('teamgrid'); if(!el) return;
-  const lit=()=>el.classList.add('lit');
-  const io=new IntersectionObserver(e=>{if(e[0].isIntersecting){lit();io.disconnect();}},{threshold:.3});
-  io.observe(el);
-  function chk(){if(el.getBoundingClientRect().top<window.innerHeight*0.85){lit();window.removeEventListener('scroll',chk);}}
-  chk();window.addEventListener('scroll',chk,{passive:true});
-})();
-
-/* ===================== COUNTDOWN ===================== */
-(function(){
-  const target=new Date('2026-08-08T17:00:00+07:00').getTime();
-  const dEl=document.getElementById('cd-d'),hEl=document.getElementById('cd-h'),mEl=document.getElementById('cd-m'),sEl=document.getElementById('cd-s');
+  const start=new Date('2026-08-08T17:00:00+07:00').getTime();
+  const dEl=document.getElementById('sc-d'),hEl=document.getElementById('sc-h'),
+        mEl=document.getElementById('sc-m'),sEl=document.getElementById('sc-s');
   if(!dEl) return;
-  const cd=document.getElementById('countdown');
-  function pad(n){return String(n).padStart(2,'0');}
+  const pad=n=>String(n).padStart(2,'0');
   function tick(){
-    const now=Date.now(); let diff=target-now;
-    if(diff<=0){ cd.innerHTML='<div style="font-family:var(--font-display);font-weight:700;font-size:26px;color:var(--brand);padding:14px 0">🎉 ถึงวันงานแล้ว — แล้วเจอกัน!</div>'; clearInterval(iv); return; }
+    let diff=Date.now()-start;
+    if(diff<0) diff=0;                       // before the event, show zeros rather than negatives
     const d=Math.floor(diff/864e5); diff-=d*864e5;
-    const h=Math.floor(diff/36e5); diff-=h*36e5;
-    const m=Math.floor(diff/6e4); diff-=m*6e4;
-    const s=Math.floor(diff/1e3);
-    dEl.textContent=d; hEl.textContent=pad(h); mEl.textContent=pad(m); sEl.textContent=pad(s);
+    const h=Math.floor(diff/36e5);  diff-=h*36e5;
+    const m=Math.floor(diff/6e4);   diff-=m*6e4;
+    dEl.textContent=d; hEl.textContent=pad(h); mEl.textContent=pad(m); sEl.textContent=pad(Math.floor(diff/1e3));
   }
-  tick(); const iv=setInterval(tick,1000);
+  tick(); setInterval(tick,1000);
 })();
 
 /* ===================== RE + SUFFIX KINETIC WORDPLAY (45 RE stays fixed) ===================== */
@@ -304,6 +207,8 @@
 
 /* ===================== FAQ ===================== */
 (function(){
+  // an item marked open in the markup needs its height applied — CSS starts every answer at 0
+  document.querySelectorAll('.qa.open .ans').forEach(ans=>{ ans.style.maxHeight=ans.scrollHeight+'px'; });
   document.querySelectorAll('.qa>button').forEach(btn=>{
     btn.addEventListener('click',()=>{
       const qa=btn.parentElement, ans=qa.querySelector('.ans'), open=qa.classList.contains('open');
@@ -311,4 +216,87 @@
       if(!open){ qa.classList.add('open'); ans.style.maxHeight=ans.scrollHeight+'px'; }
     });
   });
+})();
+
+/* ===================== LIGHTBOX ===================== */
+(function(){
+  const lb=document.getElementById('lb'); if(!lb) return;
+  const img=document.getElementById('lbImg'),
+        numEl=document.getElementById('lbNum'), totalEl=document.getElementById('lbTotal');
+  let group=[], idx=0, lastFocus=null;
+
+  function preload(i){ if(group[i]){ const p=new Image(); p.src=group[i].dataset.full; } }
+
+  function paint(){
+    const btn=group[idx];
+    lb.classList.add('loading');
+    img.src=btn.dataset.full;
+    img.alt=btn.querySelector('img').alt;
+    numEl.textContent=idx+1; totalEl.textContent=group.length;
+    preload(idx+1); preload(idx-1);
+  }
+  img.addEventListener('load',()=>lb.classList.remove('loading'));
+  img.addEventListener('error',()=>lb.classList.remove('loading'));
+
+  function open(btn){
+    group=[...btn.closest('#masonry,#boothStrip').querySelectorAll('.shot')];
+    idx=group.indexOf(btn);
+    lastFocus=btn;
+    paint();
+    lb.classList.add('show');
+    document.body.style.overflow='hidden';
+    document.getElementById('lbClose').focus();
+  }
+  function close(){
+    lb.classList.remove('show');
+    document.body.style.overflow='';
+    img.src='';
+    if(lastFocus) lastFocus.focus();
+  }
+  const step=n=>{ idx=(idx+n+group.length)%group.length; paint(); };
+
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest('.shot'); if(!btn) return;
+    e.preventDefault(); open(btn);
+  });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',()=>step(-1));
+  document.getElementById('lbNext').addEventListener('click',()=>step(1));
+  lb.addEventListener('click',e=>{ if(e.target===lb||e.target.classList.contains('lb-stage')) close(); });
+
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('show')) return;
+    if(e.key==='Escape') close();
+    else if(e.key==='ArrowRight') step(1);
+    else if(e.key==='ArrowLeft') step(-1);
+  });
+
+  // swipe on touch devices
+  let x0=null;
+  lb.addEventListener('touchstart',e=>{ x0=e.changedTouches[0].clientX; },{passive:true});
+  lb.addEventListener('touchend',e=>{
+    if(x0===null) return;
+    const dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(dx)>50) step(dx<0?1:-1);
+  },{passive:true});
+})();
+
+/* ===================== PHOTO-BOOTH STRIP — drag to scroll ===================== */
+(function(){
+  const strip=document.getElementById('boothStrip'); if(!strip) return;
+  let down=false, x0=0, left0=0, moved=0;
+  strip.addEventListener('pointerdown',e=>{
+    if(e.pointerType==='touch') return;         // native scrolling already handles touch
+    down=true; moved=0; x0=e.clientX; left0=strip.scrollLeft; strip.style.cursor='grabbing';
+  });
+  strip.addEventListener('pointermove',e=>{
+    if(!down) return;
+    const dx=e.clientX-x0; moved=Math.max(moved,Math.abs(dx));
+    strip.scrollLeft=left0-dx;
+  });
+  const end=()=>{ down=false; strip.style.cursor=''; };
+  strip.addEventListener('pointerup',end);
+  strip.addEventListener('pointerleave',end);
+  // a drag should not also open the lightbox
+  strip.addEventListener('click',e=>{ if(moved>6){ e.stopPropagation(); e.preventDefault(); } },true);
 })();

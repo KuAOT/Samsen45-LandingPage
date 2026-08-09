@@ -3,9 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SAMSEN 45 · คืนสู่เหย้า — Collect the Dots · 08.08.2026</title>
-<meta name="description" content="งานคืนสู่เหย้าชาวสามเสน รุ่น 45 — Collect the Dots · เสาร์ที่ 8 สิงหาคม 2569 ณ Best Western Plus จตุจักร กรุงเทพฯ" />
+<title>SAMSEN 45 · คืนสู่เหย้า — ขอบคุณที่กลับมาเชื่อมจุดกัน · 08.08.2569</title>
+<meta name="description" content="ภาพและความทรงจำจากงานคืนสู่เหย้าชาวสามเสน รุ่น 45 — Collect the Dots · เสาร์ที่ 8 สิงหาคม 2569 ณ Best Western Plus จตุจักร · ภาพทั้งหมด 1,197 ภาพ และแบบประเมินหลังงาน" />
 <meta name="theme-color" content="#64A231" />
+<link rel="canonical" href="https://samsen45.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Samsen 45 Reunion" />
+<meta property="og:title" content="ขอบคุณที่กลับมาเชื่อมจุดกัน · SAMSEN 45 คืนสู่เหย้า" />
+<meta property="og:description" content="ภาพและความทรงจำจากค่ำคืน 8 สิงหาคม 2569 — เพื่อน 250 คน หนึ่งค่ำคืน 1,197 ภาพ" />
+<meta property="og:image" content="https://samsen45.com/assets/gallery/full/n32.webp" />
+<meta property="og:locale" content="th_TH" />
+<meta name="twitter:card" content="summary_large_image" />
 <!-- resources referenced as strings in JS (lifted for standalone bundling; harmless on the live site) -->
 <meta name="ext-resource-dependency" content="assets/re-union-c.png" data-resource-id="resUnion" />
 <meta name="ext-resource-dependency" content="assets/re-unite-c.png" data-resource-id="resUnite" />
@@ -20,18 +28,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Kanit:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=20260804" />
-<link rel="stylesheet" href="styles2.css?v=20260804" />
+<link rel="preload" as="image" href="assets/gallery/thumb/n32.webp" />
+<link rel="stylesheet" href="styles.css?v=20260809" />
+<link rel="stylesheet" href="styles2.css?v=20260809" />
+<link rel="stylesheet" href="styles3.css?v=20260809" />
 <!-- Firebase -->
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
   import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyCHABaKnbqVLBSTORH4JsYazai9VZAMygA",
     authDomain: "samsen-45.firebaseapp.com",
@@ -42,15 +47,16 @@
     measurementId: "G-HXLC26WG36"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
-  // Track clicks on registration / my-ticket buttons (GA4 events)
+  // Post-event funnel: the survey response rate and photo reach are what matter now.
   document.addEventListener("click", (e) => {
-    const trigger = e.target.closest(".reg-trigger,.ticket-trigger");
+    const trigger = e.target.closest(".survey-trigger,.photos-trigger,.fb-trigger");
     if (!trigger) return;
-    const name = trigger.classList.contains("ticket-trigger") ? "ticket_click" : "register_click";
+    const name = trigger.classList.contains("survey-trigger") ? "survey_click"
+               : trigger.classList.contains("photos-trigger") ? "photos_click"
+               : "fbgroup_click";
     logEvent(analytics, name, {
       link_url: trigger.href,
       link_text: (trigger.textContent || "").trim(),
@@ -70,57 +76,58 @@
     <span>SAMSEN <span class="yr">45</span><small>Reunion · คืนสู่เหย้า</small></span>
   </a>
   <nav class="nav-links">
-    <a href="#event">รายละเอียดงาน</a>
-    <a href="#about">ธีมงาน</a>
-    <a href="#sponsor">ผู้สนับสนุน</a>
+    <a href="#recap">คืนนั้น</a>
+    <a href="#gallery">ภาพงาน</a>
+    <a href="#photos">ไฟล์ภาพเต็ม</a>
+    <a href="#books">หนังสือรุ่น</a>
     <a href="#faq">คำถามที่พบบ่อย</a>
   </nav>
-  <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="btn btn-cta ticket-trigger">บัตรของฉัน</a>
+  <a href="https://forms.gle/bqeEbEQCnCTLVfBS6" target="_blank" rel="noopener" class="btn btn-cta survey-trigger">ทำแบบประเมิน</a>
   <button class="menu-btn" id="menuBtn" aria-label="เปิดเมนู"><i></i></button>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#event">รายละเอียดงาน</a>
-  <a href="#about">ธีมงาน</a>
-  <a href="#sponsor">ผู้สนับสนุน</a>
+  <a href="#recap">คืนนั้น</a>
+  <a href="#gallery">ภาพงาน</a>
+  <a href="#photos">ไฟล์ภาพเต็ม</a>
+  <a href="#books">หนังสือรุ่น</a>
   <a href="#faq">คำถามที่พบบ่อย</a>
-  <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="btn btn-cta ticket-trigger">บัตรของฉัน · พิมพ์ QR</a>
+  <a href="https://forms.gle/bqeEbEQCnCTLVfBS6" target="_blank" rel="noopener" class="btn btn-cta survey-trigger">ทำแบบประเมินหลังงาน</a>
 </div>
 
 <main>
-  <!-- ============ HERO ============ -->
-  <section id="hero" class="hero">
+  <!-- ============ HERO — thank you ============ -->
+  <section id="hero" class="hero hero-post">
     <div class="hero-bg"><img src="assets/emblem.jpg" alt="ตราโรงเรียนสามเสนวิทยาลัย" /></div>
     <div class="hero-split"><div class="pane left"></div><div class="pane right"></div></div>
     <div class="wrap hero-grid">
       <div class="hero-copy reveal">
-        <div class="kicker"><b><span class="pulse"></span>คืนสู่เหย้า</b> ชาวสามเสน · รุ่น 45</div>
-        <h1>ลากเส้น<br /><span class="l2">เชื่อมจุด</span><br /><span class="l3">กลับมาเจอกัน</span></h1>
+        <div class="kicker"><b class="done"><span class="pulse"></span>งานจบลงแล้ว</b> คืนสู่เหย้าชาวสามเสน · รุ่น 45</div>
+        <h1>ขอบคุณ<br /><span class="l2">ที่กลับมา</span><br /><span class="l3">เชื่อมจุดกัน</span></h1>
         <div class="rebanner" aria-label="45 RE — REUNION · REMEMBER · REPLAY · RECONNECT">
           <img class="re-fixed" src="assets/re-45re-c.png" alt="45 RE" />
           <span class="re-swap"><img id="reword" src="assets/re-union-c.png" alt="UNION" /></span>
         </div>
-        <div class="motif">Collect&nbsp;the&nbsp;Dots — ทุกจุดกลับมาเชื่อมกัน</div>
-        <p class="lead">หลายปีที่ต่างคนต่างแยกย้ายจากกัน ไม่ว่าชีวิตจะพาไปที่ไหน — ในวันนั้น ทุกจุดของพวกเราจะกลับมาเชื่อมต่อกันอีกครั้ง</p>
+        <div class="motif">Collect&nbsp;the&nbsp;Dots — ทุกจุดกลับมาเชื่อมกันแล้ว</div>
+        <p class="lead">หนึ่งค่ำคืนที่เพื่อน 250 คนกลับมาอยู่ในห้องเดียวกันอีกครั้ง เสียงหัวเราะ เพลงเก่า และชื่อเล่นที่ไม่ได้ถูกเรียกมานาน — ขอบคุณทุกคนที่ทำให้คืนนั้นเกิดขึ้นจริง</p>
         <div class="datebar">
           <div class="bigdate"><span>08</span><span class="s">.</span><span class="mo">08</span><span class="s">.</span><span class="yr">26</span></div>
-          <div class="dateinfo"><b>เสาร์ที่ 8 สิงหาคม 2569</b>17.00 น. เป็นต้นไป<br />Best Western Plus จตุจักร</div>
+          <div class="dateinfo"><b>เสาร์ที่ 8 สิงหาคม 2569</b>Best Western Plus จตุจักร<br />ผู้ร่วมงาน 250 ท่าน · เต็มทุกที่นั่ง</div>
         </div>
         <div class="cta-row">
-          <span class="btn btn-soldout btn-lg" role="status">บัตรจำหน่ายหมดแล้ว</span>
-          <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="btn btn-cta btn-lg ticket-trigger">บัตรของฉัน · พิมพ์ QR →</a>
+          <a href="#gallery" class="btn btn-cta btn-lg">ดูภาพจากค่ำคืนนั้น →</a>
+          <a href="https://forms.gle/bqeEbEQCnCTLVfBS6" target="_blank" rel="noopener" class="btn btn-ghost btn-lg survey-trigger">ทำแบบประเมิน</a>
         </div>
-        <p class="soldout-note">ขอบคุณทุกคนที่จองเข้ามาจนเต็มจำนวน — แล้วเจอกันวันงานนะ · ผู้ที่จองบัตรไว้แล้ว <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="ticket-trigger">เข้าระบบเพื่อดูหรือพิมพ์ QR</a> ได้ตลอดเวลา · <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">ติดตามข่าวสารที่กลุ่ม Facebook</a></p>
-        <div class="scrollcue"><span class="ln"></span> เลื่อนลงเพื่อเชื่อมเรื่องราว</div>
+        <p class="hero-note">ภาพทั้งหมด <b>1,197 ภาพ</b> อยู่ใน <a href="#photos">Google Drive ของรุ่น</a> — ดาวน์โหลดได้ทุกภาพ ไม่มีลายน้ำ · <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="fb-trigger">ติดตามต่อที่กลุ่ม Facebook</a></p>
+        <div class="scrollcue"><span class="ln"></span> เลื่อนลงเพื่อย้อนดูคืนนั้น</div>
       </div>
       <div class="hero-media reveal">
-        <div class="floatcard a"><div class="ic">★</div><div><b>รวมรุ่นอีกครั้ง</b><span>ในรอบหลายปี</span></div></div>
-        <div class="frame">
-          <img src="assets/hero-main.jpg" alt="บรรยากาศงานรวมรุ่นชาวสามเสน 45 · Pass Perfect Reunion" />
-          <div class="scrim"></div>
-          <div class="cap"><div class="t">Pass Perfect · Reunion</div><div class="s">ค่ำคืนที่เรากลับมาเจอกัน</div></div>
+        <div class="hero-mosaic">
+        <figure><img src="assets/gallery/thumb/n32.webp" alt="ภาพจากงานคืนสู่เหย้าสามเสน 45 — ภาพหมู่ทั้งรุ่น" fetchpriority="high" decoding="async" /><figcaption class="tape">ภาพหมู่ทั้งรุ่น</figcaption></figure>
+        <figure><img src="assets/gallery/thumb/n18.webp" alt="ภาพจากงานคืนสู่เหย้าสามเสน 45 — บนเวที" loading="lazy" decoding="async" /></figure>
+        <figure><img src="assets/gallery/thumb/n20.webp" alt="ภาพจากงานคืนสู่เหย้าสามเสน 45 — ดนตรีสด" loading="lazy" decoding="async" /></figure>
+        <figure><img src="assets/gallery/thumb/n49.webp" alt="ภาพจากงานคืนสู่เหย้าสามเสน 45 — ความทรงจำที่พกมาด้วย" loading="lazy" decoding="async" /></figure>
+        <figure><img src="assets/gallery/thumb/n44.webp" alt="ภาพจากงานคืนสู่เหย้าสามเสน 45 — หน้าฉากถ่ายรูป" loading="lazy" decoding="async" /></figure>
         </div>
-        <div class="floatcard b"><div class="ic alt">♥</div><div><b>เพื่อนเก่า</b><span>มิตรภาพไม่จางหาย</span></div></div>
-        <div class="stack2"><img src="assets/hero-stack.jpg" alt="งาน Old School Party ชาวสามเสน 45" /></div>
       </div>
     </div>
     <div class="node lit"><div class="dot"></div></div>
@@ -128,286 +135,244 @@
 
   <div class="connector"><div class="rail"></div><div class="fill"></div><div class="comet"></div></div>
 
-  <!-- ============ EVENT + COUNTDOWN ============ -->
-  <section id="event" class="band">
+  <!-- ============ RECAP — what that night was ============ -->
+  <section id="recap" class="band">
     <div class="wrap sec-pad" style="padding-top:48px">
       <div class="node alt"><div class="dot"></div></div>
       <div class="sec-head reveal">
-        <span class="eyebrow">กำหนดการ</span>
-        <h2>รายละเอียดงาน</h2>
-        <p>จดวันไว้ให้ดี — 8 เดือน 8 ปี 2569 ฤกษ์ดีเลขสวยที่พวกเราจะได้กลับมาเจอกันอีกครั้ง</p>
+        <span class="eyebrow">คืนนั้นเป็นอย่างไร</span>
+        <h2>หนึ่งค่ำคืน<br />ที่เชื่อมทุกจุดเข้าด้วยกัน</h2>
+        <p>8 เดือน 8 ปี 2569 — ฤกษ์เลขสวยที่พวกเรานัดกันไว้ กลายเป็นค่ำคืนที่ยาวกว่าที่คิด และจบเร็วกว่าที่อยากให้เป็น</p>
       </div>
       <div class="reveal">
-        <span class="cd-tag">นับถอยหลังสู่วันรวมรุ่น</span>
-        <div class="countdown" id="countdown">
-          <div class="cd-cell"><div class="num mono" id="cd-d">--</div><div class="lbl">วัน</div></div>
-          <div class="cd-cell"><div class="num mono" id="cd-h">--</div><div class="lbl">ชั่วโมง</div></div>
-          <div class="cd-cell"><div class="num mono" id="cd-m">--</div><div class="lbl">นาที</div></div>
-          <div class="cd-cell"><div class="num mono" id="cd-s">--</div><div class="lbl">วินาที</div></div>
+        <span class="since-tag">ผ่านมาแล้วจากค่ำคืนนั้น</span>
+        <div class="since" id="since">
+          <div class="cell"><div class="num" id="sc-d">--</div><div class="lbl">วัน</div></div>
+          <div class="cell"><div class="num" id="sc-h">--</div><div class="lbl">ชั่วโมง</div></div>
+          <div class="cell"><div class="num" id="sc-m">--</div><div class="lbl">นาที</div></div>
+          <div class="cell"><div class="num" id="sc-s">--</div><div class="lbl">วินาที</div></div>
         </div>
       </div>
-      <div class="infogrid reveal">
-        <div class="info">
-          <div class="ic">🗓️</div>
-          <h3>วันและเวลา</h3>
-          <div class="big">เสาร์ 8 สิงหาคม 2569</div>
-          <p>เวลา 17.00 น. เป็นต้นไป<br />ดินเนอร์บุฟเฟ่ต์ &amp; ปาร์ตี้รวมรุ่น</p>
-        </div>
-        <div class="info">
-          <div class="ic">📍</div>
-          <h3>สถานที่</h3>
-          <div class="big">Best Western Plus จตุจักร</div>
-          <p>โรงแรมใจกลางกรุงเทพฯ เดินทางสะดวก มีที่จอดรถ</p>
-          <a class="maplink" href="https://maps.app.goo.gl/FKkErWkxRpdpsb6x9?g_st=ic" target="_blank" rel="noopener">ดูแผนที่ →</a>
-        </div>
-        <div class="info">
-          <div class="ic">🎟️</div>
-          <h3>บัตรเข้างาน</h3>
-          <div class="big">฿1,450 / ท่าน</div>
-          <p>รวมบุฟเฟ่ต์ เครื่องดื่ม และของที่ระลึก 2 ชิ้น<br />เด็กไม่เกิน 15 ปีเข้าฟรี</p>
-          <span class="info-soldout">✓ บัตรจำหน่ายหมดแล้ว</span>
-          <a class="maplink ticket-trigger" href="https://register.samsen45.com/" target="_blank" rel="noopener">จองไว้แล้ว? ดู/พิมพ์บัตร QR →</a>
-        </div>
+      <div class="statrow reveal">
+        <div class="stat"><div class="n">250</div><div class="k">เพื่อนและครอบครัว</div><div class="s">เต็มทุกที่นั่ง</div></div>
+        <div class="stat"><div class="n">1,197</div><div class="k">ภาพความทรงจำ</div><div class="s">จากทีมงานและเพื่อน ๆ</div></div>
+        <div class="stat"><div class="n">213</div><div class="k">ช็อตจากโฟโต้บูธ</div><div class="s">17.31 – 20.00 น.</div></div>
+        <div class="stat"><div class="n">16</div><div class="k">ห้องเรียน</div><div class="s">กลับมารวมเป็นรุ่นเดียว</div></div>
       </div>
-
-      <!-- dress code — announced in the FB group -->
-      <div class="dress reveal">
-        <div class="dress-sw" aria-hidden="true"><span class="sw p"></span><span class="sw g"></span></div>
-        <div class="dress-copy">
-          <span class="eyebrow">ธีมการแต่งกาย · Dress Code</span>
-          <h3><em class="c-p">ชมพู</em> หรือ <em class="c-g">เขียว</em></h3>
-          <p>สีประจำงานคือชมพูและเขียว — หยิบสีไหนมาก็ได้ตามใจ หรือถ้าไม่มี ก็มาในลุคที่คุณมั่นใจที่สุดได้เลย ไม่ต้องกังวล</p>
-        </div>
+      <div class="moments reveal">
+        <figure class="moment"><img src="assets/gallery/thumb/n00.webp" alt="มาถึง · รับของที่ระลึก" loading="lazy" decoding="async" /><figcaption class="cap"><i>01</i><b>มาถึง · รับของที่ระลึก</b></figcaption></figure>
+        <figure class="moment"><img src="assets/gallery/thumb/n05.webp" alt="ดินเนอร์ · ทักทายเพื่อนเก่า" loading="lazy" decoding="async" /><figcaption class="cap"><i>02</i><b>ดินเนอร์ · ทักทายเพื่อนเก่า</b></figcaption></figure>
+        <figure class="moment"><img src="assets/gallery/thumb/n11.webp" alt="เวที เกม และของรางวัล" loading="lazy" decoding="async" /><figcaption class="cap"><i>03</i><b>เวที เกม และของรางวัล</b></figcaption></figure>
+        <figure class="moment"><img src="assets/gallery/thumb/n38.webp" alt="ดนตรีสด · เพลงที่เคยฟังด้วยกัน" loading="lazy" decoding="async" /><figcaption class="cap"><i>04</i><b>ดนตรีสด · เพลงที่เคยฟังด้วยกัน</b></figcaption></figure>
+        <figure class="moment"><img src="assets/gallery/thumb/n34.webp" alt="ภาพหมู่ · ทั้งรุ่นในเฟรมเดียว" loading="lazy" decoding="async" /><figcaption class="cap"><i>05</i><b>ภาพหมู่ · ทั้งรุ่นในเฟรมเดียว</b></figcaption></figure>
       </div>
     </div>
   </section>
 
   <div class="connector"><div class="rail"></div><div class="fill"></div><div class="comet"></div></div>
 
-  <!-- ============ ABOUT + THEME ============ -->
-  <section id="about">
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery">
     <div class="wrap sec-pad">
       <div class="node"><div class="dot"></div></div>
-      <div class="about-copy reveal about-solo">
-        <span class="eyebrow">ธีมงาน · Collect the Dots</span>
-        <h2 style="margin-top:14px">ทุกคนคือ<em>จุด</em>หนึ่ง<br />รวมกันเป็นภาพเดียว</h2>
-        <p>หลายปีที่ต่างคนต่างแยกย้าย — แต่ทุกคนคือหนึ่งจุดที่มีเรื่องราวของตัวเอง “Collect the Dots” คือการวางทุกสถานะไว้ข้างหลัง แล้วกลับมาเป็นเพื่อนสามเสนรุ่น 45 อีกครั้ง</p>
-        <div class="acts">
-          <div class="act"><span class="tick">✓</span> พบปะเพื่อนเก่ารุ่น 45 ที่คิดถึงกัน</div>
-          <div class="act"><span class="tick">✓</span> ดินเนอร์บุฟเฟ่ต์ ซุ้มอาหารและเครื่องดื่ม</div>
-          <div class="act"><span class="tick">✓</span> ถ่ายรูปรวมรุ่น &amp; มุมความทรงจำ</div>
-          <div class="act"><span class="tick">✓</span> ดนตรีสด เกม และของรางวัลจับฉลาก</div>
-        </div>
+      <div class="gal-head reveal">
+        <span class="eyebrow">ภาพจากค่ำคืนนั้น</span>
+        <h2>คัดมา 71 ภาพ<br />จากทั้งหมด 1,197</h2>
+        <p>ทีมงานและเพื่อน ๆ ช่วยกันเก็บภาพไว้เกือบ 1,200 ภาพ นี่คือส่วนหนึ่งที่เราคัดมาให้ดูก่อน — กดที่ภาพเพื่อดูขนาดเต็ม</p>
+      </div>
+      <div class="masonry reveal" id="masonry">
+          <button class="shot" data-full="assets/gallery/full/n00.webp" data-i="0" aria-label="ขยายภาพที่ 1 จาก 71"><img src="assets/gallery/thumb/n00.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n01.webp" data-i="1" aria-label="ขยายภาพที่ 2 จาก 71"><img src="assets/gallery/thumb/n01.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n02.webp" data-i="2" aria-label="ขยายภาพที่ 3 จาก 71"><img src="assets/gallery/thumb/n02.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n03.webp" data-i="3" aria-label="ขยายภาพที่ 4 จาก 71"><img src="assets/gallery/thumb/n03.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n04.webp" data-i="4" aria-label="ขยายภาพที่ 5 จาก 71"><img src="assets/gallery/thumb/n04.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n05.webp" data-i="5" aria-label="ขยายภาพที่ 6 จาก 71"><img src="assets/gallery/thumb/n05.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n06.webp" data-i="6" aria-label="ขยายภาพที่ 7 จาก 71"><img src="assets/gallery/thumb/n06.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n07.webp" data-i="7" aria-label="ขยายภาพที่ 8 จาก 71"><img src="assets/gallery/thumb/n07.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n08.webp" data-i="8" aria-label="ขยายภาพที่ 9 จาก 71"><img src="assets/gallery/thumb/n08.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n09.webp" data-i="9" aria-label="ขยายภาพที่ 10 จาก 71"><img src="assets/gallery/thumb/n09.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n10.webp" data-i="10" aria-label="ขยายภาพที่ 11 จาก 71"><img src="assets/gallery/thumb/n10.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n11.webp" data-i="11" aria-label="ขยายภาพที่ 12 จาก 71"><img src="assets/gallery/thumb/n11.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n12.webp" data-i="12" aria-label="ขยายภาพที่ 13 จาก 71"><img src="assets/gallery/thumb/n12.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n13.webp" data-i="13" aria-label="ขยายภาพที่ 14 จาก 71"><img src="assets/gallery/thumb/n13.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n14.webp" data-i="14" aria-label="ขยายภาพที่ 15 จาก 71"><img src="assets/gallery/thumb/n14.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n15.webp" data-i="15" aria-label="ขยายภาพที่ 16 จาก 71"><img src="assets/gallery/thumb/n15.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n16.webp" data-i="16" aria-label="ขยายภาพที่ 17 จาก 71"><img src="assets/gallery/thumb/n16.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n17.webp" data-i="17" aria-label="ขยายภาพที่ 18 จาก 71"><img src="assets/gallery/thumb/n17.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n18.webp" data-i="18" aria-label="ขยายภาพที่ 19 จาก 71"><img src="assets/gallery/thumb/n18.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n19.webp" data-i="19" aria-label="ขยายภาพที่ 20 จาก 71"><img src="assets/gallery/thumb/n19.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n20.webp" data-i="20" aria-label="ขยายภาพที่ 21 จาก 71"><img src="assets/gallery/thumb/n20.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n21.webp" data-i="21" aria-label="ขยายภาพที่ 22 จาก 71"><img src="assets/gallery/thumb/n21.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n22.webp" data-i="22" aria-label="ขยายภาพที่ 23 จาก 71"><img src="assets/gallery/thumb/n22.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n23.webp" data-i="23" aria-label="ขยายภาพที่ 24 จาก 71"><img src="assets/gallery/thumb/n23.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n24.webp" data-i="24" aria-label="ขยายภาพที่ 25 จาก 71"><img src="assets/gallery/thumb/n24.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n25.webp" data-i="25" aria-label="ขยายภาพที่ 26 จาก 71"><img src="assets/gallery/thumb/n25.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n26.webp" data-i="26" aria-label="ขยายภาพที่ 27 จาก 71"><img src="assets/gallery/thumb/n26.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n27.webp" data-i="27" aria-label="ขยายภาพที่ 28 จาก 71"><img src="assets/gallery/thumb/n27.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n28.webp" data-i="28" aria-label="ขยายภาพที่ 29 จาก 71"><img src="assets/gallery/thumb/n28.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n29.webp" data-i="29" aria-label="ขยายภาพที่ 30 จาก 71"><img src="assets/gallery/thumb/n29.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n30.webp" data-i="30" aria-label="ขยายภาพที่ 31 จาก 71"><img src="assets/gallery/thumb/n30.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n31.webp" data-i="31" aria-label="ขยายภาพที่ 32 จาก 71"><img src="assets/gallery/thumb/n31.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n32.webp" data-i="32" aria-label="ขยายภาพที่ 33 จาก 71"><img src="assets/gallery/thumb/n32.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n33.webp" data-i="33" aria-label="ขยายภาพที่ 34 จาก 71"><img src="assets/gallery/thumb/n33.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n34.webp" data-i="34" aria-label="ขยายภาพที่ 35 จาก 71"><img src="assets/gallery/thumb/n34.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n35.webp" data-i="35" aria-label="ขยายภาพที่ 36 จาก 71"><img src="assets/gallery/thumb/n35.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n36.webp" data-i="36" aria-label="ขยายภาพที่ 37 จาก 71"><img src="assets/gallery/thumb/n36.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n37.webp" data-i="37" aria-label="ขยายภาพที่ 38 จาก 71"><img src="assets/gallery/thumb/n37.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n38.webp" data-i="38" aria-label="ขยายภาพที่ 39 จาก 71"><img src="assets/gallery/thumb/n38.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n39.webp" data-i="39" aria-label="ขยายภาพที่ 40 จาก 71"><img src="assets/gallery/thumb/n39.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n40.webp" data-i="40" aria-label="ขยายภาพที่ 41 จาก 71"><img src="assets/gallery/thumb/n40.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n41.webp" data-i="41" aria-label="ขยายภาพที่ 42 จาก 71"><img src="assets/gallery/thumb/n41.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n42.webp" data-i="42" aria-label="ขยายภาพที่ 43 จาก 71"><img src="assets/gallery/thumb/n42.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n43.webp" data-i="43" aria-label="ขยายภาพที่ 44 จาก 71"><img src="assets/gallery/thumb/n43.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n44.webp" data-i="44" aria-label="ขยายภาพที่ 45 จาก 71"><img src="assets/gallery/thumb/n44.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n45.webp" data-i="45" aria-label="ขยายภาพที่ 46 จาก 71"><img src="assets/gallery/thumb/n45.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n46.webp" data-i="46" aria-label="ขยายภาพที่ 47 จาก 71"><img src="assets/gallery/thumb/n46.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n47.webp" data-i="47" aria-label="ขยายภาพที่ 48 จาก 71"><img src="assets/gallery/thumb/n47.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n48.webp" data-i="48" aria-label="ขยายภาพที่ 49 จาก 71"><img src="assets/gallery/thumb/n48.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n49.webp" data-i="49" aria-label="ขยายภาพที่ 50 จาก 71"><img src="assets/gallery/thumb/n49.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n50.webp" data-i="50" aria-label="ขยายภาพที่ 51 จาก 71"><img src="assets/gallery/thumb/n50.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n51.webp" data-i="51" aria-label="ขยายภาพที่ 52 จาก 71"><img src="assets/gallery/thumb/n51.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n52.webp" data-i="52" aria-label="ขยายภาพที่ 53 จาก 71"><img src="assets/gallery/thumb/n52.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n53.webp" data-i="53" aria-label="ขยายภาพที่ 54 จาก 71"><img src="assets/gallery/thumb/n53.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n54.webp" data-i="54" aria-label="ขยายภาพที่ 55 จาก 71"><img src="assets/gallery/thumb/n54.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n55.webp" data-i="55" aria-label="ขยายภาพที่ 56 จาก 71"><img src="assets/gallery/thumb/n55.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n56.webp" data-i="56" aria-label="ขยายภาพที่ 57 จาก 71"><img src="assets/gallery/thumb/n56.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n57.webp" data-i="57" aria-label="ขยายภาพที่ 58 จาก 71"><img src="assets/gallery/thumb/n57.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n58.webp" data-i="58" aria-label="ขยายภาพที่ 59 จาก 71"><img src="assets/gallery/thumb/n58.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n59.webp" data-i="59" aria-label="ขยายภาพที่ 60 จาก 71"><img src="assets/gallery/thumb/n59.webp" width="640" height="960" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n60.webp" data-i="60" aria-label="ขยายภาพที่ 61 จาก 71"><img src="assets/gallery/thumb/n60.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/n61.webp" data-i="61" aria-label="ขยายภาพที่ 62 จาก 71"><img src="assets/gallery/thumb/n61.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/t00.webp" data-i="62" aria-label="ขยายภาพที่ 63 จาก 71"><img src="assets/gallery/thumb/t00.webp" width="640" height="853" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/t01.webp" data-i="63" aria-label="ขยายภาพที่ 64 จาก 71"><img src="assets/gallery/thumb/t01.webp" width="640" height="360" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/t02.webp" data-i="64" aria-label="ขยายภาพที่ 65 จาก 71"><img src="assets/gallery/thumb/t02.webp" width="640" height="480" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/t03.webp" data-i="65" aria-label="ขยายภาพที่ 66 จาก 71"><img src="assets/gallery/thumb/t03.webp" width="640" height="480" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/t04.webp" data-i="66" aria-label="ขยายภาพที่ 67 จาก 71"><img src="assets/gallery/thumb/t04.webp" width="640" height="853" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/t05.webp" data-i="67" aria-label="ขยายภาพที่ 68 จาก 71"><img src="assets/gallery/thumb/t05.webp" width="640" height="480" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/t06.webp" data-i="68" aria-label="ขยายภาพที่ 69 จาก 71"><img src="assets/gallery/thumb/t06.webp" width="640" height="853" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/t07.webp" data-i="69" aria-label="ขยายภาพที่ 70 จาก 71"><img src="assets/gallery/thumb/t07.webp" width="640" height="480" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/t08.webp" data-i="70" aria-label="ขยายภาพที่ 71 จาก 71"><img src="assets/gallery/thumb/t08.webp" width="640" height="480" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+      </div>
+      <p class="gal-count">กดที่ภาพเพื่อขยาย · ใช้ปุ่มลูกศรซ้าย–ขวาเลื่อนดูต่อ · กด Esc เพื่อปิด</p>
+      <div class="gal-more">
+        <a href="https://drive.google.com/drive/folders/1IHzvyv3kAkp-wQPk14aRvKsfbWr1lja-" target="_blank" rel="noopener" class="btn btn-cta btn-lg photos-trigger">ดูภาพทั้งหมดใน Google Drive →</a>
       </div>
 
-      <!-- merch showcase — Collect the Dots souvenirs & tee -->
-      <div class="merch reveal">
-        <div class="merch-head">
-          <span class="eyebrow">ของที่ระลึก · Collect the Dots</span>
-          <h3>จากลายจุด สู่ของจริงที่ได้เก็บกลับบ้าน</h3>
-          <p class="merch-sub">ลาย Collect the Dots ถูกออกแบบลงบนของที่ระลึก Limited Edition เฉพาะรุ่น 45 — เก็บค่ำคืนนี้ไว้กับตัวคุณ</p>
+      <!-- photo booth — one backdrop, 213 takes -->
+      <div class="booth reveal">
+        <div class="booth-head">
+          <div>
+            <span class="eyebrow">โฟโต้บูธ · Photo Booth</span>
+            <h3>213 ช็อต หน้าฉากเขียว–ชมพู</h3>
+            <p>ตั้งแต่ 17.31 จนถึง 20.00 น. แทบไม่มีใครเดินผ่านฉากนี้ไปได้เฉย ๆ — นี่คือ 30 ช็อตแรกที่หยิบมาให้ดู</p>
+          </div>
+          <a href="https://drive.google.com/drive/folders/1amASpMRbDCuN3ePHeEjuCl9ydsscuYX2" target="_blank" rel="noopener" class="btn btn-ghost photos-trigger">เปิดโฟลเดอร์โฟโต้บูธ →</a>
         </div>
-        <div class="merch-grid">
-          <div class="merch-card">
-            <div class="merch-media"><img src="assets/merch-bag.jpg" alt="กระเป๋าผ้าแคนวาส ลาย Collect the Dots" loading="lazy" onerror="this.remove()" /></div>
-            <div class="merch-body">
-              <span class="merch-tag in">✓ รวมในบัตร</span>
-              <h4>กระเป๋าผ้าแคนวาส</h4>
-              <p>Eco Canvas Bag ลายจุดคอนเซปต์งาน ดีไซน์เฉพาะรุ่น 45</p>
-            </div>
-          </div>
-          <div class="merch-card">
-            <div class="merch-media"><img src="assets/merch-tumbler.jpg" alt="แก้วเก็บความเย็น Premium Tumbler ลาย Collect the Dots" loading="lazy" onerror="this.remove()" /></div>
-            <div class="merch-body">
-              <span class="merch-tag in">✓ รวมในบัตร</span>
-              <h4>แก้วเก็บความเย็น</h4>
-              <p>Premium Tumbler ลายจุดประจำงาน เก็บความเย็นได้ยาวนาน</p>
-            </div>
-          </div>
-          <div class="merch-card is-closed">
-            <div class="merch-media"><img src="assets/merch-shirt.jpg" alt="เสื้อยืดที่ระลึก ลาย Collect the Dots" loading="lazy" onerror="this.remove()" /></div>
-            <div class="merch-body">
-              <span class="merch-tag closed">ปิดรับพรีออเดอร์แล้ว</span>
-              <h4>เสื้อยืดที่ระลึก</h4>
-              <p>พรีออเดอร์เสื้อยืดลาย Collect the Dots (450฿) ปิดรับเรียบร้อยแล้ว ขอบคุณทุกคนที่สั่งจองเข้ามา — รับเสื้อได้ที่หน้างาน</p>
-              <span class="merch-deadline done">✓ ปิดรับเมื่อ 21 ก.ค. 2569</span>
-            </div>
-          </div>
+        <div class="booth-strip" id="boothStrip">
+          <button class="shot" data-full="assets/gallery/full/b00.webp" data-i="0" aria-label="ขยายภาพที่ 1 จาก 30"><img src="assets/gallery/thumb/b00.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b01.webp" data-i="1" aria-label="ขยายภาพที่ 2 จาก 30"><img src="assets/gallery/thumb/b01.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b02.webp" data-i="2" aria-label="ขยายภาพที่ 3 จาก 30"><img src="assets/gallery/thumb/b02.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b03.webp" data-i="3" aria-label="ขยายภาพที่ 4 จาก 30"><img src="assets/gallery/thumb/b03.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b04.webp" data-i="4" aria-label="ขยายภาพที่ 5 จาก 30"><img src="assets/gallery/thumb/b04.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b05.webp" data-i="5" aria-label="ขยายภาพที่ 6 จาก 30"><img src="assets/gallery/thumb/b05.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b06.webp" data-i="6" aria-label="ขยายภาพที่ 7 จาก 30"><img src="assets/gallery/thumb/b06.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b07.webp" data-i="7" aria-label="ขยายภาพที่ 8 จาก 30"><img src="assets/gallery/thumb/b07.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b08.webp" data-i="8" aria-label="ขยายภาพที่ 9 จาก 30"><img src="assets/gallery/thumb/b08.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b09.webp" data-i="9" aria-label="ขยายภาพที่ 10 จาก 30"><img src="assets/gallery/thumb/b09.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b10.webp" data-i="10" aria-label="ขยายภาพที่ 11 จาก 30"><img src="assets/gallery/thumb/b10.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b11.webp" data-i="11" aria-label="ขยายภาพที่ 12 จาก 30"><img src="assets/gallery/thumb/b11.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b12.webp" data-i="12" aria-label="ขยายภาพที่ 13 จาก 30"><img src="assets/gallery/thumb/b12.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b13.webp" data-i="13" aria-label="ขยายภาพที่ 14 จาก 30"><img src="assets/gallery/thumb/b13.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b14.webp" data-i="14" aria-label="ขยายภาพที่ 15 จาก 30"><img src="assets/gallery/thumb/b14.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b15.webp" data-i="15" aria-label="ขยายภาพที่ 16 จาก 30"><img src="assets/gallery/thumb/b15.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b16.webp" data-i="16" aria-label="ขยายภาพที่ 17 จาก 30"><img src="assets/gallery/thumb/b16.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b17.webp" data-i="17" aria-label="ขยายภาพที่ 18 จาก 30"><img src="assets/gallery/thumb/b17.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b18.webp" data-i="18" aria-label="ขยายภาพที่ 19 จาก 30"><img src="assets/gallery/thumb/b18.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b19.webp" data-i="19" aria-label="ขยายภาพที่ 20 จาก 30"><img src="assets/gallery/thumb/b19.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b20.webp" data-i="20" aria-label="ขยายภาพที่ 21 จาก 30"><img src="assets/gallery/thumb/b20.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b21.webp" data-i="21" aria-label="ขยายภาพที่ 22 จาก 30"><img src="assets/gallery/thumb/b21.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b22.webp" data-i="22" aria-label="ขยายภาพที่ 23 จาก 30"><img src="assets/gallery/thumb/b22.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b23.webp" data-i="23" aria-label="ขยายภาพที่ 24 จาก 30"><img src="assets/gallery/thumb/b23.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b24.webp" data-i="24" aria-label="ขยายภาพที่ 25 จาก 30"><img src="assets/gallery/thumb/b24.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b25.webp" data-i="25" aria-label="ขยายภาพที่ 26 จาก 30"><img src="assets/gallery/thumb/b25.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b26.webp" data-i="26" aria-label="ขยายภาพที่ 27 จาก 30"><img src="assets/gallery/thumb/b26.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b27.webp" data-i="27" aria-label="ขยายภาพที่ 28 จาก 30"><img src="assets/gallery/thumb/b27.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b28.webp" data-i="28" aria-label="ขยายภาพที่ 29 จาก 30"><img src="assets/gallery/thumb/b28.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
+          <button class="shot" data-full="assets/gallery/full/b29.webp" data-i="29" aria-label="ขยายภาพที่ 30 จาก 30"><img src="assets/gallery/thumb/b29.webp" width="640" height="427" alt="ภาพบรรยากาศงานคืนสู่เหย้าชาวสามเสน 45 · 8 สิงหาคม 2569" loading="lazy" decoding="async" /></button>
         </div>
-        <p class="merch-note">ของที่ระลึกในบัตรไม่มีจำหน่ายแยก · รับของทั้งหมดที่หน้างาน (หรือฝากเพื่อนรับแทนด้วย QR)</p>
+        <p class="booth-hint">← ลากหรือเลื่อนเพื่อดูต่อ →</p>
       </div>
-
-      <!-- prize highlight — activities & lucky draw prizes (from FB group announcement) -->
-      <div class="prize reveal" id="prize">
-        <div class="prize-copy">
-          <span class="eyebrow">กิจกรรมในงาน · ของรางวัล</span>
-          <h3>ไม่มาไม่ได้แล้ว —<br />มีของรางวัลให้ติดมือกลับบ้าน</h3>
-          <p>ภายในงานมีกิจกรรมให้เพื่อน ๆ ร่วมสนุกตลอดค่ำคืน พร้อมของรางวัลให้ติดมือกลับบ้านด้วย ✨ นี่คือตัวอย่างชิ้นแรกที่ทีมงานเตรียมไว้ให้</p>
-          <div class="acts prize-acts">
-            <div class="act"><span class="tick">🎁</span> <b>Dyson Purifier Cool Gen1</b> — เครื่องฟอกอากาศ กรอง HEPA H13</div>
-            <div class="act"><span class="tick">🎲</span> เกมและกิจกรรมบนเวทีตลอดค่ำคืน</div>
-            <div class="act"><span class="tick">✨</span> ของรางวัลอื่น ๆ ทยอยประกาศเพิ่ม</div>
-          </div>
-          <a class="maplink" href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">ดูของรางวัลเพิ่มเติมที่กลุ่ม Facebook →</a>
-        </div>
-        <figure class="prize-shot">
-          <div class="prize-media">
-            <span class="prize-fallback" aria-hidden="true">🎁</span>
-            <img src="assets/prize-purifier.jpg" alt="ตัวอย่างของรางวัลในงาน — เครื่องฟอกอากาศ Dyson Purifier Cool Gen1 ระบบกรอง HEPA H13" loading="lazy" onerror="this.remove()" />
-          </div>
-          <figcaption>ตัวอย่างของรางวัล · Dyson Purifier Cool Gen1</figcaption>
-        </figure>
-      </div>
-
-      <!-- team-grid emblem: 16 rooms · 5 teams · all connected — commented out per request
-      <div class="teamgrid reveal" id="teamgrid">
-        <svg class="tg-mark" viewBox="0 0 120 120" role="img" aria-label="16 ห้อง 5 ทีม เชื่อมถึงกันเป็นหนึ่งเดียว">
-          <path class="tg-link" d="M18,18 L46,18 L74,18 L102,18 L102,46 L74,46 L46,46 L18,46 L18,74 L46,74 L74,74 L102,74 L102,102 L74,102 L46,102 L18,102" pathLength="1" />
-          <g class="tg-dots">
-            <circle cx="18" cy="18" r="9" style="--c:#E84545;--i:0" />
-            <circle cx="46" cy="18" r="9" style="--c:#F5B921;--i:1" />
-            <circle cx="74" cy="18" r="9" style="--c:#34A8DE;--i:2" />
-            <circle cx="102" cy="18" r="9" style="--c:#8E63CE;--i:3" />
-            <circle cx="102" cy="46" r="9" style="--c:#64A231;--i:4" />
-            <circle cx="74" cy="46" r="9" style="--c:#E84545;--i:5" />
-            <circle cx="46" cy="46" r="9" style="--c:#F5B921;--i:6" />
-            <circle cx="18" cy="46" r="9" style="--c:#34A8DE;--i:7" />
-            <circle cx="18" cy="74" r="9" style="--c:#8E63CE;--i:8" />
-            <circle cx="46" cy="74" r="9" style="--c:#64A231;--i:9" />
-            <circle cx="74" cy="74" r="9" style="--c:#E84545;--i:10" />
-            <circle cx="102" cy="74" r="9" style="--c:#F5B921;--i:11" />
-            <circle cx="102" cy="102" r="9" style="--c:#34A8DE;--i:12" />
-            <circle cx="74" cy="102" r="9" style="--c:#8E63CE;--i:13" />
-            <circle cx="46" cy="102" r="9" style="--c:#64A231;--i:14" />
-            <circle cx="18" cy="102" r="9" style="--c:#E84545;--i:15" />
-          </g>
-        </svg>
-        <div class="tg-copy">
-          <span class="eyebrow">16 ห้อง · 5 ทีม</span>
-          <p class="tg-line">ต่างห้อง ต่างสี — แต่เป็น<em>ทีมเดียวกัน</em></p>
-          <p class="tg-sub">16 ห้องเรียน คือ 16 จุด แบ่งเป็น 5 สีประจำทีมวันกีฬาสี ลากเส้นเชื่อมทุกห้องเข้าเป็นรุ่นเดียวกัน</p>
-          <div class="tg-legend">
-            <span><i style="background:#E84545"></i>อยุธยา <small>Ayutthaya</small></span>
-            <span><i style="background:#F5B921"></i>สุโขทัย <small>Sukhothai</small></span>
-            <span><i style="background:#34A8DE"></i>อู่ทอง <small>U-Thong</small></span>
-            <span><i style="background:#8E63CE"></i>เชียงแสน <small>Chiang Saen</small></span>
-            <span><i style="background:#64A231"></i>รัตนโกสินทร์ <small>Rattanakosin</small></span>
-          </div>
-        </div>
-      </div>
-      -->
-
-      <!-- gallery -->
-      <!-- gallery — commented out per request
-      <div id="gallery" style="scroll-margin-top:90px">
-        <div class="gallery-head reveal">
-          <span class="eyebrow">ความทรงจำ</span>
-          <h3>จากวันวาน... ถึงวันนี้</h3>
-        </div>
-        <div class="gallery reveal">
-          <div class="gphoto g-a"><img src="assets/oldschool-2007.jpg" alt="งาน Old School Party 2007" /><span class="yr">Old School Party · 2007</span></div>
-          <div class="gphoto g-b"><img src="assets/field.jpg" alt="วันวานในรั้วโรงเรียน" /><span class="yr">วันวานในรั้วเขียว</span></div>
-          <div class="gphoto g-c"><img src="assets/reunion-2010.jpg" alt="งาน Pass Perfect Reunion 2010" /><span class="yr">Reunion · Pass Perfect</span></div>
-          <div class="gphoto g-d"><img src="assets/class-2000.jpg" alt="ภาพหมู่รุ่น" /><span class="yr">ภาพหมู่ชาวสามเสน</span></div>
-          <div class="gphoto g-e"><img src="assets/school-entrance.jpg" alt="โรงเรียนสามเสนวิทยาลัย" /><span class="yr">สามเสนวิทยาลัย</span></div>
-          <div class="gphoto g-f"><img src="assets/emblem.jpg" alt="ตราโรงเรียน" /><span class="yr">ศรัทธา · มั่นใจ</span></div>
-        </div>
-      </div>
-      -->
     </div>
   </section>
 
   <div class="connector"><div class="rail"></div><div class="fill"></div><div class="comet"></div></div>
 
-  <!-- ============ REGISTER ============ -->
-  <section id="register">
+  <!-- ============ DRIVE — the full archive ============ -->
+  <section id="photos">
     <div class="wrap sec-pad">
       <div class="node alt"><div class="dot"></div></div>
-      <div class="register reveal">
-        <div class="dots"></div>
-        <img class="smiley" src="assets/smiley.png" alt="Samsen 45 Forever" />
-        <span class="eyebrow">ที่นั่งเต็มแล้ว</span>
-        <h2>บัตรจำหน่าย<br />หมดแล้ว</h2>
-        <p>ที่นั่งทั้ง 250 ที่ถูกจองเต็มเรียบร้อย — ขอบคุณเพื่อน ๆ ทุกคนที่ตอบรับกันล้นหลาม ไม่มีจำหน่ายบัตรหน้างาน สำหรับคนที่ได้บัตรแล้ว เข้าระบบลงทะเบียนเพื่อดูหรือพิมพ์บัตร QR เตรียมไว้ก่อนวันงานได้เลย</p>
-        <div class="steps">
-          <div class="step"><b>1</b> เข้าระบบ ดู/พิมพ์ QR</div>
-          <div class="step"><b>2</b> แต่งชมพูหรือเขียว</div>
-          <div class="step"><b>3</b> เจอกัน 17.00 น.</div>
-        </div>
-        <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="btn btn-lg ticket-trigger">เข้าระบบ · ดูบัตร QR ของฉัน →</a>
-        <div class="micro">🎟️ ใช้อีเมลและรหัสผ่านที่ลงทะเบียนไว้ · <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">ติดตามข่าวสารที่กลุ่ม Facebook</a></div>
+      <div class="sec-head reveal">
+        <span class="eyebrow">ไฟล์ภาพเต็ม · Google Drive</span>
+        <h2>ภาพทั้งหมด อยู่ที่นี่</h2>
+        <p>เปิดให้ทุกคนเข้าดูและดาวน์โหลดได้เลย ไม่ต้องขอสิทธิ์ ไม่มีลายน้ำ — เลือกภาพที่ชอบ เซฟเก็บไว้ได้ตามสบาย</p>
       </div>
+      <div class="drives reveal">
+        <div class="drive">
+          <span class="tier">Official · จากทีมงาน</span>
+          <h3>ภาพจากช่างภาพและทีมงาน</h3>
+          <div class="n">1,145<small>ภาพ</small></div>
+          <p>ภาพชุดใหญ่ตลอดค่ำคืน ตั้งแต่ลงทะเบียน ดินเนอร์ กิจกรรมบนเวที ไปจนถึงภาพหมู่รวมรุ่น รวมโฟลเดอร์โฟโต้บูธอีก 213 ช็อตพร้อมคลิปสั้น</p>
+          <a class="go photos-trigger" href="https://drive.google.com/drive/folders/1IHzvyv3kAkp-wQPk14aRvKsfbWr1lja-" target="_blank" rel="noopener">เปิดโฟลเดอร์ →</a>
+        </div>
+        <div class="drive alt">
+          <span class="tier">Community · จากเพื่อน ๆ</span>
+          <h3>ภาพที่เพื่อน ๆ ถ่ายกันเอง</h3>
+          <div class="n">52<small>ไฟล์</small></div>
+          <p>มุมที่ช่างภาพไม่ได้เก็บ — เบื้องหลังการเตรียมงาน โต๊ะลงทะเบียน และภาพเซลฟีของกลุ่มเพื่อน ใครมีภาพอยากแบ่งปัน อัปโหลดเพิ่มเข้าโฟลเดอร์นี้ได้เลย</p>
+          <a class="go photos-trigger" href="https://drive.google.com/drive/folders/1Y4AoabbdOMt3WMtiKc88Utb1kY4T9Ldm" target="_blank" rel="noopener">เปิดโฟลเดอร์ →</a>
+        </div>
+      </div>
+      <p class="drive-note">มีภาพของคุณอยู่ในนี้แล้วไม่สบายใจ? แจ้งทีมงานที่ <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="fb-trigger">กลุ่ม Facebook</a> หรือ <a href="mailto:samsen45@gmail.com">samsen45@gmail.com</a> เราจะนำออกให้ทันที</p>
     </div>
   </section>
 
   <div class="connector"><div class="rail"></div><div class="fill"></div><div class="comet"></div></div>
 
-  <!-- ============ SPONSOR ============ -->
-  <section id="sponsor">
+  <!-- ============ SURVEY ============ -->
+  <section id="survey">
     <div class="wrap sec-pad">
       <div class="node"><div class="dot"></div></div>
-      <div class="spon-head reveal">
-        <span class="eyebrow">ผู้สนับสนุน · Sponsorship</span>
-        <h2>ร่วมเป็นส่วนหนึ่ง<br />ของค่ำคืนแห่งการกลับมาเจอกัน</h2>
-        <p>แบรนด์หรือธุรกิจของคุณร่วมสนับสนุนงานคืนสู่เหย้าชาวสามเสน 45 ได้ — เชื่อมโยงกับศิษย์เก่าและครอบครัวกว่า 250 ท่านในค่ำคืนเดียว เลือกแพ็กเกจที่ใช่สำหรับคุณ</p>
+      <div class="survey reveal">
+        <div class="dots"></div>
+        <span class="eyebrow">สิ่งเดียวที่เรายังขอจากคุณ</span>
+        <h2>คืนนั้นเป็นอย่างไรบ้าง?</h2>
+        <p>งานนี้จัดกันเองโดยเพื่อน ๆ ในรุ่น ไม่มีออร์แกไนเซอร์มืออาชีพ — สิ่งที่จะทำให้ครั้งหน้าดีขึ้นคือความเห็นตรง ๆ จากคุณ ทั้งเรื่องที่ชอบและเรื่องที่ควรแก้</p>
+        <a href="https://forms.gle/bqeEbEQCnCTLVfBS6" target="_blank" rel="noopener" class="btn btn-survey survey-trigger">ทำแบบประเมินหลังงาน →</a>
+        <div class="micro">ใช้เวลาไม่เกิน 3 นาที · ตอบได้โดยไม่ต้องระบุชื่อ</div>
       </div>
-      <div class="spon-grid reveal">
-        <div class="spon-card">
-          <span class="spon-tier">Support</span>
-          <div class="spon-price">In-kind<span>สินค้า · บริการ · ของรางวัล</span></div>
-          <ul>
-            <li>โลโก้บนสื่อออนไลน์และจอในงาน</li>
-            <li>พื้นที่ประชาสัมพันธ์ในงาน</li>
-            <li>กล่าวขอบคุณบนเวที</li>
-          </ul>
-        </div>
-        <div class="spon-card">
-          <span class="spon-tier">Mini</span>
-          <div class="spon-price">฿5,000</div>
-          <ul>
-            <li>โลโก้บนสื่อออนไลน์และจอในงาน</li>
-            <li>กล่าวขอบคุณบนเวที / ในงาน</li>
-          </ul>
-        </div>
-        <div class="spon-card">
-          <span class="spon-tier">Silver</span>
-          <div class="spon-price">฿10,000</div>
-          <ul>
-            <li>โลโก้บนสื่อออนไลน์และจอในงาน</li>
-            <li>บัตรเข้างาน 1 ใบ</li>
-            <li>กล่าวขอบคุณบนเวที / ในงาน</li>
-          </ul>
-        </div>
-        <div class="spon-card">
-          <span class="spon-tier">Gold</span>
-          <div class="spon-price">฿30,000</div>
-          <ul>
-            <li>โลโก้บน Backdrop และจอในงาน</li>
-            <li>บูธประชาสัมพันธ์ 3×3 ม.</li>
-            <li>โลโก้บนบัตร + บัตรเข้างาน 2 ใบ</li>
-          </ul>
-        </div>
-        <div class="spon-card plat">
-          <span class="spon-tier">Platinum</span>
-          <div class="spon-price">฿50,000</div>
-          <ul>
-            <li>โลโก้ทุกช่องทาง + Backdrop</li>
-            <li>ประชาสัมพันธ์สินค้า / ของรางวัล</li>
-            <li>โลโก้บนบัตร/ของที่ระลึก + บัตร 2 ใบ</li>
-          </ul>
-        </div>
-      </div>
-      <p class="spon-note">ทุกแพ็กเกจได้รับการกล่าวขอบคุณบนเวทีและภายในงาน · สอบถามสิทธิประโยชน์เต็มรูปแบบของแต่ละแพ็กเกจได้จากทีมงาน</p>
+    </div>
+  </section>
 
-      <div class="spon-contact reveal">
-        <div class="spon-contact-head">
-          <span class="eyebrow">สนใจเป็นผู้สนับสนุน?</span>
-          <h3>ติดต่อทีมงานได้เลย</h3>
+  <div class="connector"><div class="rail"></div><div class="fill"></div><div class="comet"></div></div>
+
+  <!-- ============ CONNECT ============ -->
+  <section id="connect">
+    <div class="wrap sec-pad">
+      <div class="node alt"><div class="dot"></div></div>
+      <div class="connect reveal">
+        <div class="connect-copy">
+          <span class="eyebrow">ระหว่างทางถึงครั้งหน้า</span>
+          <h3>จุดยังเชื่อมกันอยู่</h3>
+          <p>คืนสู่เหย้าจบไปแล้ว แต่รุ่น 45 ยังอยู่ครบ กลุ่ม Facebook ของรุ่นคือที่ที่เราคุยกันต่อ — ประกาศงานครั้งหน้า นัดเจอกันแบบกลุ่มเล็ก ตามหาเพื่อนที่ยังไม่ได้เจอ และแชร์ภาพที่ยังตกหล่น</p>
+          <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="btn btn-cta btn-lg fb-trigger">เข้ากลุ่ม Facebook ของรุ่น →</a>
         </div>
-        <div class="spon-contact-line">
-          <a href="tel:0844431484"><b>วรีภรณ์</b> 084-443-1484</a>
-          <a href="tel:0632416395"><b>สาธนี</b> 063-241-6395</a>
-          <a href="mailto:Samsen45@gmail.com"><b>อีเมล</b> Samsen45@gmail.com</a>
+        <div class="connect-art" aria-hidden="true">
+          <img src="assets/gallery/thumb/n02.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img src="assets/gallery/thumb/n21.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img src="assets/gallery/thumb/n47.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img src="assets/gallery/thumb/n51.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img src="assets/gallery/thumb/n57.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img src="assets/gallery/thumb/t06.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -415,24 +380,58 @@
 
   <div class="connector"><div class="rail"></div><div class="fill"></div><div class="comet"></div></div>
 
-  <!-- ============ FAQ + CONTACT ============ -->
+  <!-- ============ YEARBOOKS ============ -->
+  <section id="books">
+    <div class="wrap sec-pad">
+      <div class="node"><div class="dot"></div></div>
+      <div class="sec-head reveal">
+        <span class="eyebrow">ย้อนไปไกลกว่านั้น</span>
+        <h2>หนังสือรุ่น</h2>
+        <p>ก่อนจะมีค่ำคืนนี้ เรามีรูปหมู่ในชุดนักเรียนกันมาก่อน — เปิดอ่านแบบพลิกทีละหน้าได้เลย</p>
+      </div>
+      <div class="books reveal">
+        <a class="book" href="books/Samsen45-M3-2540/">
+          <div class="spine" aria-hidden="true"></div>
+          <div>
+            <span class="tier">ม.3 · ปี 2540</span>
+            <h3>หนังสือรุ่น ม.3</h3>
+            <p>ภาพห้องเรียนและรูปหมู่ตอนจบมัธยมต้น</p>
+            <span class="go">เปิดอ่าน →</span>
+          </div>
+        </a>
+        <a class="book alt" href="books/samsen45-m6-2543/">
+          <div class="spine" aria-hidden="true"></div>
+          <div>
+            <span class="tier">ม.6 · ปี 2543</span>
+            <h3>หนังสือรุ่น ม.6</h3>
+            <p>เล่มสุดท้ายก่อนทุกคนแยกย้ายกันไป</p>
+            <span class="go">เปิดอ่าน →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="connector"><div class="rail"></div><div class="fill"></div><div class="comet"></div></div>
+
+  <!-- ============ FAQ ============ -->
   <section id="faq">
     <div class="wrap sec-pad">
       <div class="node"><div class="dot"></div></div>
       <div class="faq-head reveal">
         <span class="eyebrow">คำถามที่พบบ่อย</span>
-        <h2>มีคำถาม? เราพร้อมตอบ</h2>
+        <h2>หลังงานแล้ว — ถามอะไรได้บ้าง</h2>
       </div>
       <div class="faqlist reveal solo">
-          <div class="qa open"><button>ใครเข้าร่วมงานได้บ้าง?<span class="plus"></span></button><div class="ans"><p>ศิษย์เก่าสามเสนวิทยาลัย รุ่น 45 ทุกคน รวมถึงคู่และครอบครัวที่ลงทะเบียนไว้แล้ว ทั้งนี้บัตรจำหน่ายหมดและปิดรับลงทะเบียนเรียบร้อยแล้ว</p></div></div>
-          <div class="qa"><button>จะดูหรือพิมพ์บัตร QR ได้ที่ไหน?<span class="plus"></span></button><div class="ans"><p>ผู้ที่จองบัตรและชำระเงินเรียบร้อยแล้ว เข้าไปที่ <a href="https://register.samsen45.com/" target="_blank" rel="noopener" class="ticket-trigger">register.samsen45.com</a> แล้วลงชื่อเข้าใช้ด้วยอีเมลและรหัสผ่านที่ใช้ตอนลงทะเบียน จะเห็นบัตรพร้อม QR ของตัวเอง สามารถบันทึกภาพหรือสั่งพิมพ์เก็บไว้ได้ วันงานแสดง QR จากมือถือหรือกระดาษก็ได้เหมือนกัน หากเข้าระบบไม่ได้หรือลืมรหัสผ่าน ทักทีมงานที่กลุ่ม Facebook ได้เลย</p></div></div>
-          <div class="qa"><button>ราคาบัตรเท่าไหร่ และชำระเงินอย่างไร?<span class="plus"></span></button><div class="ans"><p><b>ขณะนี้บัตรจำหน่ายหมดแล้ว</b> ไม่สามารถซื้อเพิ่มได้ทั้งทางออนไลน์และหน้างาน สำหรับข้อมูลอ้างอิง บัตรผู้ใหญ่ราคาท่านละ 1,450 บาท (รวมบุฟเฟ่ต์อาหาร เครื่องดื่มซอฟต์ดริงก์และแอลกอฮอล์ พร้อมของที่ระลึก 2 ชิ้น) และเด็กอายุไม่เกิน 15 ปีเข้าฟรี ผู้ที่จองไว้แล้วและชำระเงินเรียบร้อย สามารถใช้บัตร/QR เข้างานได้ตามปกติ</p></div></div>
-          <div class="qa"><button>แต่งกายอย่างไรดี?<span class="plus"></span></button><div class="ans"><p>ธีมการแต่งกายของงานคือ <b>สีชมพู</b> หรือ <b>สีเขียว</b> ซึ่งเป็นสีประจำงาน ใส่สีไหนก็ได้ตามที่ชอบ หรือถ้าไม่มีสีธีม ก็แต่งกายสุภาพตามสบายในลุคที่คุณมั่นใจที่สุดได้เลย ไม่ได้บังคับ</p></div></div>
-          <div class="qa"><button>พาเพื่อน คู่ หรือครอบครัวมาได้ไหม?<span class="plus"></span></button><div class="ans"><p>ได้ตามจำนวนบัตรที่จองไว้แล้วเท่านั้น เนื่องจากบัตรจำหน่ายหมดแล้วจึงไม่สามารถซื้อเพิ่มได้ หากต้องการเปลี่ยนแปลงรายชื่อผู้ร่วมงานหรือจำนวนเด็ก (อายุไม่เกิน 15 ปี เข้าฟรี) รบกวนแจ้งทีมงานที่กลุ่ม Facebook ก่อนวันงาน เพื่อเตรียมที่นั่งและอาหารได้พอดี</p></div></div>
-          <div class="qa"><button>เดินทางและที่จอดรถเป็นอย่างไร?<span class="plus"></span></button><div class="ans"><p>งานจัดที่ Best Western Plus จตุจักร ใจกลางกรุงเทพฯ เดินทางสะดวกและมีที่จอดรถบริเวณโรงแรม ดูตำแหน่งได้จากปุ่มแผนที่ในหัวข้อรายละเอียดงาน</p></div></div>
-          <div class="qa"><button>ยังลงทะเบียนได้อยู่ไหม?<span class="plus"></span></button><div class="ans"><p>ปิดรับลงทะเบียนแล้ว เนื่องจากงานรับผู้ร่วมงานจำนวนจำกัดเพียง 250 ท่าน และที่นั่งถูกจองเต็มเรียบร้อย ทั้งนี้ไม่มีจำหน่ายบัตรหน้างาน หากมีที่นั่งว่างเพิ่มหรือมีความคืบหน้าใด ๆ ทีมงานจะประกาศที่กลุ่ม Facebook ของรุ่นเป็นช่องทางแรก</p></div></div>
+          <div class="qa open"><button>ดาวน์โหลดรูปได้อย่างไร?<span class="plus"></span></button><div class="ans"><p>เข้าไปที่โฟลเดอร์ Google Drive ในหัวข้อ <a href="#photos">ไฟล์ภาพเต็ม</a> ได้เลย ไม่ต้องขอสิทธิ์เข้าถึง กดเลือกภาพที่ต้องการแล้วกดดาวน์โหลด หรือจะดาวน์โหลดทั้งโฟลเดอร์เป็นไฟล์ ZIP ก็ได้ ภาพทุกไฟล์เป็นความละเอียดเต็มและไม่มีลายน้ำ ใช้พิมพ์หรือโพสต์ต่อได้ตามสบาย</p></div></div>
+          <div class="qa"><button>อยากเพิ่มรูปที่ถ่ายเองเข้าไปด้วย ทำอย่างไร?<span class="plus"></span></button><div class="ans"><p>ยินดีมาก — โฟลเดอร์ <b>[Community] รูปจากเพื่อนๆ</b> เปิดให้ทุกคนอัปโหลดเพิ่มได้ กดเข้าโฟลเดอร์แล้วลากไฟล์เข้าไปได้เลย ถ้าอัปโหลดไม่สำเร็จหรือไฟล์เยอะเกินไป ทักทีมงานที่กลุ่ม Facebook เดี๋ยวช่วยจัดการให้</p></div></div>
+          <div class="qa"><button>มีคลิปวิดีโอจากงานไหม?<span class="plus"></span></button><div class="ans"><p>มี — คลิปสั้นจากโฟโต้บูธอยู่ในโฟลเดอร์ย่อย <b>clips</b> ภายในโฟลเดอร์ fotoshare ของทีมงาน ส่วนคลิปบรรยากาศบนเวทีและวิดีโอที่เพื่อน ๆ ถ่ายกันเอง ทยอยแชร์กันอยู่ในกลุ่ม Facebook ของรุ่น</p></div></div>
+          <div class="qa"><button>มีรูปของฉันหรือครอบครัวที่ไม่อยากให้เผยแพร่ ทำอย่างไร?<span class="plus"></span></button><div class="ans"><p>แจ้งทีมงานได้ทันทีที่ <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="fb-trigger">กลุ่ม Facebook</a> หรืออีเมล <a href="mailto:samsen45@gmail.com">samsen45@gmail.com</a> บอกชื่อไฟล์หรือส่งภาพมาให้ดูก็ได้ เราจะนำภาพนั้นออกจากทั้งเว็บไซต์และโฟลเดอร์ให้เร็วที่สุด ไม่ต้องเกรงใจ</p></div></div>
+          <div class="qa"><button>แบบประเมินตอบได้ถึงเมื่อไหร่ ต้องระบุชื่อไหม?<span class="plus"></span></button><div class="ans"><p>ตอบได้เลยตอนนี้ ใช้เวลาไม่เกิน 3 นาที และ<b>ไม่ต้องระบุชื่อ</b>หากไม่สะดวก ยิ่งตอบเร็วยิ่งดี เพราะทีมงานจะรวบรวมความเห็นทั้งหมดไปสรุปกันในช่วงถัดไป เขียนตรง ๆ ได้เต็มที่ ทั้งเรื่องที่ประทับใจและเรื่องที่ควรปรับ</p></div></div>
+          <div class="qa"><button>ของที่ระลึกที่ยังไม่ได้รับ ติดต่อใคร?<span class="plus"></span></button><div class="ans"><p>ถ้ามาร่วมงานแล้วแต่ยังไม่ได้รับกระเป๋าผ้า แก้วเก็บความเย็น หรือเสื้อยืดที่สั่งพรีออเดอร์ไว้ ทักทีมงานที่กลุ่ม Facebook พร้อมแจ้งชื่อ–นามสกุลและห้องเรียนเดิม เดี๋ยวเราตรวจสอบรายการให้และนัดรับกันอีกที</p></div></div>
+          <div class="qa"><button>จะมีงานคืนสู่เหย้าอีกไหม?<span class="plus"></span></button><div class="ans"><p>ตั้งใจให้มีแน่นอน แต่ยังไม่ได้กำหนดวัน ครั้งนี้ทีมงานใช้เวลาเตรียมกันหลายเดือน และสิ่งที่จะกำหนดหน้าตาของครั้งหน้าคือคำตอบใน<a href="https://forms.gle/bqeEbEQCnCTLVfBS6" target="_blank" rel="noopener" class="survey-trigger">แบบประเมิน</a>ของทุกคน ประกาศทุกอย่างจะออกที่กลุ่ม Facebook ของรุ่นเป็นที่แรก</p></div></div>
         </div>
-        <p class="faq-more reveal">ยังมีข้อสงสัย? ทักมาได้ที่ <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">Facebook · กลุ่ม Samsen 45</a> หรือ <a href="mailto:samsen45@gmail.com">samsen45@gmail.com</a></p>
+        <p class="faq-more reveal">ยังมีข้อสงสัย? ทักมาได้ที่ <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="fb-trigger">Facebook · กลุ่ม Samsen 45</a> หรือ <a href="mailto:samsen45@gmail.com">samsen45@gmail.com</a></p>
     </div>
   </section>
 </main>
@@ -447,31 +446,20 @@
     <div class="fdate">08 · 08 · 2569<small>เสาร์ที่ 8 สิงหาคม 2569 · Best Western Plus จตุจักร</small></div>
   </div>
   <div class="wrap footbar">
-    <div>© 2569 ชาวสามเสนวิทยาลัย รุ่น 45 · จัดทำด้วยใจเพื่อเพื่อน ๆ ทุกคน</div>
-    <div><a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener">Facebook</a> · <a href="mailto:samsen45@gmail.com">อีเมล</a></div>
+    <div>© 2569 ชาวสามเสนวิทยาลัย รุ่น 45 · ขอบคุณทีมงานทุกคน และผู้สนับสนุนที่ทำให้ค่ำคืนนี้เกิดขึ้นได้</div>
+    <div><a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="fb-trigger">Facebook</a> · <a href="mailto:samsen45@gmail.com">อีเมล</a></div>
   </div>
 </footer>
 </div>
 
-<!-- ============ REG MODAL (unused — registration links go straight to register.samsen45.com) ============ -->
-<!--
-<div class="reg-overlay" id="regOverlay" role="dialog" aria-modal="true" aria-labelledby="regTitle">
-  <div class="reg-modal">
-    <button class="reg-close" id="regClose" aria-label="ปิด">✕</button>
-    <img class="reg-mark" src="assets/logo-mark-green.png" alt="" aria-hidden="true" />
-    <span class="eyebrow">เร็วๆ นี้ · Stay Tuned</span>
-    <h2 id="regTitle">เตรียมพบกัน<br />อีกครั้ง!</h2>
-    <p>การลงทะเบียนจะเปิดเร็วๆ นี้</p>
-    <p>แล้วมาเจอกัน <strong>เสาร์ที่ 8 สิงหาคม 2569</strong></p>
-    <p>แล้วคอยติดตามประกาศได้ที่กลุ่ม Facebook ชาวสามเสน 45</p>
-    <p>ที่นั่งมีจำนวนจำกัด — อย่าให้โอกาสนี้หลุดมือไป!</p>
-    <a href="https://www.facebook.com/groups/samsen45" target="_blank" rel="noopener" class="btn btn-cta btn-lg">ติดตามที่กลุ่ม Facebook →</a>
-    <div class="reg-note">✦&ensp;กด Follow เพื่อรับแจ้งเตือนวันเปิดลงทะเบียน</div>
-  </div>
+<!-- ============ LIGHTBOX ============ -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="ภาพขนาดเต็ม">
+  <div class="lb-stage"><img id="lbImg" src="" alt="" /></div>
+  <button class="lb-close" id="lbClose" aria-label="ปิด">✕</button>
+  <button class="lb-prev" id="lbPrev" aria-label="ภาพก่อนหน้า">‹</button>
+  <button class="lb-next" id="lbNext" aria-label="ภาพถัดไป">›</button>
+  <div class="lb-meta"><b id="lbNum">1</b> / <span id="lbTotal">71</span> · คืนสู่เหย้าสามเสน 45 · 08.08.2569</div>
 </div>
--->
-
-
 
 <!-- ============ TWEAKS PANEL ============ -->
 <aside id="tw">
@@ -516,21 +504,8 @@
   </div>
 </aside>
 
-<script src="app.js?v=20260804"></script>
-<script src="tweaks.js?v=20260804"></script>
-<!-- Reg modal script disabled — registration links go straight to register.samsen45.com
-<script>
-(function(){
-  var overlay=document.getElementById('regOverlay');
-  var closeBtn=document.getElementById('regClose');
-  function open(e){e.preventDefault();overlay.classList.add('show');document.body.style.overflow='hidden';}
-  function close(){overlay.classList.remove('show');document.body.style.overflow='';}
-  closeBtn.addEventListener('click',close);
-  overlay.addEventListener('click',function(e){if(e.target===overlay)close();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
-})();
-</script>
--->
+<script src="app.js?v=20260809"></script>
+<script src="tweaks.js?v=20260809"></script>
 
 <template id="__bundler_thumbnail" data-bg-color="#64A231">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">

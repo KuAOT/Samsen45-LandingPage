@@ -1,0 +1,230 @@
+/* ==========================================================================
+   POST-EVENT LAYER — 08.08.2569
+   The dots got connected. Everything here is written in the past tense.
+   ========================================================================== */
+
+/* ============ HERO — thank-you + photo mosaic ============ */
+.hero-post .hero-grid{grid-template-columns:1fr 1.02fr;align-items:center}
+.hero-post h1{font-size:clamp(40px,7vw,76px)}
+.hero-post .lead{margin-top:22px}
+.kicker b.done{background:var(--brand2-soft);color:var(--pink-d);white-space:nowrap}
+.kicker b.done .pulse{background:var(--brand)}
+@media (max-width:420px){ .kicker{font-size:12.5px;padding-right:12px} }
+
+.hero-mosaic{display:grid;grid-template-columns:1.18fr .82fr;grid-template-rows:repeat(3,1fr);
+  gap:10px;aspect-ratio:1/1.02;max-height:min(74vh,620px)}
+.hero-mosaic figure{position:relative;margin:0;overflow:hidden;border-radius:16px;background:var(--bg-soft);
+  box-shadow:var(--shadow);border:1px solid var(--line)}
+.hero-mosaic figure:nth-child(1){grid-row:span 2;border-radius:20px}
+.hero-mosaic figure:nth-child(4){grid-column:1}
+.hero-mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.hero-mosaic figure:hover img{transform:scale(1.045)}
+.hero-mosaic .tape{position:absolute;left:12px;bottom:10px;z-index:2;color:#fff;font-size:12px;font-weight:600;
+  letter-spacing:.02em;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.hero-mosaic figure:nth-child(1)::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 58%,rgba(18,22,12,.55))}
+
+/* the "45 RE" lockup sits under the headline, unchanged in spirit */
+.hero-post .rebanner{margin-top:20px}
+
+/* ============ SINCE — the countdown, inverted ============ */
+.since{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:0 auto 34px}
+.since .cell{background:var(--paper);border:1px solid var(--line);border-radius:16px;width:116px;
+  padding:16px 10px 13px;text-align:center;box-shadow:var(--shadow)}
+.since .num{font-family:var(--font-display);font-weight:700;font-size:clamp(32px,4.6vw,46px);line-height:1;
+  font-variant-numeric:tabular-nums}
+.since .cell:nth-child(1) .num{color:var(--brand)}
+.since .cell:nth-child(2) .num{color:var(--brand2)}
+.since .cell:nth-child(3) .num{color:var(--brand-d)}
+.since .cell:nth-child(4) .num{color:var(--pink-d)}
+.since .lbl{font-size:12.5px;color:var(--ink-faint);font-weight:600;margin-top:7px}
+.since-tag{text-align:center;display:block;margin-bottom:13px;color:var(--ink-faint);font-weight:600;
+  font-size:13px;letter-spacing:.06em}
+
+/* ============ RECAP — stats + the shape of the evening ============ */
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:960px;margin:0 auto}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px 20px;text-align:center;
+  box-shadow:var(--shadow);transition:.25s}
+.stat:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--brand-l)}
+.stat .n{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,4vw,42px);line-height:1;
+  color:var(--brand);font-variant-numeric:tabular-nums}
+.stat:nth-child(2) .n,.stat:nth-child(4) .n{color:var(--brand2)}
+.stat .k{font-size:14px;color:var(--ink-soft);margin-top:9px;font-weight:600}
+.stat .s{font-size:12.5px;color:var(--ink-faint);margin-top:2px}
+
+.moments{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:1040px;margin:34px auto 0}
+.moment{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);
+  background:var(--bg-soft);aspect-ratio:3/4}
+.moment img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.moment:hover img{transform:scale(1.05)}
+.moment::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 44%,rgba(18,22,12,.78))}
+.moment .cap{position:absolute;left:13px;right:11px;bottom:12px;z-index:2;color:#fff}
+.moment .cap i{display:block;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:3px}
+.moment .cap b{font-family:var(--font-display);font-weight:600;font-size:14.5px;line-height:1.25;display:block;
+  text-shadow:0 1px 10px rgba(0,0,0,.5)}
+
+/* ============ GALLERY — masonry, aspect ratios kept intact ============ */
+.gal-head{text-align:center;max-width:720px;margin:0 auto 28px}
+.gal-head .eyebrow{display:block;margin-bottom:13px}
+.gal-head h2{font-size:clamp(28px,4.2vw,44px)}
+.gal-head p{color:var(--ink-soft);font-size:16.5px;margin-top:15px;text-wrap:pretty}
+
+.masonry{columns:4;column-gap:12px}
+.masonry .shot{break-inside:avoid;margin:0 0 12px;position:relative;border-radius:14px;overflow:hidden;
+  background:var(--bg-soft);border:1px solid var(--line);cursor:zoom-in;display:block;width:100%;padding:0;
+  box-shadow:0 1px 2px rgba(27,32,21,.05)}
+.masonry .shot img{width:100%;height:auto;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1),filter .3s}
+.masonry .shot::after{content:"";position:absolute;inset:0;background:rgba(100,162,49,0);transition:background .25s}
+.masonry .shot:hover img{transform:scale(1.04)}
+.masonry .shot:hover::after{background:color-mix(in srgb,var(--brand) 12%,transparent)}
+.masonry .shot:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+
+.gal-more{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
+.gal-count{text-align:center;margin-top:14px;font-size:13.5px;color:var(--ink-faint)}
+
+/* ============ LIGHTBOX ============ */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(14,17,10,.94);backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .28s}
+.lb.show{opacity:1;pointer-events:auto}
+.lb-stage{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  padding:clamp(14px,4vw,60px)}
+.lb-stage img{max-width:100%;max-height:100%;width:auto;height:auto;border-radius:10px;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.8);transition:opacity .2s}
+.lb.loading .lb-stage img{opacity:.35}
+.lb button{position:absolute;z-index:3;border:none;cursor:pointer;background:rgba(255,255,255,.11);color:#fff;
+  backdrop-filter:blur(8px);transition:.18s;display:grid;place-items:center}
+.lb button:hover{background:rgba(255,255,255,.24)}
+.lb-close{top:16px;right:16px;width:44px;height:44px;border-radius:13px;font-size:19px;line-height:1}
+.lb-prev,.lb-next{top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;font-size:22px;line-height:1}
+.lb-prev{left:clamp(8px,2vw,26px)}
+.lb-next{right:clamp(8px,2vw,26px)}
+.lb-meta{position:absolute;left:0;right:0;bottom:16px;z-index:3;text-align:center;color:rgba(255,255,255,.66);
+  font-size:13px;font-variant-numeric:tabular-nums;pointer-events:none}
+.lb-meta b{color:#fff;font-weight:600}
+@media (max-width:640px){
+  .lb-prev,.lb-next{width:44px;height:44px;font-size:18px;top:auto;bottom:52px;transform:none}
+  .lb-stage{padding:52px 10px 92px}
+}
+
+/* ============ PHOTO BOOTH — one backdrop, 213 takes ============ */
+.booth{margin-top:56px}
+.booth-head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;flex-wrap:wrap;
+  max-width:var(--maxw);margin:0 auto 20px}
+.booth-head .eyebrow{display:block;margin-bottom:9px}
+.booth-head h3{font-size:clamp(22px,3vw,30px)}
+.booth-head p{color:var(--ink-soft);font-size:15px;margin-top:9px;max-width:46em;text-wrap:pretty}
+.booth-strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 0 16px;
+  scrollbar-width:thin;scrollbar-color:var(--brand-l) transparent}
+.booth-strip::-webkit-scrollbar{height:8px}
+.booth-strip::-webkit-scrollbar-thumb{background:var(--brand-l);border-radius:8px}
+.booth-strip::-webkit-scrollbar-track{background:transparent}
+.booth-strip .shot{flex:0 0 auto;width:clamp(260px,30vw,380px);scroll-snap-align:start;border-radius:14px;
+  overflow:hidden;border:1px solid var(--line);background:var(--bg-soft);cursor:zoom-in;padding:0;
+  box-shadow:var(--shadow)}
+/* height:auto is required — the img height attribute would otherwise beat aspect-ratio and crop the shot */
+.booth-strip .shot img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block;transition:transform .6s}
+.booth-strip .shot:hover img{transform:scale(1.05)}
+.booth-strip .shot:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.booth-hint{font-size:13px;color:var(--ink-faint);text-align:center;margin-top:2px}
+
+/* ============ DRIVE — the full archive ============ */
+.drives{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:940px;margin:0 auto}
+.drive{position:relative;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);
+  border-radius:20px;padding:28px 26px;box-shadow:var(--shadow);transition:.25s;overflow:hidden}
+.drive:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--brand-l)}
+.drive::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--brand)}
+.drive.alt::before{background:var(--brand2)}
+.drive .tier{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-d)}
+.drive.alt .tier{color:var(--pink-d)}
+.drive h3{font-size:22px;margin:9px 0 8px;line-height:1.24}
+.drive p{font-size:14.5px;color:var(--ink-soft);flex:1;text-wrap:pretty}
+.drive .n{font-family:var(--font-display);font-weight:700;font-size:34px;color:var(--ink);line-height:1;margin-bottom:2px}
+.drive .n small{font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--ink-faint);margin-left:6px}
+.drive .go{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-weight:600;font-size:15px;
+  color:var(--brand-d);align-self:flex-start}
+.drive.alt .go{color:var(--pink-d)}
+.drive .go:hover{gap:11px}
+.drive-note{max-width:940px;margin:16px auto 0;text-align:center;font-size:14px;color:var(--ink-soft)}
+.drive-note a{color:var(--brand-d);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* ============ SURVEY — the one thing we still need from you ============ */
+/* pink and green meet on a hard seam rather than blending — a green-to-pink ramp
+   goes through mud in sRGB, and the split echoes the event's two-colour identity */
+.survey{position:relative;max-width:1000px;margin:0 auto;border-radius:30px;overflow:hidden;
+  background:linear-gradient(104deg,var(--green-d) 0 46%,#b83f70 46% 100%);
+  color:#fff;padding:clamp(42px,6vw,64px) clamp(26px,5vw,60px);text-align:center;box-shadow:var(--shadow-lg)}
+.survey .dots{position:absolute;inset:0;opacity:.16;pointer-events:none;
+  background-image:radial-gradient(#fff 1.6px,transparent 1.7px);background-size:26px 26px}
+.survey>*{position:relative;z-index:2}
+.survey .eyebrow{color:rgba(255,255,255,.82);display:block;margin-bottom:14px}
+.survey h2{font-size:clamp(28px,4.6vw,46px);line-height:1.15}
+.survey p{margin:18px auto 0;max-width:34em;font-size:16.5px;color:rgba(255,255,255,.9);text-wrap:pretty}
+.survey .btn-survey{margin-top:30px;background:#fff;color:var(--green-d);padding:16px 34px;font-size:17px;
+  box-shadow:0 16px 34px -14px rgba(0,0,0,.5)}
+.survey .btn-survey:hover{transform:translateY(-2px);filter:none;background:#fff}
+.survey .micro{margin-top:16px;font-size:13.5px;color:rgba(255,255,255,.72)}
+
+/* ============ CONNECT — the group stays open ============ */
+.connect{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;max-width:940px;margin:0 auto;
+  background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:clamp(28px,4vw,42px);
+  box-shadow:var(--shadow)}
+.connect .eyebrow{display:block;margin-bottom:11px}
+.connect h3{font-size:clamp(23px,3.2vw,32px);line-height:1.2}
+.connect p{color:var(--ink-soft);font-size:15.5px;margin-top:14px;text-wrap:pretty}
+.connect .btn{margin-top:22px}
+.connect-art{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.connect-art img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+.connect-art img:nth-child(2){transform:translateY(14px)}
+.connect-art img:nth-child(5){transform:translateY(14px)}
+
+/* ============ YEARBOOKS ============ */
+.books{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:940px;margin:0 auto}
+.book{position:relative;display:flex;align-items:center;gap:20px;background:var(--paper);border:1px solid var(--line);
+  border-radius:20px;padding:22px 24px;box-shadow:var(--shadow);transition:.25s}
+.book:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--brand-l)}
+.book .spine{width:52px;height:68px;flex:none;border-radius:5px 9px 9px 5px;background:var(--brand);position:relative;
+  box-shadow:inset -7px 0 0 rgba(0,0,0,.14),0 8px 18px -10px rgba(27,32,21,.6)}
+.book.alt .spine{background:var(--brand2)}
+.book .spine::after{content:"";position:absolute;left:7px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.36)}
+.book .tier{font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint)}
+.book h3{font-size:19px;margin:5px 0 4px}
+.book p{font-size:13.5px;color:var(--ink-soft)}
+.book .go{display:inline-flex;align-items:center;gap:6px;margin-top:9px;font-weight:600;font-size:14px;color:var(--brand-d)}
+.book.alt .go{color:var(--pink-d)}
+.book:hover .go{gap:10px}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1080px){ .masonry{columns:3} }
+@media (max-width:960px){
+  .hero-post .hero-grid{grid-template-columns:1fr}
+  /* the thank-you line leads on narrow screens; the mosaic is the reward under it */
+  .hero-post .hero-media{order:0;max-width:520px;margin:30px auto 0}
+  .hero-mosaic{max-width:520px;margin:0 auto;max-height:none;aspect-ratio:1/.92}
+  .statrow{grid-template-columns:repeat(2,1fr);max-width:520px}
+  .moments{grid-template-columns:repeat(3,1fr);max-width:620px}
+  .moments .moment:nth-child(4),.moments .moment:nth-child(5){aspect-ratio:4/3}
+  .connect{grid-template-columns:1fr;gap:26px}
+  .connect-art{max-width:340px}
+}
+@media (max-width:720px){
+  .drives,.books{grid-template-columns:1fr;max-width:460px}
+  .booth-head{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:640px){
+  .masonry{columns:2;column-gap:9px}
+  .masonry .shot{margin-bottom:9px;border-radius:11px}
+  .since .cell{width:calc(50% - 6px);max-width:170px}
+  .moments{grid-template-columns:repeat(2,1fr);max-width:420px}
+  /* re-assert 3/4 on card 4 — the 960px rule widened it and would ragged the row here */
+  .moments .moment:nth-child(4){aspect-ratio:3/4}
+  .moments .moment:nth-child(5){grid-column:span 2;aspect-ratio:16/9}
+  .hero-mosaic{gap:7px}
+  .booth{margin-top:44px}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-mosaic img,.moment img,.masonry .shot img,.booth-strip .shot img{transition:none}
+  .hero-mosaic figure:hover img,.moment:hover img,.masonry .shot:hover img,.booth-strip .shot:hover img{transform:none}
+  .stat:hover,.drive:hover,.book:hover{transform:none}
+}
