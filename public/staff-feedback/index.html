@@ -15,7 +15,7 @@
   --pink:#EB649B; --pink-d:#d44d84; --pink-xl:#fdeff5;
   --ink:#1b2015; --ink-soft:#5d6552; --ink-faint:#9aa28d;
   --bg:#fbfcf8; --bg-soft:#f1f4ea; --paper:#fff; --line:#e6e9dc;
-  --warn:#8a5a00; --warn-bg:#fff6e0; --warn-line:#f0d79a;
+  --warn:#8a5a00; --warn-bg:#fff6e0; --warn-line:#f0d79a; --amber:#e0a83c;
   --shadow:0 1px 2px rgba(27,32,21,.04), 0 14px 30px -20px rgba(27,32,21,.28);
   --font-display:'Anuphan'; --font-body:'IBM Plex Sans Thai';
 }
@@ -36,8 +36,6 @@ header.top{background:var(--paper);border-bottom:1px solid var(--line);padding:2
 .btn{font-family:var(--font-body);font-weight:600;font-size:14px;border:1.5px solid var(--line);
   background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;transition:.18s}
 .btn:hover{border-color:var(--green);color:var(--green-d)}
-.btn.primary{background:var(--green);border-color:var(--green);color:#fff}
-.btn.primary:hover{filter:brightness(.95);color:#fff}
 .stamp{font-size:12.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
 
 .notice{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn);
@@ -45,21 +43,17 @@ header.top{background:var(--paper);border-bottom:1px solid var(--line);padding:2
 .notice b{font-weight:700}
 
 main{padding:26px 0 60px}
-.setup{max-width:720px;margin:40px auto;background:var(--paper);border:1px solid var(--line);
+.miss{max-width:720px;margin:40px auto;background:var(--paper);border:1px solid var(--warn-line);
   border-radius:18px;padding:clamp(24px,4vw,36px);box-shadow:var(--shadow)}
-.setup h2{font-size:24px;margin-bottom:10px}
-.setup p{color:var(--ink-soft);font-size:15px;margin-bottom:16px}
-.setup ol{margin:0 0 20px 20px;color:var(--ink-soft);font-size:14.5px}
-.setup li{margin-bottom:7px}
-.setup input{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;
-  font-family:var(--font-body);font-size:14px;margin-bottom:12px}
-.setup input:focus{outline:none;border-color:var(--green)}
-.err{color:var(--pink-d);font-size:13.5px;margin-top:10px;display:none}
-.err.show{display:block}
+.miss h2{font-size:22px;margin-bottom:10px}
+.miss p{color:var(--ink-soft);font-size:14.5px;margin-bottom:12px}
+.miss code{background:var(--bg-soft);padding:2px 6px;border-radius:6px;font-size:13px}
+.miss ol{margin:0 0 4px 20px;color:var(--ink-soft);font-size:14px}
+.miss li{margin-bottom:6px}
 
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:26px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:18px}
 .kpi{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
-.kpi .n{font-family:var(--font-display);font-weight:700;font-size:38px;line-height:1;color:var(--green);
+.kpi .n{font-family:var(--font-display);font-weight:700;font-size:34px;line-height:1;color:var(--green);
   font-variant-numeric:tabular-nums}
 .kpi.alt .n{color:var(--pink-d)}
 .kpi .k{font-size:13.5px;color:var(--ink-soft);margin-top:7px;font-weight:600}
@@ -69,6 +63,24 @@ main{padding:26px 0 60px}
   box-shadow:var(--shadow);margin-bottom:18px}
 .card h3{font-size:17px;margin-bottom:4px}
 .card .qsub{font-size:12.5px;color:var(--ink-faint);margin-bottom:16px}
+.card.lead{border-color:var(--green);border-width:1.5px}
+.card.lead h3{font-size:20px}
+
+/* "อ่านยังไง" — the explainer that turns a number into a decision */
+.explain{margin-top:16px;padding-top:13px;border-top:1px dashed var(--line);
+  font-size:13px;color:var(--ink-soft);line-height:1.6}
+.explain b{color:var(--ink);font-weight:600}
+.caution{margin-top:14px;background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn);
+  border-radius:10px;padding:10px 13px;font-size:12.5px}
+
+.lead-sum{font-size:15.5px;line-height:1.75;color:var(--ink);margin-bottom:6px}
+.lead-sum b{color:var(--green-d)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:18px}
+.col h4{font-family:var(--font-display);font-size:14px;margin-bottom:9px;letter-spacing:.01em}
+.col.win h4{color:var(--green-d)} .col.fix h4{color:var(--pink-d)}
+.col ol{margin-left:19px;font-size:14px;color:var(--ink-soft)}
+.col li{margin-bottom:8px;line-height:1.55}
+.col li b{color:var(--ink);font-weight:600}
 
 .bars{display:flex;flex-direction:column;gap:10px}
 .bar-row{display:grid;grid-template-columns:minmax(0,1fr) 62px;gap:12px;align-items:center}
@@ -77,28 +89,71 @@ main{padding:26px 0 60px}
 /* display:block is required — an inline span ignores width/height */
 .bar-fill{display:block;height:100%;background:var(--green);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
 .bar-row.alt .bar-fill{background:var(--pink)}
+.bar-row.top .bar-fill{background:var(--green)}
 .bar-val{font-size:13px;color:var(--ink-soft);text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 
-.gridrow{display:grid;grid-template-columns:minmax(0,1fr) 74px;gap:12px;align-items:center;padding:11px 0}
+/* Q3 rows: mean, spread flag, and the full 1–4 distribution in one block */
+.gridrow{display:grid;grid-template-columns:minmax(0,1fr) 74px;gap:8px 12px;padding:13px 0}
 .gridrow+.gridrow{border-top:1px solid var(--line)}
-.gridrow .lab{font-size:14px}
+.gridrow .lab{font-size:14px;align-self:center}
 .gridrow .sc{font-family:var(--font-display);font-weight:700;font-size:19px;text-align:right;
-  font-variant-numeric:tabular-nums}
+  font-variant-numeric:tabular-nums;align-self:center}
 .sc.good{color:var(--green)} .sc.mid{color:var(--warn)} .sc.low{color:var(--pink-d)}
-.gridrow .meter{grid-column:1/-1;height:7px;background:var(--bg-soft);border-radius:99px;overflow:hidden;margin-top:-6px}
-.gridrow .meter i{display:block;height:100%;border-radius:99px;background:var(--green)}
-.gridrow .meter i.mid{background:#e0a83c} .gridrow .meter i.low{background:var(--pink)}
+.flag{display:inline-block;font-style:normal;font-size:11px;font-weight:600;padding:1px 8px;border-radius:99px;
+  background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-line);margin-left:7px;vertical-align:2px}
+.stack{grid-column:1/-1;display:flex;height:10px;border-radius:99px;overflow:hidden;background:var(--bg-soft)}
+.stack i{display:block;height:100%}
+.stack i.s1{background:var(--pink)} .stack i.s2{background:var(--amber)}
+.stack i.s3{background:#a8ce7e} .stack i.s4{background:var(--green)}
+.dist{grid-column:1/-1;font-size:11.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-faint);margin-bottom:14px}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend i{width:10px;height:10px;border-radius:3px;display:block}
+
+/* Importance–performance scatter */
+/* Below ~520px the labels shrink past legibility, so the chart scrolls
+   inside its own box rather than the page scrolling sideways. */
+.scatter-wrap{overflow-x:auto;padding-bottom:4px}
+.scatter{width:100%;min-width:520px;height:auto;display:block}
+.scatter text{font-family:'IBM Plex Sans Thai',sans-serif}
+
+.gap-row{display:grid;grid-template-columns:minmax(0,1fr) 58px 58px 62px;gap:10px;align-items:center;padding:10px 0;font-size:13.5px}
+.gap-row+.gap-row{border-top:1px solid var(--line)}
+.gap-row .h{font-size:11.5px;color:var(--ink-faint);font-weight:600}
+.gap-row span:not(.lab){text-align:right;font-variant-numeric:tabular-nums}
+.gap-row .p{color:var(--green-d);font-weight:600}
+.gap-row .d{color:var(--pink-d);font-weight:600}
+.gap-row .g{font-weight:700}
+
+.rec{margin-top:14px;background:var(--green-xl);border-left:3px solid var(--green);
+  border-radius:0 11px 11px 0;padding:11px 15px;font-size:13.5px;color:var(--ink);line-height:1.6}
+.rec b{font-weight:700;color:var(--green-d)}
+.rec.split{background:var(--warn-bg);border-left-color:var(--amber)}
+.rec.split b{color:var(--warn)}
+
+.spark{display:flex;flex-direction:column;gap:6px}
+.sp-row{display:grid;grid-template-columns:74px minmax(0,1fr) 40px;gap:10px;align-items:center;font-size:12.5px}
+.sp-lab{color:var(--ink-soft)}
+.sp-bar{height:8px;background:var(--bg-soft);border-radius:99px;overflow:hidden}
+.sp-bar i{display:block;height:100%;background:var(--green);border-radius:99px}
+.sp-val{text-align:right;color:var(--ink-soft);font-variant-numeric:tabular-nums;font-weight:600}
 
 .comments{display:flex;flex-direction:column;gap:12px;max-height:640px;overflow-y:auto;padding-right:4px}
 .comment{background:var(--bg-soft);border-left:3px solid var(--green);border-radius:0 11px 11px 0;padding:13px 16px}
 .comment:nth-child(even){border-left-color:var(--pink)}
 .comment p{font-size:14.5px;white-space:pre-wrap;word-break:break-word}
 .comment .meta{font-size:11.5px;color:var(--ink-faint);margin-top:7px;font-variant-numeric:tabular-nums}
+.card.low-score{border-color:var(--pink);border-width:1.5px}
+.card.low-score .comment{background:var(--pink-xl);border-left-color:var(--pink-d)}
+.card.low-score .comment:nth-child(even){border-left-color:var(--pink-d)}
+.score-tag{font-size:11.5px;font-weight:600;color:var(--pink-d)}
 .empty{color:var(--ink-faint);font-size:14px;padding:16px 0;text-align:center}
 
 .foot{text-align:center;color:var(--ink-faint);font-size:12.5px;padding:26px 0 0}
-.foot button{background:none;border:none;color:var(--ink-faint);font:inherit;text-decoration:underline;cursor:pointer}
 .hide{display:none!important}
+@media (max-width:560px){
+  .gap-row{grid-template-columns:minmax(0,1fr) 46px 46px 50px;font-size:12.5px}
+}
 @media print{
   header.top,.top-actions,.notice,.foot{display:none}
   body{background:#fff}
@@ -122,7 +177,6 @@ main{padding:26px 0 60px}
       <span class="stamp" id="stamp"></span>
       <button class="btn" id="refresh">รีเฟรช</button>
       <button class="btn" id="printBtn">พิมพ์ / PDF</button>
-      <button class="btn" id="change">เปลี่ยนแหล่งข้อมูล</button>
     </div>
   </div>
 </header>
@@ -136,46 +190,53 @@ main{padding:26px 0 60px}
 
 <main class="wrap">
 
-  <!-- setup: the CSV URL lives in this browser only, never in the repo -->
-  <section class="setup" id="setup">
-    <h2>เชื่อมกับ Google Sheet</h2>
-    <p>หน้านี้อ่านคำตอบสดจากชีตที่ผูกกับฟอร์ม ทำครั้งเดียวแล้วเบราว์เซอร์นี้จะจำไว้ให้</p>
+  <!-- Shown only when source.js is missing or the sheet cannot be read.
+       There is deliberately no input box: the source is fixed at deploy time. -->
+  <section class="miss hide" id="miss">
+    <h2 id="missTitle">ยังอ่านข้อมูลไม่ได้</h2>
+    <p id="missMsg"></p>
+    <p>แหล่งข้อมูลของหน้านี้ถูกตั้งไว้ตายตัวในไฟล์ <code>public/staff-feedback/source.js</code>
+       ซึ่งไม่ถูกเก็บใน GitHub (เพราะ repo เป็นสาธารณะ) แต่ถูกอัปขึ้น Firebase Hosting พร้อมเว็บ</p>
     <ol>
-      <li>เปิดฟอร์ม → แท็บ <b>คำตอบ (Responses)</b> → ไอคอน Google Sheets เพื่อเปิดชีต</li>
-      <li>ในชีต: <b>ไฟล์ → แชร์ → เผยแพร่ไปยังเว็บ</b></li>
-      <li>เลือกชีตคำตอบ แล้วเลือกรูปแบบ <b>ค่าที่คั่นด้วยจุลภาค (.csv)</b> → กดเผยแพร่</li>
-      <li>คัดลอกลิงก์ที่ได้มาวางด้านล่าง</li>
+      <li>คัดลอก <code>source.example.js</code> เป็น <code>source.js</code></li>
+      <li>เปิดฟอร์ม → แท็บ <b>คำตอบ</b> → ไอคอน Google Sheets เพื่อเปิดชีต</li>
+      <li>ในชีต: <b>ไฟล์ → แชร์ → เผยแพร่ไปยังเว็บ</b> → เลือกชีตคำตอบ → รูปแบบ <b>.csv</b> → เผยแพร่</li>
+      <li>วางลิงก์ลงใน <code>source.js</code> แล้ว deploy ใหม่</li>
     </ol>
-    <input type="url" id="csvUrl" placeholder="https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?gid=0&single=true&output=csv" />
-    <button class="btn primary" id="connect">เชื่อมต่อ</button>
-    <div class="err" id="err"></div>
   </section>
 
   <section id="dash" class="hide">
     <div class="kpis" id="kpis"></div>
     <div id="charts"></div>
-    <div class="card">
-      <h3>8. ข้อเสนอแนะและคำฝากถึงทีมงาน</h3>
-      <div class="qsub" id="commentCount"></div>
-      <div class="comments" id="comments"></div>
-    </div>
   </section>
 
   <div class="foot" id="foot"></div>
 </main>
 
+<script src="source.js" onerror="window.SS45_SOURCE_MISSING=true"></script>
 <script>
 /* ------------------------------------------------------------------
-   Staff feedback dashboard.
-   The sheet URL is kept in localStorage, never committed — this repo is
-   public, so a published-CSV link in the source would be a public link to
-   every response.
+   Staff feedback dashboard for Samsen 45 : Collect the Dots.
+
+   The sheet link is fixed in source.js (gitignored, deployed) — the page
+   offers no way to change it, so every staff member reads the same numbers.
+
+   Beyond tallying answers this reports on them: what drove satisfaction,
+   where opinion split, what separates a great night from an adequate one,
+   and what the survey does and does not settle for next time.
    ------------------------------------------------------------------ */
-const KEY = 'ss45.feedback.csv';
+const CSV_URL   = (window.SS45_FEEDBACK_CSV || '').trim();
+const ATTENDEES = 250;              // sold out; the denominator for reach
 const REFRESH_MS = 5 * 60 * 1000;
 
-/* Questions, taken from the live form so column matching survives edits
-   to wording as long as the leading number stays. */
+/* Thresholds below which a statistic is more misleading than useful. */
+const MIN_FOR_CORRELATION = 30;     // r on 20 points is noise
+const MIN_PER_SUBGROUP    = 8;      // promoter/detractor comparison
+const MIN_FOR_CLEAN_PCT   = 20;     // below this, lead with raw counts
+const DIVISIVE_SD         = 0.9;    // on the 1–4 grid
+
+/* Question text, taken from the live form. Column matching keys on the
+   leading number, so re-wording a question does not break the page. */
 const Q3_ROWS = [
   '📱 การจองล่วงหน้า ระบบโอนเงิน & ลงทะเบียนหน้างาน',
   '🏰 สถานที่จัดงาน การเดินทาง & ที่จอดรถ',
@@ -184,6 +245,8 @@ const Q3_ROWS = [
   '🎁 คุณภาพของชำร่วย & เสื้อรุ่น Oversize',
   '🎤 พิธีกร ดนตรี กิจกรรมบนเวที & Lucky Draw'
 ];
+const Q3_SHORT = ['จอง & ลงทะเบียน','สถานที่ & เดินทาง','อาหาร & เครื่องดื่ม',
+                  'บรรยากาศ & ธีม','ของชำร่วย & เสื้อ','เวที & ดนตรี'];
 const Q2_OPTIONS = [
   '🤝 การได้เจอกับเพื่อนเก่า / บรรยากาศความหลัง (Collect the Dots)',
   '🍽️ อาหารและเครื่องดื่มในงาน',
@@ -195,11 +258,26 @@ const Q2_OPTIONS = [
   '📸 คลังภาพถ่ายและมุมถ่ายรูปในงาน'
 ];
 const MC = [
-  {no:'4', title:'4. อยากให้จัดงาน Reunion ใหญ่แบบนี้อีกทีเมื่อไหร่ดี?'},
-  {no:'5', title:'5. ระยะทางของสถานที่จัดงาน'},
-  {no:'6', title:'6. โครงสร้างราคาบัตรและของชำร่วย'},
-  {no:'7', title:'7. ครั้งหน้าควรดูแลเพื่อนที่จองไม่ทันอย่างไร'}
+  {no:'4', kind:'cadence',  feeds:'ใช้เคาะว่าจะตั้งเป้าจัดครั้งหน้าปีไหน'},
+  {no:'5', kind:'venue',    feeds:'ใช้เป็นโจทย์ตั้งต้นตอนหาสถานที่'},
+  {no:'6', kind:'price',    feeds:'ใช้ตั้งโครงสร้างราคาบัตรรอบหน้า'},
+  {no:'7', kind:'capacity', feeds:'ใช้ออกแบบวิธีขายบัตรรอบหน้า'}
 ];
+
+/* Free-text themes. A comment can fall into several buckets — people rarely
+   write about one thing at a time. */
+const THEMES = [
+  {name:'🍽️ อาหาร & เครื่องดื่ม', keys:['อาหาร','ข้าว','เครื่องดื่ม','น้ำ','อิ่ม','รสชาติ','เมนู','บุฟเฟ่','บุฟเฟต์','ขนม','เบียร์','หิว','โต๊ะจีน']},
+  {name:'🏰 สถานที่ & เดินทาง', keys:['สถานที่','ที่จอด','จอดรถ','เดินทาง','ไกล','ใกล้','โลเคชั่น','ห้องน้ำ','รถไฟฟ้า','BTS','MRT','แอร์','ร้อน']},
+  {name:'🎤 เสียง ดนตรี & เวที', keys:['เสียง','ดนตรี','เพลง','วงดนตรี','เวที','พิธีกร','ไมค์','ดัง','คาราโอเกะ','MC','กิจกรรม','เกม','รางวัล','Lucky']},
+  {name:'📱 ลงทะเบียน & คิว', keys:['ลงทะเบียน','คิว','รอ','ระบบ','จอง','โอน','บัตร','QR','หน้างาน']},
+  {name:'💰 ราคา & ความคุ้มค่า', keys:['ราคา','แพง','ถูก','คุ้ม','จ่าย','เงิน','บาท','ค่าบัตร']},
+  {name:'🎁 ของชำร่วย & เสื้อ', keys:['ของชำร่วย','เสื้อ','แก้ว','กระเป๋า','ไซส์','ไซซ์','ของที่ระลึก','ของแจก']},
+  {name:'⏰ เวลา & กำหนดการ', keys:['เวลา','ช้า','นาน','ยืด','เลิก','เริ่ม','กำหนดการ','ดึก','คิวงาน']},
+  {name:'🤝 เพื่อน & บรรยากาศ', keys:['เพื่อน','รุ่น','ครู','อาจารย์','เจอ','คิดถึง','บรรยากาศ','ประทับใจ','สนุก','อบอุ่น']},
+  {name:'🙏 ทีมงาน', keys:['ทีมงาน','ขอบคุณ','เหนื่อย','จัดงาน','สตาฟ','คณะกรรมการ','กรรมการ']}
+];
+const TH_MONTHS = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 
 /* --- CSV parsing: quoted fields, embedded commas and newlines. The free
    text answers contain all three, so a split(',') would shred them. --- */
@@ -219,108 +297,381 @@ function parseCSV(text){
   return rows.filter(r=>r.some(v=>v.trim()!==''));
 }
 
-/* Accepts a published-CSV link, or a normal sheet link which we convert. */
-function normaliseUrl(raw){
-  const u=raw.trim();
-  if(!u) return null;
-  if(u.includes('/spreadsheets/d/e/') && u.includes('output=csv')) return u;
-  const m=u.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
-  if(m){
-    const gid=(u.match(/[#&?]gid=(\d+)/)||[])[1] || '0';
-    return `https://docs.google.com/spreadsheets/d/${m[1]}/gviz/tq?tqx=out:csv&gid=${gid}`;
-  }
-  return u.includes('output=csv') ? u : null;
+/* --- small helpers --- */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const findCol=(head,pred)=>head.findIndex(pred);
+const pct=(a,b)=>b?Math.round(a/b*100):0;
+/* Grid answers arrive as "3 (ดี)", so parseInt is the right reader here. */
+function num(v,lo,hi){ const n=parseInt(String(v||'').trim(),10); return (n>=lo&&n<=hi)?n:null; }
+function mean(a){ return a.length ? a.reduce((s,x)=>s+x,0)/a.length : null; }
+function sd(a){
+  if(a.length<2) return null;
+  const m=mean(a);
+  return Math.sqrt(a.reduce((s,x)=>s+(x-m)*(x-m),0)/(a.length-1));
+}
+function median(a){
+  if(!a.length) return null;
+  const s=[...a].sort((x,y)=>x-y), h=s.length>>1;
+  return s.length%2 ? s[h] : (s[h-1]+s[h])/2;
+}
+/* Pearson r. Returns null when either side has no variance — if everyone gave
+   the same score, the question cannot explain any difference in satisfaction. */
+function pearson(xs,ys){
+  const n=xs.length; if(n<2) return null;
+  const mx=mean(xs), my=mean(ys);
+  let num=0,dx=0,dy=0;
+  for(let i=0;i<n;i++){ const a=xs[i]-mx, b=ys[i]-my; num+=a*b; dx+=a*a; dy+=b*b; }
+  const den=Math.sqrt(dx*dy);
+  return den ? num/den : null;
 }
 
-const $=id=>document.getElementById(id);
-const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const findCol=(head,pred)=>head.findIndex(pred);
-
-function render(rows){
-  const head=rows[0].map(h=>h.trim());
-  const body=rows.slice(1);
-  const n=body.length;
-
-  const iQ1=findCol(head,h=>h.startsWith('1.'));
-  const iQ2=findCol(head,h=>h.startsWith('2.'));
-  const iQ8=findCol(head,h=>h.startsWith('8.'));
-  const iTime=0;
-
-  /* KPI: overall satisfaction */
-  let sum=0,cnt=0; const dist=[0,0,0,0,0];
-  if(iQ1>=0) body.forEach(r=>{
-    const v=parseInt((r[iQ1]||'').trim(),10);
-    if(v>=1&&v<=5){ sum+=v; cnt++; dist[v-1]++; }
+/* Timestamps: Google writes them in the sheet owner's locale, so d/m/y and
+   m/d/y both occur, and a Thai locale writes Buddhist years. Decide the field
+   order once from the whole column rather than guessing per row. */
+function buildDates(stamps){
+  const parts=stamps.map(s=>{
+    const m=String(s).match(/(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})/);
+    return m ? [+m[1],+m[2],+m[3]] : null;
   });
-  const avg=cnt?(sum/cnt):0;
-  const promoters=dist[4]+dist[3];
-  const pctTop=cnt?Math.round(promoters/cnt*100):0;
+  let dayFirst=true;
+  if(parts.some(p=>p&&p[1]>12)) dayFirst=false;
+  else if(parts.some(p=>p&&p[0]>12)) dayFirst=true;
+  return parts.map(p=>{
+    if(!p) return null;
+    let [a,b,y]=p;
+    const d=dayFirst?a:b, mo=dayFirst?b:a;
+    if(y>2400) y-=543;              // Buddhist era
+    const dt=new Date(y,mo-1,d);
+    return isNaN(dt) ? null : dt;
+  });
+}
+const dayKey=d=>d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
+const dayLabel=d=>d.getDate()+' '+TH_MONTHS[d.getMonth()];
 
-  let last='—';
-  if(n){ const t=(body[n-1][iTime]||'').trim(); if(t) last=t; }
+/* ==================================================================
+   Section builders. Each returns an HTML string, or '' when the data
+   cannot support it.
+   ================================================================== */
 
-  $('kpis').innerHTML=`
-    <div class="kpi"><div class="n">${n}</div><div class="k">คำตอบทั้งหมด</div>
-      <div class="s">ล่าสุด ${esc(last)}</div></div>
-    <div class="kpi alt"><div class="n">${avg?avg.toFixed(2):'—'}</div><div class="k">ความพึงพอใจภาพรวม</div>
-      <div class="s">จาก 5 คะแนน · ${cnt} คำตอบ</div></div>
-    <div class="kpi"><div class="n">${pctTop}%</div><div class="k">ให้ 4–5 คะแนน</div>
-      <div class="s">${promoters} จาก ${cnt} คน</div></div>`;
+/* A. Executive readout ------------------------------------------- */
+function cardExecutive(st){
+  const {n, q1avg, topPct, areas, ranked} = st;
+  if(!areas.length) return '';
+  const rate = pct(n, ATTENDEES);
+  const strengths = [...areas].sort((a,b)=>b.avg-a.avg).slice(0,3);
+  const fixes = ranked.slice(0,3);
 
-  let html='';
+  let sum = `ผู้ตอบ <b>${n} คน</b> จากผู้มาร่วมงาน ${ATTENDEES} คน (${rate}%)`;
+  if(q1avg!=null) sum += ` · ความพึงพอใจภาพรวม <b>${q1avg.toFixed(2)} จาก 5</b> โดย <b>${topPct}%</b> ให้ 4–5 คะแนน`;
+  sum += '.';
 
-  /* Q1 distribution */
-  if(cnt){
-    html+=`<div class="card"><h3>1. ภาพรวมความพึงพอใจ</h3>
-      <div class="qsub">เฉลี่ย ${avg.toFixed(2)} / 5 · ${cnt} คำตอบ</div><div class="bars">`;
-    for(let s=5;s>=1;s--){
-      const c=dist[s-1], p=cnt?c/cnt*100:0;
-      html+=`<div class="bar-row"><span class="bar-label">${s} คะแนน</span>
-        <span class="bar-val">${c} · ${Math.round(p)}%</span>
-        <span class="bar-track"><span class="bar-fill" style="width:${p}%"></span></span></div>`;
+  const li = a => `<li><b>${esc(a.short)}</b> — ${a.avg.toFixed(2)}/4${
+      a.r!=null ? ` · ผลต่อความพึงพอใจรวม ${a.r.toFixed(2)}` : ''}</li>`;
+
+  return `<div class="card lead">
+    <h3>สรุปสำหรับทีมงาน</h3>
+    <div class="qsub">เขียนอัตโนมัติจากคำตอบล่าสุด ทุกข้อมีตัวเลขกำกับให้ตรวจย้อนได้</div>
+    <p class="lead-sum">${sum}</p>
+    <div class="cols">
+      <div class="col win"><h4>ทำได้ดี ควรรักษาไว้</h4><ol>${strengths.map(li).join('')}</ol></div>
+      <div class="col fix"><h4>ควรลงมือก่อน เรียงตามผลตอบแทน</h4><ol>${fixes.map(li).join('')}</ol></div>
+    </div>
+    <div class="explain"><b>อ่านยังไง:</b> ฝั่งซ้ายคือจุดที่ได้คะแนนสูงที่สุด
+      ฝั่งขวา<b>ไม่ใช่</b>แค่ข้อที่คะแนนต่ำสุด แต่เรียงจาก “คะแนนที่ยังขาด × น้ำหนักที่มีต่อความพึงพอใจรวม”
+      — จุดที่คะแนนต่ำแต่ไม่มีผลกับความรู้สึกโดยรวม ไม่คุ้มที่จะทุ่มงบแก้ก่อน</div>
+  </div>`;
+}
+
+/* B. Response health --------------------------------------------- */
+function cardHealth(st){
+  const {n, q1vals, dates} = st;
+  const rate = pct(n, ATTENDEES);
+  let moe = '';
+  if(q1vals.length>=2){
+    const s = sd(q1vals);
+    if(s!=null){
+      /* Finite population correction: we are sampling from 250 known guests,
+         not from an infinite public, so the interval is genuinely tighter. */
+      const fpc = ATTENDEES>1 ? Math.sqrt(Math.max(0,(ATTENDEES-q1vals.length)/(ATTENDEES-1))) : 0;
+      const half = 1.96 * s / Math.sqrt(q1vals.length) * fpc;
+      moe = `±${half.toFixed(2)}`;
     }
-    html+='</div></div>';
   }
 
-  /* Q3 grid — average per experience, out of 4 */
-  const gridCols=Q3_ROWS.map(lab=>({lab,i:findCol(head,h=>h.startsWith('3.')&&h.includes(lab.slice(2,18).trim()))}));
-  if(gridCols.some(g=>g.i>=0)){
-    html+=`<div class="card"><h3>3. คะแนนแยกตามจุดประสบการณ์</h3>
-      <div class="qsub">เต็ม 4 คะแนน · เรียงจากคะแนนน้อยไปมาก เพื่อให้เห็นจุดที่ควรปรับก่อน</div>`;
-    const scored=gridCols.filter(g=>g.i>=0).map(g=>{
-      let s=0,c=0;
-      body.forEach(r=>{ const v=parseInt((r[g.i]||'').trim(),10); if(v>=1&&v<=4){s+=v;c++;} });
-      return {lab:g.lab, avg:c?s/c:0, c};
-    }).sort((a,b)=>a.avg-b.avg);
-    scored.forEach(g=>{
-      const cls=g.avg>=3.5?'good':g.avg>=3?'mid':'low';
-      html+=`<div class="gridrow"><span class="lab">${esc(g.lab)}</span>
-        <span class="sc ${cls}">${g.avg?g.avg.toFixed(2):'—'}</span>
-        <span class="meter"><i class="${cls}" style="width:${g.avg/4*100}%"></i></span></div>`;
-    });
-    html+='</div>';
+  /* Responses per day */
+  const buckets=new Map();
+  dates.forEach(d=>{
+    if(!d) return;
+    const e=buckets.get(dayKey(d));
+    if(e) e.c++; else buckets.set(dayKey(d),{d,c:1});
+  });
+  const days=[...buckets.values()].sort((a,b)=>a.d-b.d);
+  const maxDay = Math.max(1,...days.map(d=>d.c));
+
+  /* Still arriving? Timestamps are read at day granularity, so the live window
+     is today and yesterday — one quiet morning should not read as "finished". */
+  const now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const recent = dates.filter(d=>d && (today-d) <= 24*3600*1000).length;
+  const settled = recent===0;
+
+  const band = rate>=30 ? 'สูงกว่าช่วงปกติของแบบประเมินหลังงาน (15–30%) ถือว่าเสียงตอบรับดีมาก'
+             : rate>=15 ? 'อยู่ในช่วงปกติของแบบประเมินหลังงาน (15–30%)'
+                        : 'ต่ำกว่าช่วงปกติของแบบประเมินหลังงาน (15–30%) ตัวเลขยังแทนความเห็นทั้งรุ่นได้ไม่เต็มที่';
+
+  return `<div class="card">
+    <h3>ความน่าเชื่อถือของชุดข้อมูล</h3>
+    <div class="qsub">ก่อนอ่านตัวเลขอื่น ให้ดูก่อนว่าตัวเลขชุดนี้หนักแน่นแค่ไหน</div>
+    <div class="spark">${
+      days.length ? days.map(d=>`<div class="sp-row">
+        <span class="sp-lab">${dayLabel(d.d)}</span>
+        <span class="sp-bar"><i style="width:${d.c/maxDay*100}%"></i></span>
+        <span class="sp-val">${d.c}</span></div>`).join('')
+      : '<div class="empty">อ่านวันที่จากคอลัมน์ประทับเวลาไม่ได้</div>'}
+    </div>
+    <div class="explain">
+      <b>อัตราการตอบ ${rate}%</b> (${n} จาก ${ATTENDEES} คน) — ${band}<br>
+      ${moe ? `<b>ค่าคลาดเคลื่อน ${moe} คะแนน</b> ที่ความเชื่อมั่น 95% — ถ้าถามทั้งรุ่นครบ 250 คน
+        ค่าเฉลี่ยจริงน่าจะอยู่ในช่วงนี้ ตัวเลขที่ต่างกันน้อยกว่านี้ถือว่าเท่ากัน<br>` : ''}
+      <b>${settled ? 'ตัวเลขนิ่งแล้ว' : `ยังไหลเข้าอยู่ (${recent} คำตอบในวันนี้และเมื่อวาน)`}</b> —
+      ${settled ? 'สรุปผลและปิดแบบประเมินได้' : 'รอเพิ่มอีกสักระยะก่อนสรุป หรือโพสต์เตือนในกลุ่มอีกครั้งเพื่อดันตัวเลขให้แทนทั้งรุ่นได้มากขึ้น'}
+    </div>
+  </div>`;
+}
+
+/* C. Importance–performance matrix ------------------------------- */
+function cardMatrix(st){
+  const {areas, n, ranked} = st;
+  if(!areas.length) return '';
+  const usable = areas.filter(a=>a.r!=null);
+
+  const rankList = `<div class="bars" style="margin-top:4px">${ranked.map((a,k)=>`
+      <div class="bar-row${k?'':' top'}">
+        <span class="bar-label">${k+1}. ${esc(a.short)}</span>
+        <span class="bar-val">${a.avg.toFixed(2)}/4</span>
+        <span class="bar-track"><span class="bar-fill" style="width:${a.avg/4*100}%"></span></span>
+      </div>`).join('')}</div>`;
+
+  if(n < MIN_FOR_CORRELATION || usable.length < 3){
+    return `<div class="card">
+      <h3>ลำดับความสำคัญในการแก้</h3>
+      <div class="qsub">เรียงจากจุดที่ควรลงมือก่อน</div>
+      ${rankList}
+      <div class="caution">ผู้ตอบยังมี ${n} คน (ต้องการอย่างน้อย ${MIN_FOR_CORRELATION} คน)
+        จึงยังคำนวณไม่ได้ว่าแต่ละจุดมีน้ำหนักต่อความพึงพอใจรวมแค่ไหน
+        ตอนนี้จึงเรียงตามคะแนนดิบอย่างเดียว</div>
+      <div class="explain"><b>อ่านยังไง:</b> ข้อบนสุดคือคะแนนต่ำสุด
+        เมื่อมีผู้ตอบครบ ${MIN_FOR_CORRELATION} คน หน้านี้จะเปลี่ยนไปเรียงตามน้ำหนักที่แต่ละจุดมีต่อความพึงพอใจรวมแทน</div>
+    </div>`;
   }
 
-  /* Q2 checkboxes — matched by option text, not by splitting on commas */
-  if(iQ2>=0){
-    const tally=Q2_OPTIONS.map(o=>({o,c:0}));
-    body.forEach(r=>{
-      const cell=r[iQ2]||'';
-      tally.forEach(t=>{ if(cell.includes(t.o)) t.c++; });
-    });
-    tally.sort((a,b)=>b.c-a.c);
-    const max=Math.max(1,...tally.map(t=>t.c));
-    html+=`<div class="card"><h3>2. สิ่งที่ประทับใจมากที่สุด</h3>
-      <div class="qsub">เลือกได้มากกว่า 1 ข้อ · คิดเป็น % ของผู้ตอบ ${n} คน</div><div class="bars">`;
-    tally.forEach((t,k)=>{
-      html+=`<div class="bar-row${k%2?' alt':''}"><span class="bar-label">${esc(t.o)}</span>
-        <span class="bar-val">${t.c} · ${n?Math.round(t.c/n*100):0}%</span>
-        <span class="bar-track"><span class="bar-fill" style="width:${t.c/max*100}%"></span></span></div>`;
-    });
-    html+='</div></div>';
-  }
+  /* Scatter: performance on X, impact on Y, split at the mean and median. */
+  const W=680,H=430, L=58,R=22,T=26,B=52;
+  const xs=usable.map(a=>a.avg), ys=usable.map(a=>a.r);
+  const xLo=Math.max(1,Math.min(...xs)-.22), xHi=Math.min(4,Math.max(...xs)+.22);
+  const yLo=Math.min(...ys)-.09, yHi=Math.max(...ys)+.09;
+  const px=v=>L+(v-xLo)/((xHi-xLo)||1)*(W-L-R);
+  const py=v=>H-B-(v-yLo)/((yHi-yLo)||1)*(H-T-B);
+  const xSplit=mean(xs), ySplit=median(ys);
+  const sx=px(xSplit), sy=py(ySplit);
 
-  /* Q4–Q7 multiple choice — tally whatever values actually appear */
+  const quad=(x,y,w,h,fill)=>`<rect x="${x}" y="${y}" width="${Math.max(0,w)}" height="${Math.max(0,h)}" fill="${fill}"/>`;
+  const qlabel=(x,y,t,anchor)=>`<text x="${x}" y="${y}" text-anchor="${anchor}" font-size="12.5" font-weight="600" fill="#9aa28d">${t}</text>`;
+
+  const dots=usable.map(a=>{
+    const x=px(a.avg), y=py(a.r), right = a.avg>xSplit;
+    return `<circle cx="${x}" cy="${y}" r="7" fill="${a.avg<xSplit&&a.r>ySplit?'#EB649B':'#64A231'}" opacity=".92"/>
+      <text x="${right?x-12:x+12}" y="${y+4}" text-anchor="${right?'end':'start'}" font-size="12.5" fill="#1b2015">${esc(a.short)}</text>`;
+  }).join('');
+
+  return `<div class="card">
+    <h3>ลำดับความสำคัญในการแก้ (แรงกระทบ × คะแนนที่ได้)</h3>
+    <div class="qsub">คำนวณจากผู้ตอบ ${n} คน · แกนตั้งคือความสัมพันธ์กับคะแนนความพึงพอใจรวมข้อ 1</div>
+    <div class="scatter-wrap"><svg class="scatter" viewBox="0 0 ${W} ${H}" role="img" aria-label="แผนภาพลำดับความสำคัญ">
+      ${quad(L,T,sx-L,sy-T,'#fdeff5')}
+      ${quad(sx,T,W-R-sx,sy-T,'#eef5e4')}
+      ${quad(L,sy,sx-L,H-B-sy,'#f7f8f3')}
+      ${quad(sx,sy,W-R-sx,H-B-sy,'#fbfaf4')}
+      ${qlabel(L+10,T+18,'แก้ก่อน','start')}
+      ${qlabel(W-R-10,T+18,'รักษาไว้','end')}
+      ${qlabel(L+10,H-B-9,'ไว้ทีหลัง','start')}
+      ${qlabel(W-R-10,H-B-9,'ดีเกินจำเป็น','end')}
+      <line x1="${sx}" y1="${T}" x2="${sx}" y2="${H-B}" stroke="#c9d1bb" stroke-dasharray="4 4"/>
+      <line x1="${L}" y1="${sy}" x2="${W-R}" y2="${sy}" stroke="#c9d1bb" stroke-dasharray="4 4"/>
+      <rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="none" stroke="#e6e9dc"/>
+      ${dots}
+      <text x="${(L+W-R)/2}" y="${H-16}" text-anchor="middle" font-size="12.5" fill="#5d6552">คะแนนที่ได้จริง (เต็ม 4) →</text>
+      <text x="16" y="${(T+H-B)/2}" text-anchor="middle" font-size="12.5" fill="#5d6552"
+        transform="rotate(-90 16 ${(T+H-B)/2})">ผลต่อความพึงพอใจรวม →</text>
+    </svg></div>
+    <div class="explain"><b>อ่านยังไง:</b> คะแนนต่ำอย่างเดียวยังไม่ใช่เหตุผลให้ลงมือแก้
+      สิ่งที่ต้องดูคู่กันคือจุดนั้น<b>มีผลกับความรู้สึกโดยรวมแค่ไหน</b><br>
+      · <b>แก้ก่อน</b> (ซ้ายบน) — คะแนนยังไม่ดี และเป็นตัวตัดสินว่าคนจะประทับใจงานหรือไม่ ทุ่มงบและเวลาตรงนี้ก่อน<br>
+      · <b>รักษาไว้</b> (ขวาบน) — ทำได้ดีอยู่แล้วและสำคัญ อย่าลดสเกลลงในครั้งหน้า<br>
+      · <b>ไว้ทีหลัง</b> (ซ้ายล่าง) — คะแนนไม่สูง แต่ไม่ค่อยมีผลกับภาพรวม ค่อยแก้เมื่อมีเวลาเหลือ<br>
+      · <b>ดีเกินจำเป็น</b> (ขวาล่าง) — ลงแรงไปเยอะแต่ไม่ได้เปลี่ยนความรู้สึกคนมากนัก เป็นจุดที่ตัดงบได้ถ้าจำเป็น</div>
+  </div>`;
+}
+
+/* Q1 distribution ------------------------------------------------- */
+function cardQ1(st){
+  const {q1dist, q1cnt, q1avg} = st;
+  if(!q1cnt) return '';
+  let html=`<div class="card"><h3>1. ภาพรวมความพึงพอใจ</h3>
+    <div class="qsub">เฉลี่ย ${q1avg.toFixed(2)} / 5 · ${q1cnt} คำตอบ</div><div class="bars">`;
+  for(let s=5;s>=1;s--){
+    const c=q1dist[s-1], p=q1cnt?c/q1cnt*100:0;
+    html+=`<div class="bar-row"><span class="bar-label">${s} คะแนน</span>
+      <span class="bar-val">${c} · ${Math.round(p)}%</span>
+      <span class="bar-track"><span class="bar-fill" style="width:${p}%"></span></span></div>`;
+  }
+  const low=q1dist[0]+q1dist[1]+q1dist[2];
+  html+=`</div><div class="explain"><b>อ่านยังไง:</b> ตัวเลขที่ควรจับตาไม่ใช่ค่าเฉลี่ย แต่คือ
+    <b>${low} คน (${pct(low,q1cnt)}%) ที่ให้ 1–3 คะแนน</b> — ค่าเฉลี่ยสวย ๆ กลบกลุ่มนี้ได้เสมอ
+    ความเห็นของพวกเขาถูกแยกไว้ให้อ่านต่างหากด้านล่าง</div></div>`;
+  return html;
+}
+
+/* D. Q3 grid with distribution and spread ------------------------- */
+function cardGrid(st){
+  const {areas} = st;
+  if(!areas.length) return '';
+  const sorted=[...areas].sort((a,b)=>a.avg-b.avg);
+  let html=`<div class="card"><h3>3. คะแนนแยกตามจุดประสบการณ์</h3>
+    <div class="qsub">เต็ม 4 คะแนน · เรียงจากคะแนนน้อยไปมาก</div>
+    <div class="legend">
+      <span><i style="background:var(--pink)"></i>1 ปรับปรุง</span>
+      <span><i style="background:var(--amber)"></i>2 พอใช้</span>
+      <span><i style="background:#a8ce7e"></i>3 ดี</span>
+      <span><i style="background:var(--green)"></i>4 ดีมาก</span>
+    </div>`;
+  sorted.forEach(a=>{
+    const cls=a.avg>=3.5?'good':a.avg>=3?'mid':'low';
+    const d=a.dist, t=a.vals.length||1;
+    const divisive = a.sd!=null && a.sd>=DIVISIVE_SD;
+    html+=`<div class="gridrow">
+      <span class="lab">${esc(a.label)}${divisive?'<em class="flag">ความเห็นแตก</em>':''}</span>
+      <span class="sc ${cls}">${a.avg.toFixed(2)}</span>
+      <span class="stack">
+        <i class="s1" style="width:${d[0]/t*100}%"></i><i class="s2" style="width:${d[1]/t*100}%"></i>
+        <i class="s3" style="width:${d[2]/t*100}%"></i><i class="s4" style="width:${d[3]/t*100}%"></i></span>
+      <span class="dist">4: ${d[3]} · 3: ${d[2]} · 2: ${d[1]} · 1: ${d[0]}
+        &nbsp;·&nbsp; ส่วนเบี่ยงเบน ${a.sd!=null?a.sd.toFixed(2):'—'}</span>
+    </div>`;
+  });
+  const flagged=sorted.filter(a=>a.sd!=null&&a.sd>=DIVISIVE_SD).map(a=>a.short);
+  html+=`<div class="explain"><b>อ่านยังไง:</b> ค่าเฉลี่ยอย่างเดียวหลอกตาได้ —
+    3.5 ที่ทุกคนเห็นตรงกัน กับ 3.5 ที่ครึ่งหนึ่งให้ 2 อีกครึ่งให้ 4 เป็นคนละปัญหากันโดยสิ้นเชิง
+    แถบสีจึงแสดงการกระจายจริง และ<b>ส่วนเบี่ยงเบนตั้งแต่ ${DIVISIVE_SD.toFixed(1)} ขึ้นไปจะถูกติดป้าย “ความเห็นแตก”</b>
+    ${flagged.length ? `ครั้งนี้คือ <b>${flagged.map(esc).join(' · ')}</b> — ควรตามอ่านความเห็นปลายเปิดว่าคนที่ให้คะแนนต่ำเจออะไรต่างจากคนอื่น`
+                     : 'ครั้งนี้ยังไม่มีจุดไหนที่ความเห็นแตกชัดเจน'}</div></div>`;
+  return html;
+}
+
+/* E. Promoter vs detractor --------------------------------------- */
+function cardGap(st){
+  const {areas, proCount, detCount} = st;
+  if(!areas.length) return '';
+  if(proCount<MIN_PER_SUBGROUP || detCount<MIN_PER_SUBGROUP){
+    return `<div class="card"><h3>อะไรแยก “คนที่ประทับใจ” ออกจาก “คนที่เฉย ๆ”</h3>
+      <div class="qsub">เทียบคะแนนรายจุดระหว่างคนที่ให้ 4–5 กับคนที่ให้ 1–3</div>
+      <div class="caution">ยังเทียบไม่ได้ — ต้องมีอย่างน้อยกลุ่มละ ${MIN_PER_SUBGROUP} คน
+        ตอนนี้มีคนให้ 4–5 อยู่ ${proCount} คน และให้ 1–3 อยู่ ${detCount} คน</div></div>`;
+  }
+  const rows=[...areas].filter(a=>a.pro!=null&&a.det!=null)
+    .map(a=>({...a, gap:a.pro-a.det})).sort((a,b)=>b.gap-a.gap);
+  if(!rows.length) return '';
+  const top=rows[0];
+  return `<div class="card">
+    <h3>อะไรแยก “คนที่ประทับใจ” ออกจาก “คนที่เฉย ๆ”</h3>
+    <div class="qsub">คนให้ 4–5 คะแนน ${proCount} คน · คนให้ 1–3 คะแนน ${detCount} คน · เรียงตามช่องว่าง</div>
+    <div class="gap-row"><span class="lab h">จุดประสบการณ์</span><span class="h">ประทับใจ</span>
+      <span class="h">เฉย ๆ</span><span class="h">ต่างกัน</span></div>
+    ${rows.map(a=>`<div class="gap-row">
+      <span class="lab">${esc(a.short)}</span>
+      <span class="p">${a.pro.toFixed(2)}</span>
+      <span class="d">${a.det.toFixed(2)}</span>
+      <span class="g">${a.gap>0?'+':''}${a.gap.toFixed(2)}</span></div>`).join('')}
+    <div class="explain"><b>อ่านยังไง:</b> ช่องว่างที่กว้างที่สุดคือสิ่งที่ทำให้คนคนหนึ่งกลับบ้านไปแล้วบอกว่า
+      “งานดีมาก” แทนที่จะบอกว่า “ก็โอเค” ครั้งนี้คือ <b>${esc(top.short)}</b>
+      (ต่างกัน ${top.gap.toFixed(2)} คะแนน) — ถ้าจะยกระดับงานครั้งหน้าให้รู้สึกได้จริง จุดนี้ให้ผลตอบแทนสูงที่สุด<br>
+      ส่วนข้อที่ช่องว่างแคบ แปลว่าทั้งสองกลุ่มรู้สึกเหมือนกัน จึงไม่ใช่ต้นเหตุของความต่าง</div>
+  </div>`;
+}
+
+/* Q2 checkboxes --------------------------------------------------- */
+function cardQ2(st){
+  const {q2tally, n} = st;
+  if(!q2tally) return '';
+  const tally=[...q2tally].sort((a,b)=>b.c-a.c);
+  const max=Math.max(1,...tally.map(t=>t.c));
+  let html=`<div class="card"><h3>2. สิ่งที่ประทับใจมากที่สุด</h3>
+    <div class="qsub">เลือกได้มากกว่า 1 ข้อ · คิดเป็น % ของผู้ตอบ ${n} คน</div><div class="bars">`;
+  tally.forEach((t,k)=>{
+    html+=`<div class="bar-row${k%2?' alt':''}"><span class="bar-label">${esc(t.o)}</span>
+      <span class="bar-val">${t.c} · ${pct(t.c,n)}%</span>
+      <span class="bar-track"><span class="bar-fill" style="width:${t.c/max*100}%"></span></span></div>`;
+  });
+  html+=`</div><div class="explain"><b>อ่านยังไง:</b> ข้อนี้บอก “สิ่งที่คนจำได้” ซึ่งไม่เท่ากับ “สิ่งที่ทำได้ดี”
+    ในข้อ 3 — จุดที่คนเลือกเยอะแต่คะแนนข้อ 3 ยังไม่สูง คือจุดที่คนคาดหวังไว้สูงและยังไปไม่สุด
+    ส่วนข้อที่แทบไม่มีใครเลือก คือส่วนที่ลงแรงไปแล้วคนไม่ได้จดจำ ครั้งหน้าลดสเกลได้โดยแทบไม่มีใครรู้สึก</div></div>`;
+  return html;
+}
+
+/* G. Q4–Q7 with a recommendation --------------------------------- */
+function recommend(kind, arr, tot){
+  const top=arr[0], topPct=pct(top[1],tot);
+  const gap = arr.length>1 ? topPct-pct(arr[1][1],tot) : topPct;
+  const strong = topPct>=50 || gap>=15;
+  const split  = gap<10;
+  let action='';
+  const t=top[0];
+  if(kind==='cadence'){
+    /* The options are ordinal, so "next year" and "in 2 years" are the same
+       answer — both mean soon. Judging this question by the single top option
+       would discard that bloc exactly when the top two split. */
+    const yrs = arr.filter(([v])=>!/แล้วแต่/.test(v));
+    const decided = yrs.reduce((s,x)=>s+x[1],0);
+    const soon = yrs.filter(([v])=>/1 ปี|2 ปี/.test(v)).reduce((s,x)=>s+x[1],0);
+    const defer = tot-decided;
+    if(!decided) return '<div class="rec split"><b>ยังสรุปไม่ได้</b> — ยังไม่มีใครระบุช่วงเวลาที่ต้องการ</div>';
+    const soonPct=pct(soon,decided);
+    const note = defer ? ` (อีก ${defer} คนยกให้คณะกรรมการตัดสิน จึงไม่ถูกนับในสัดส่วนนี้)` : '';
+    return soonPct>=60
+      ? `<div class="rec"><b>ควรตั้งเป้าจัดภายใน 2 ปี — ${soonPct}% ของคนที่ระบุช่วงเวลาเลือกช่วงนี้</b>
+          ตัวเลือกที่ได้เสียงมากที่สุดคือ “${esc(top[0])}” ใช้เคาะปีเป้าหมายได้เลย${note}</div>`
+      : `<div class="rec split"><b>เสียงยังแตก</b> — มีเพียง ${soonPct}% ที่อยากให้จัดภายใน 2 ปี
+          ที่เหลืออยากเว้นระยะนานกว่านั้น ข้อนี้ควรให้คณะกรรมการเคาะเอง${note}</div>`;
+  }
+  if(kind==='venue'){
+    action = /รถไฟฟ้า|BTS|MRT/.test(t) ? 'ตั้งเงื่อนไขการหาสถานที่ว่าต้องเดินถึงจาก BTS/MRT ได้'
+           : /ละแวกเดิม|ใกล้โรงเรียน/.test(t) ? 'หาสถานที่ในละแวกโรงเรียนเหมือนเดิม ไม่ต้องเสี่ยงย้ายทำเล'
+           : /รอบนอก/.test(t) ? 'ขยับออกรอบนอกได้ ถ้าแลกมากับพื้นที่และที่จอดรถที่ใหญ่ขึ้นจริง'
+           : 'ใช้ตัวเลือกอันดับ 1 เป็นโจทย์ตั้งต้นในการหาสถานที่';
+  } else if(kind==='price'){
+    action = /ยืดหยุ่น/.test(t) ? 'เตรียมขายสองระดับในรอบเดียวกัน — แบบเข้างานอย่างเดียว และแบบรวมของที่ระลึก'
+           : /จัดเต็ม/.test(t) ? 'ตั้งราคาหลักไว้ที่ 1,300–1,500 บาท พร้อมของชำร่วยและเสื้อเต็มชุด'
+           : /ย่อมเยา/.test(t) ? 'ตั้งราคาหลักไว้ที่ 800–1,000 บาท แล้วแยกขายของชำร่วยกับเสื้อต่างหาก'
+           : 'ใช้ตัวเลือกอันดับ 1 เป็นโครงสร้างราคาตั้งต้น';
+  } else {
+    action = /Waiting List/i.test(t) ? 'เปิดคิวสำรองอัตโนมัติตั้งแต่วันแรกที่ขายบัตร'
+           : /กติกาเดิม/.test(t) ? 'คงกติกาจองก่อนได้ก่อน แล้วสื่อสารกำหนดการขายให้ชัดล่วงหน้า'
+           : /โอนสิทธิ์/.test(t) ? 'เปิดให้โอนบัตรกันเองได้จนถึง 7 วันก่อนงาน'
+           : /Late Bird/i.test(t) ? 'กันบัตร Late Bird จำนวนจำกัดไว้ขายรอบท้าย'
+           : /ใหญ่ขึ้น/.test(t) ? 'มองหาสถานที่ที่รองรับได้มากกว่า 250 คน'
+           : 'ใช้ตัวเลือกอันดับ 1 เป็นแนวทางตั้งต้น';
+  }
+  const verdict = split
+    ? `<b>เสียงยังแตก</b> — ${gap===0 ? 'อันดับ 1 กับอันดับ 2 ได้เท่ากัน'
+        : `อันดับ 1 นำอันดับ 2 อยู่แค่ ${gap} จุด`} แบบประเมินยังไม่ตัดสินข้อนี้ให้ ควรให้คณะกรรมการเคาะเอง`
+    : strong ? `<b>เสียงชัดเจน (${topPct}%)</b> — ${action}`
+             : `<b>เอนไปทางนี้ (${topPct}% นำอยู่ ${gap} จุด)</b> — ${action}`;
+  return `<div class="rec${split?' split':''}">${verdict}</div>`;
+}
+
+function cardsMC(st){
+  const {head, body, n} = st;
+  let html='';
   MC.forEach((q,qi)=>{
     const i=findCol(head,h=>h.startsWith(q.no+'.'));
     if(i<0) return;
@@ -330,74 +681,201 @@ function render(rows){
     const arr=[...map.entries()].sort((a,b)=>b[1]-a[1]);
     const tot=arr.reduce((s,x)=>s+x[1],0);
     html+=`<div class="card"><h3>${esc(head[i].split('(')[0].trim().slice(0,90))}</h3>
-      <div class="qsub">${tot} คำตอบ</div><div class="bars">`;
+      <div class="qsub">${tot} คำตอบ · ${esc(q.feeds)}</div><div class="bars">`;
     arr.forEach(([v,c],k)=>{
       html+=`<div class="bar-row${(qi+k)%2?' alt':''}"><span class="bar-label">${esc(v)}</span>
-        <span class="bar-val">${c} · ${Math.round(c/tot*100)}%</span>
+        <span class="bar-val">${c} · ${pct(c,tot)}%</span>
         <span class="bar-track"><span class="bar-fill" style="width:${c/tot*100}%"></span></span></div>`;
     });
-    html+='</div></div>';
+    html+='</div>'+recommend(q.kind,arr,tot);
+    if(n<MIN_FOR_CLEAN_PCT) html+=`<div class="caution">ผู้ตอบยังมีแค่ ${n} คน — ให้น้ำหนักกับจำนวนคนมากกว่าเปอร์เซ็นต์</div>`;
+    html+='</div>';
+  });
+  return html;
+}
+
+/* F. Comment themes ---------------------------------------------- */
+function cardThemes(st){
+  const {notes, q1avg} = st;
+  if(notes.length<3) return '';
+  const rows=THEMES.map(t=>{
+    const hits=notes.filter(c=>t.keys.some(k=>c.t.toLowerCase().includes(k.toLowerCase())));
+    const scored=hits.map(c=>c.q1).filter(v=>v!=null);
+    return {name:t.name, c:hits.length, m:scored.length>=3?mean(scored):null};
+  }).filter(r=>r.c>0).sort((a,b)=>b.c-a.c);
+  if(!rows.length) return '';
+  const max=Math.max(...rows.map(r=>r.c));
+  const pains=rows.filter(r=>r.m!=null&&q1avg!=null&&r.m<q1avg-0.2);
+
+  return `<div class="card">
+    <h3>เรื่องที่คนพูดถึงในข้อเสนอแนะ</h3>
+    <div class="qsub">จับจากคำสำคัญใน ${notes.length} ข้อความ · หนึ่งข้อความนับได้หลายหมวด</div>
+    <div class="bars">${rows.map((r,k)=>`
+      <div class="bar-row${k%2?' alt':''}">
+        <span class="bar-label">${esc(r.name)}${
+          r.m!=null&&q1avg!=null ? ` <span class="score-tag">· คนที่พูดถึงให้ ${r.m.toFixed(2)}/5</span>`:''}</span>
+        <span class="bar-val">${r.c} · ${pct(r.c,notes.length)}%</span>
+        <span class="bar-track"><span class="bar-fill" style="width:${r.c/max*100}%"></span></span>
+      </div>`).join('')}</div>
+    <div class="explain"><b>อ่านยังไง:</b> ความยาวแถบบอกว่าคนพูดถึงเรื่องนั้นบ่อยแค่ไหน
+      แต่ตัวเลขที่สำคัญกว่าคือ<b>คะแนนเฉลี่ยของคนที่หยิบเรื่องนั้นขึ้นมาพูด</b> —
+      ต่ำกว่าค่าเฉลี่ยรวม (${q1avg!=null?q1avg.toFixed(2):'—'}) แปลว่าเรื่องนั้นถูกพูดถึงในเชิงติ ไม่ใช่เชิงชม
+      ${pains.length ? `ครั้งนี้คือ <b>${pains.map(p=>esc(p.name)).join(' · ')}</b>`
+                     : 'ครั้งนี้ยังไม่มีหมวดไหนที่คนพูดถึงแล้วคะแนนต่ำกว่าค่าเฉลี่ยชัดเจน'}<br>
+      หมายเหตุ: จับด้วยคำสำคัญ ไม่ได้อ่านความหมาย ใช้เป็นทางลัดในการหาว่าควรไปอ่านข้อความจริงเรื่องไหนก่อน</div>
+  </div>`;
+}
+
+/* Comments ------------------------------------------------------- */
+function cardComments(st){
+  const {notes} = st;
+  const low=notes.filter(c=>c.q1!=null&&c.q1<=3);
+  let html='';
+  if(low.length){
+    html+=`<div class="card low-score">
+      <h3>ความเห็นจากคนที่ให้ 1–3 คะแนน</h3>
+      <div class="qsub">${low.length} ข้อความ · แยกขึ้นมาก่อนเพราะเป็นข้อมูลที่ใช้ปรับปรุงได้มากที่สุด</div>
+      <div class="comments">${low.map(c=>`<div class="comment"><p>${esc(c.t)}</p>
+        <div class="meta">ให้ ${c.q1} คะแนน · ${esc(c.when)}</div></div>`).join('')}</div>
+      <div class="explain"><b>อ่านยังไง:</b> คนกลุ่มนี้มีจำนวนน้อยแต่เขียนตรงที่สุดว่าอะไรพลาด
+        ข้อความชมมีประโยชน์ต่อขวัญกำลังใจ ส่วนข้อความกลุ่มนี้มีประโยชน์ต่อการวางแผนครั้งหน้า</div>
+    </div>`;
+  }
+  html+=`<div class="card">
+    <h3>8. ข้อเสนอแนะและคำฝากถึงทีมงาน</h3>
+    <div class="qsub">${notes.length} ข้อความ · เรียงจากใหม่ไปเก่า</div>
+    <div class="comments">${
+      notes.length ? notes.map(c=>`<div class="comment"><p>${esc(c.t)}</p>
+        <div class="meta">${c.q1!=null?`ให้ ${c.q1} คะแนน · `:''}${esc(c.when)}</div></div>`).join('')
+      : '<div class="empty">ยังไม่มีข้อความ</div>'}</div>
+  </div>`;
+  return html;
+}
+
+/* ==================================================================
+   Statistics: build everything once, then hand it to the sections.
+   ================================================================== */
+function analyse(rows){
+  const head=rows[0].map(h=>h.trim());
+  const body=rows.slice(1);
+  const n=body.length;
+  const iTime=0;
+  const iQ1=findCol(head,h=>h.startsWith('1.'));
+  const iQ2=findCol(head,h=>h.startsWith('2.'));
+  const iQ8=findCol(head,h=>h.startsWith('8.'));
+  /* The grid header repeats the question then the row label in brackets. */
+  const gridIdx=Q3_ROWS.map(lab=>findCol(head,h=>h.startsWith('3.')&&h.includes(lab.slice(2,18).trim())));
+
+  const recs=body.map(r=>({
+    when:(r[iTime]||'').trim(),
+    q1: iQ1>=0 ? num(r[iQ1],1,5) : null,
+    q3: gridIdx.map(i=>i>=0?num(r[i],1,4):null),
+    q8: iQ8>=0 ? (r[iQ8]||'').trim() : ''
+  }));
+
+  const q1vals=recs.map(r=>r.q1).filter(v=>v!=null);
+  const q1dist=[0,0,0,0,0]; q1vals.forEach(v=>q1dist[v-1]++);
+  const q1avg=mean(q1vals);
+  const q1cnt=q1vals.length;
+  const promoters=q1dist[3]+q1dist[4];
+  const topPct=pct(promoters,q1cnt);
+  const proSet=recs.filter(r=>r.q1!=null&&r.q1>=4);
+  const detSet=recs.filter(r=>r.q1!=null&&r.q1<=3);
+
+  const areas=[];
+  gridIdx.forEach((colIdx,k)=>{
+    if(colIdx<0) return;
+    const vals=recs.map(r=>r.q3[k]).filter(v=>v!=null);
+    if(!vals.length) return;
+    const dist=[0,0,0,0]; vals.forEach(v=>dist[v-1]++);
+    /* Impact = how tightly this area tracks the overall score. */
+    const pairs=recs.filter(r=>r.q1!=null&&r.q3[k]!=null);
+    const r = pairs.length>=MIN_FOR_CORRELATION
+      ? pearson(pairs.map(p=>p.q3[k]), pairs.map(p=>p.q1)) : null;
+    areas.push({
+      label:Q3_ROWS[k], short:Q3_SHORT[k], vals, dist,
+      avg:mean(vals), sd:sd(vals), r, pairs:pairs.length,
+      pro:mean(proSet.map(x=>x.q3[k]).filter(v=>v!=null)),
+      det:mean(detSet.map(x=>x.q3[k]).filter(v=>v!=null))
+    });
   });
 
-  $('charts').innerHTML=html;
-
-  /* Q8 free text — newest first, since staff check back for what is new */
-  const notes=[];
-  if(iQ8>=0) body.forEach(r=>{
-    const t=(r[iQ8]||'').trim();
-    if(t) notes.push({t, when:(r[iTime]||'').trim()});
+  /* Priority = headroom left × weight on overall satisfaction. Falls back to
+     headroom alone when there are too few responses to trust a correlation. */
+  const ranked=[...areas].sort((a,b)=>{
+    const score=x=>(4-x.avg)*(x.r!=null?Math.max(x.r,0.01):1);
+    return score(b)-score(a);
   });
-  notes.reverse();
-  $('commentCount').textContent=`${notes.length} ข้อความ จากผู้ตอบ ${n} คน · เรียงจากใหม่ไปเก่า`;
-  $('comments').innerHTML = notes.length
-    ? notes.map(c=>`<div class="comment"><p>${esc(c.t)}</p><div class="meta">${esc(c.when)}</div></div>`).join('')
-    : '<div class="empty">ยังไม่มีข้อความ</div>';
+
+  const q2tally = iQ2>=0 ? Q2_OPTIONS.map(o=>({o,c:0})) : null;
+  if(q2tally) body.forEach(r=>{
+    const cell=r[iQ2]||'';
+    q2tally.forEach(t=>{ if(cell.includes(t.o)) t.c++; });
+  });
+
+  const dates=buildDates(recs.map(r=>r.when));
+  const notes=recs.map((r,i)=>({t:r.q8, when:r.when, q1:r.q1, i}))
+    .filter(c=>c.t).reverse();
+
+  return {head, body, n, q1vals, q1dist, q1avg, q1cnt, topPct, areas, ranked,
+          proCount:proSet.length, detCount:detSet.length, q2tally, dates, notes};
+}
+
+function render(rows){
+  const st=analyse(rows);
+  const rate=pct(st.n,ATTENDEES);
+  const last=st.n ? (st.body[st.n-1][0]||'').trim()||'—' : '—';
+
+  $('kpis').innerHTML=`
+    <div class="kpi"><div class="n">${st.n}</div><div class="k">คำตอบทั้งหมด</div>
+      <div class="s">ล่าสุด ${esc(last)}</div></div>
+    <div class="kpi alt"><div class="n">${st.q1avg?st.q1avg.toFixed(2):'—'}</div>
+      <div class="k">ความพึงพอใจภาพรวม</div>
+      <div class="s">จาก 5 คะแนน · ${st.q1cnt} คำตอบ</div></div>
+    <div class="kpi"><div class="n">${st.topPct}%</div><div class="k">ให้ 4–5 คะแนน</div>
+      <div class="s">${st.q1dist[3]+st.q1dist[4]} จาก ${st.q1cnt} คน</div></div>
+    <div class="kpi"><div class="n">${rate}%</div><div class="k">อัตราการตอบ</div>
+      <div class="s">จากผู้มาร่วมงาน ${ATTENDEES} คน</div></div>`;
+
+  $('charts').innerHTML =
+      cardExecutive(st) + cardHealth(st) + cardQ1(st) + cardMatrix(st) + cardGrid(st) +
+      cardGap(st) + cardQ2(st) + cardsMC(st) + cardThemes(st) + cardComments(st);
 
   const now=new Date();
   $('stamp').textContent='อัปเดต '+now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
-  $('foot').innerHTML='รีเฟรชอัตโนมัติทุก 5 นาที · '+
-    '<button id="forget">ล้างลิงก์ชีตออกจากเบราว์เซอร์นี้</button>';
-  $('forget').onclick=()=>{ localStorage.removeItem(KEY); location.reload(); };
+  $('foot').textContent='รีเฟรชอัตโนมัติทุก 5 นาที · แหล่งข้อมูลถูกตั้งไว้ตายตัวในไฟล์ source.js';
 }
 
-async function load(url){
-  const bust=url+(url.includes('?')?'&':'?')+'_t='+Date.now();
-  const res=await fetch(bust);
-  if(!res.ok) throw new Error('HTTP '+res.status);
-  const text=await res.text();
-  if(/^\s*</.test(text)) throw new Error('ได้ HTML แทน CSV — ชีตอาจยังไม่ได้เผยแพร่เป็น .csv');
-  const rows=parseCSV(text);
-  if(rows.length<1) throw new Error('ไฟล์ว่าง');
-  $('setup').classList.add('hide');
-  $('dash').classList.remove('hide');
-  render(rows);
+/* --- loading ---------------------------------------------------- */
+async function load(){
+  if(!CSV_URL) return fail('ยังไม่ได้ตั้งค่าลิงก์ชีตในไฟล์ source.js', 'ยังไม่ได้ตั้งค่าแหล่งข้อมูล');
+  const bust=CSV_URL+(CSV_URL.includes('?')?'&':'?')+'_t='+Date.now();
+  try{
+    const res=await fetch(bust);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text=await res.text();
+    if(/^\s*</.test(text)) throw new Error('ได้ HTML แทน CSV — ชีตอาจยังไม่ได้เผยแพร่เป็น .csv');
+    const rows=parseCSV(text);
+    if(rows.length<2) throw new Error('ยังไม่มีคำตอบในชีต');
+    $('miss').classList.add('hide');
+    $('dash').classList.remove('hide');
+    render(rows);
+  }catch(e){ fail(e.message); }
 }
 
-function fail(e){
-  $('setup').classList.remove('hide');
+function fail(msg, title){
+  $('miss').classList.remove('hide');
   $('dash').classList.add('hide');
-  const el=$('err');
-  el.textContent='เชื่อมต่อไม่สำเร็จ: '+e.message;
-  el.classList.add('show');
+  $('missTitle').textContent = title || 'ยังอ่านข้อมูลไม่ได้';
+  $('missMsg').textContent = msg;
 }
 
-let current=localStorage.getItem(KEY);
-if(current) load(current).catch(fail);
-
-$('connect').onclick=()=>{
-  const u=normaliseUrl($('csvUrl').value);
-  if(!u){ $('err').textContent='ลิงก์ไม่ถูกต้อง — ต้องเป็นลิงก์ Google Sheets หรือลิงก์เผยแพร่แบบ .csv';
-          $('err').classList.add('show'); return; }
-  localStorage.setItem(KEY,u); current=u;
-  $('err').classList.remove('show');
-  load(u).catch(fail);
-};
-$('csvUrl').addEventListener('keydown',e=>{ if(e.key==='Enter') $('connect').click(); });
-$('refresh').onclick=()=>{ if(current) load(current).catch(fail); };
+load();
+$('refresh').onclick=()=>load();
 $('printBtn').onclick=()=>print();
-$('change').onclick=()=>{ $('setup').classList.remove('hide'); $('dash').classList.add('hide');
-  $('csvUrl').value=current||''; };
-setInterval(()=>{ if(current && !document.hidden) load(current).catch(()=>{}); }, REFRESH_MS);
+/* Silent on the auto-refresh: a transient network blip should not wipe the
+   report a staff member is reading. */
+setInterval(()=>{ if(CSV_URL && !document.hidden && !$('dash').classList.contains('hide')) load(); }, REFRESH_MS);
 </script>
 </body>
 </html>

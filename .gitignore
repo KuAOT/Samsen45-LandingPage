@@ -70,3 +70,6 @@ node_modules/
 
 # macOS
 .DS_Store
+
+# Staff dashboard sheet link — public repo, must never be committed
+public/staff-feedback/source.js
