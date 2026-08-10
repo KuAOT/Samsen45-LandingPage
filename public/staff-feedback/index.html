@@ -326,25 +326,37 @@ function pearson(xs,ys){
   return den ? num/den : null;
 }
 
-/* Timestamps: Google writes them in the sheet owner's locale, so d/m/y and
-   m/d/y both occur, and a Thai locale writes Buddhist years. Decide the field
-   order once from the whole column rather than guessing per row. */
-function buildDates(stamps){
+/* Timestamps: Google writes them in the sheet's locale, so d/m/y and m/d/y
+   both occur and a Thai locale writes Buddhist years. Decide the field order
+   once from the whole column rather than guessing per row. */
+function buildDates(stamps, header){
   const parts=stamps.map(s=>{
     const m=String(s).match(/(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})/);
     return m ? [+m[1],+m[2],+m[3]] : null;
   });
-  let dayFirst=true;
-  if(parts.some(p=>p&&p[1]>12)) dayFirst=false;
-  else if(parts.some(p=>p&&p[0]>12)) dayFirst=true;
-  return parts.map(p=>{
-    if(!p) return null;
+  const seen=parts.filter(Boolean);
+  const make=(p,dayFirst)=>{
     let [a,b,y]=p;
     const d=dayFirst?a:b, mo=dayFirst?b:a;
     if(y>2400) y-=543;              // Buddhist era
     const dt=new Date(y,mo-1,d);
     return isNaN(dt) ? null : dt;
-  });
+  };
+  let dayFirst;
+  if(seen.some(p=>p[1]>12)) dayFirst=false;        // second field is a day
+  else if(seen.some(p=>p[0]>12)) dayFirst=true;    // first field is a day
+  else {
+    /* Dates like 8/5/2026 give away nothing on their own. But a response
+       cannot be submitted in the future, so a reading that produces one is
+       the wrong reading — which settles it without knowing the locale. */
+    const cutoff=Date.now()+24*3600*1000;
+    const future=f=>seen.some(p=>{ const d=make(p,f); return d && d>cutoff; });
+    const dayFuture=future(true), monthFuture=future(false);
+    if(dayFuture!==monthFuture) dayFirst=!dayFuture;
+    else if(seen.some(p=>p[2]>2400)) dayFirst=true;               // BE year -> Thai sheet
+    else dayFirst=!/^\s*timestamp\s*$/i.test(header||'');         // English header -> m/d/y
+  }
+  return parts.map(p=>p?make(p,dayFirst):null);
 }
 const dayKey=d=>d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
 const dayLabel=d=>d.getDate()+' '+TH_MONTHS[d.getMonth()];
@@ -359,8 +371,13 @@ function cardExecutive(st){
   const {n, q1avg, topPct, areas, ranked} = st;
   if(!areas.length) return '';
   const rate = pct(n, ATTENDEES);
-  const strengths = [...areas].sort((a,b)=>b.avg-a.avg).slice(0,3);
-  const fixes = ranked.slice(0,3);
+  /* An area can top the score table and still carry headroom worth chasing, so
+     the two lists would otherwise name the same thing twice. Strengths are
+     claimed first; the fix list is ordered by priority among what is left. */
+  const strengths = [...areas].sort((a,b)=>b.avg-a.avg)
+    .slice(0, Math.max(1, Math.min(3, Math.floor(areas.length/2))));
+  const kept = new Set(strengths.map(a=>a.short));
+  const fixes = ranked.filter(a=>!kept.has(a.short)).slice(0,3);
 
   let sum = `ผู้ตอบ <b>${n} คน</b> จากผู้มาร่วมงาน ${ATTENDEES} คน (${rate}%)`;
   if(q1avg!=null) sum += ` · ความพึงพอใจภาพรวม <b>${q1avg.toFixed(2)} จาก 5</b> โดย <b>${topPct}%</b> ให้ 4–5 คะแนน`;
@@ -378,7 +395,7 @@ function cardExecutive(st){
       <div class="col fix"><h4>ควรลงมือก่อน เรียงตามผลตอบแทน</h4><ol>${fixes.map(li).join('')}</ol></div>
     </div>
     <div class="explain"><b>อ่านยังไง:</b> ฝั่งซ้ายคือจุดที่ได้คะแนนสูงที่สุด
-      ฝั่งขวา<b>ไม่ใช่</b>แค่ข้อที่คะแนนต่ำสุด แต่เรียงจาก “คะแนนที่ยังขาด × น้ำหนักที่มีต่อความพึงพอใจรวม”
+      ฝั่งขวาคือส่วนที่เหลือ เรียงจาก “คะแนนที่ยังขาด × น้ำหนักที่มีต่อความพึงพอใจรวม” <b>ไม่ใช่</b>เรียงตามคะแนนต่ำสุด
       — จุดที่คะแนนต่ำแต่ไม่มีผลกับความรู้สึกโดยรวม ไม่คุ้มที่จะทุ่มงบแก้ก่อน</div>
   </div>`;
 }
@@ -441,7 +458,7 @@ function cardHealth(st){
 
 /* C. Importance–performance matrix ------------------------------- */
 function cardMatrix(st){
-  const {areas, n, ranked} = st;
+  const {areas, n, ranked, topPct} = st;
   if(!areas.length) return '';
   const usable = areas.filter(a=>a.r!=null);
 
@@ -504,6 +521,9 @@ function cardMatrix(st){
       <text x="16" y="${(T+H-B)/2}" text-anchor="middle" font-size="12.5" fill="#5d6552"
         transform="rotate(-90 16 ${(T+H-B)/2})">ผลต่อความพึงพอใจรวม →</text>
     </svg></div>
+    ${topPct>=90 ? `<div class="caution">ความพึงพอใจภาพรวมเกือบเป็นเอกฉันท์ (${topPct}% ให้ 4–5 คะแนน)
+      แกนตั้งจึงกำลังอธิบายความต่างระหว่าง “ดี” กับ “ดีมาก” ไม่ใช่ระหว่าง “แย่” กับ “ดี”
+      ใช้จัดลำดับว่าควรทำอะไรก่อนได้ แต่อย่าอ่านว่าจุดที่คะแนนต่ำกว่าคือจุดที่คนไม่พอใจ</div>` : ''}
     <div class="explain"><b>อ่านยังไง:</b> คะแนนต่ำอย่างเดียวยังไม่ใช่เหตุผลให้ลงมือแก้
       สิ่งที่ต้องดูคู่กันคือจุดนั้น<b>มีผลกับความรู้สึกโดยรวมแค่ไหน</b><br>
       · <b>แก้ก่อน</b> (ซ้ายบน) — คะแนนยังไม่ดี และเป็นตัวตัดสินว่าคนจะประทับใจงานหรือไม่ ทุ่มงบและเวลาตรงนี้ก่อน<br>
@@ -813,7 +833,7 @@ function analyse(rows){
     q2tally.forEach(t=>{ if(cell.includes(t.o)) t.c++; });
   });
 
-  const dates=buildDates(recs.map(r=>r.when));
+  const dates=buildDates(recs.map(r=>r.when), head[iTime]);
   const notes=recs.map((r,i)=>({t:r.q8, when:r.when, q1:r.q1, i}))
     .filter(c=>c.t).reverse();
 
