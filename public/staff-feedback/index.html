@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+<title>สรุปแบบประเมิน · ทีมงาน Samsen 45</title>
+<link rel="icon" type="image/png" href="../assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --green:#64A231; --green-d:#4f8226; --green-xl:#eef5e4;
+  --pink:#EB649B; --pink-d:#d44d84; --pink-xl:#fdeff5;
+  --ink:#1b2015; --ink-soft:#5d6552; --ink-faint:#9aa28d;
+  --bg:#fbfcf8; --bg-soft:#f1f4ea; --paper:#fff; --line:#e6e9dc;
+  --warn:#8a5a00; --warn-bg:#fff6e0; --warn-line:#f0d79a;
+  --shadow:0 1px 2px rgba(27,32,21,.04), 0 14px 30px -20px rgba(27,32,21,.28);
+  --font-display:'Anuphan'; --font-body:'IBM Plex Sans Thai';
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body),'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',system-ui,sans-serif;color:var(--ink);background:var(--bg);
+  line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--font-display),'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;line-height:1.2;font-weight:700}
+a{color:var(--green-d)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(18px,4vw,32px)}
+
+header.top{background:var(--paper);border-bottom:1px solid var(--line);padding:20px 0 18px;position:sticky;top:0;z-index:20}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px}
+.brand img{width:34px;height:34px}
+.brand b{font-family:var(--font-display);font-size:16px;display:block;line-height:1.2}
+.brand small{font-size:11.5px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase}
+.top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font-family:var(--font-body);font-weight:600;font-size:14px;border:1.5px solid var(--line);
+  background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;transition:.18s}
+.btn:hover{border-color:var(--green);color:var(--green-d)}
+.btn.primary{background:var(--green);border-color:var(--green);color:#fff}
+.btn.primary:hover{filter:brightness(.95);color:#fff}
+.stamp{font-size:12.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+
+.notice{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn);
+  border-radius:12px;padding:12px 16px;font-size:13.5px;margin:18px auto 0;max-width:1080px}
+.notice b{font-weight:700}
+
+main{padding:26px 0 60px}
+.setup{max-width:720px;margin:40px auto;background:var(--paper);border:1px solid var(--line);
+  border-radius:18px;padding:clamp(24px,4vw,36px);box-shadow:var(--shadow)}
+.setup h2{font-size:24px;margin-bottom:10px}
+.setup p{color:var(--ink-soft);font-size:15px;margin-bottom:16px}
+.setup ol{margin:0 0 20px 20px;color:var(--ink-soft);font-size:14.5px}
+.setup li{margin-bottom:7px}
+.setup input{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;
+  font-family:var(--font-body);font-size:14px;margin-bottom:12px}
+.setup input:focus{outline:none;border-color:var(--green)}
+.err{color:var(--pink-d);font-size:13.5px;margin-top:10px;display:none}
+.err.show{display:block}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:26px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.kpi .n{font-family:var(--font-display);font-weight:700;font-size:38px;line-height:1;color:var(--green);
+  font-variant-numeric:tabular-nums}
+.kpi.alt .n{color:var(--pink-d)}
+.kpi .k{font-size:13.5px;color:var(--ink-soft);margin-top:7px;font-weight:600}
+.kpi .s{font-size:12px;color:var(--ink-faint);margin-top:2px}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,3vw,26px);
+  box-shadow:var(--shadow);margin-bottom:18px}
+.card h3{font-size:17px;margin-bottom:4px}
+.card .qsub{font-size:12.5px;color:var(--ink-faint);margin-bottom:16px}
+
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:grid;grid-template-columns:minmax(0,1fr) 62px;gap:12px;align-items:center}
+.bar-label{font-size:14px;color:var(--ink);min-width:0}
+.bar-track{grid-column:1/-1;height:9px;background:var(--bg-soft);border-radius:99px;overflow:hidden;margin-top:-4px}
+/* display:block is required — an inline span ignores width/height */
+.bar-fill{display:block;height:100%;background:var(--green);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.bar-row.alt .bar-fill{background:var(--pink)}
+.bar-val{font-size:13px;color:var(--ink-soft);text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+
+.gridrow{display:grid;grid-template-columns:minmax(0,1fr) 74px;gap:12px;align-items:center;padding:11px 0}
+.gridrow+.gridrow{border-top:1px solid var(--line)}
+.gridrow .lab{font-size:14px}
+.gridrow .sc{font-family:var(--font-display);font-weight:700;font-size:19px;text-align:right;
+  font-variant-numeric:tabular-nums}
+.sc.good{color:var(--green)} .sc.mid{color:var(--warn)} .sc.low{color:var(--pink-d)}
+.gridrow .meter{grid-column:1/-1;height:7px;background:var(--bg-soft);border-radius:99px;overflow:hidden;margin-top:-6px}
+.gridrow .meter i{display:block;height:100%;border-radius:99px;background:var(--green)}
+.gridrow .meter i.mid{background:#e0a83c} .gridrow .meter i.low{background:var(--pink)}
+
+.comments{display:flex;flex-direction:column;gap:12px;max-height:640px;overflow-y:auto;padding-right:4px}
+.comment{background:var(--bg-soft);border-left:3px solid var(--green);border-radius:0 11px 11px 0;padding:13px 16px}
+.comment:nth-child(even){border-left-color:var(--pink)}
+.comment p{font-size:14.5px;white-space:pre-wrap;word-break:break-word}
+.comment .meta{font-size:11.5px;color:var(--ink-faint);margin-top:7px;font-variant-numeric:tabular-nums}
+.empty{color:var(--ink-faint);font-size:14px;padding:16px 0;text-align:center}
+
+.foot{text-align:center;color:var(--ink-faint);font-size:12.5px;padding:26px 0 0}
+.foot button{background:none;border:none;color:var(--ink-faint);font:inherit;text-decoration:underline;cursor:pointer}
+.hide{display:none!important}
+@media print{
+  header.top,.top-actions,.notice,.foot{display:none}
+  body{background:#fff}
+  .card,.kpi{break-inside:avoid;box-shadow:none}
+  .comments{max-height:none;overflow:visible}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-row">
+    <div class="brand">
+      <img src="../assets/logo-green.png" alt="" />
+      <div>
+        <b>สรุปแบบประเมินหลังงาน</b>
+        <small>Samsen 45 · staff only</small>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="stamp" id="stamp"></span>
+      <button class="btn" id="refresh">รีเฟรช</button>
+      <button class="btn" id="printBtn">พิมพ์ / PDF</button>
+      <button class="btn" id="change">เปลี่ยนแหล่งข้อมูล</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="notice">
+    <b>ข้อมูลนี้เป็นความเห็นส่วนตัวของเพื่อน ๆ</b> — แบบฟอร์มระบุว่าตอบได้โดยไม่ต้องระบุตัวตน
+    กรุณาใช้ภายในทีมงานเท่านั้น อย่าแชร์ลิงก์หน้านี้หรือแคปหน้าจอความเห็นออกสู่สาธารณะ
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- setup: the CSV URL lives in this browser only, never in the repo -->
+  <section class="setup" id="setup">
+    <h2>เชื่อมกับ Google Sheet</h2>
+    <p>หน้านี้อ่านคำตอบสดจากชีตที่ผูกกับฟอร์ม ทำครั้งเดียวแล้วเบราว์เซอร์นี้จะจำไว้ให้</p>
+    <ol>
+      <li>เปิดฟอร์ม → แท็บ <b>คำตอบ (Responses)</b> → ไอคอน Google Sheets เพื่อเปิดชีต</li>
+      <li>ในชีต: <b>ไฟล์ → แชร์ → เผยแพร่ไปยังเว็บ</b></li>
+      <li>เลือกชีตคำตอบ แล้วเลือกรูปแบบ <b>ค่าที่คั่นด้วยจุลภาค (.csv)</b> → กดเผยแพร่</li>
+      <li>คัดลอกลิงก์ที่ได้มาวางด้านล่าง</li>
+    </ol>
+    <input type="url" id="csvUrl" placeholder="https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?gid=0&single=true&output=csv" />
+    <button class="btn primary" id="connect">เชื่อมต่อ</button>
+    <div class="err" id="err"></div>
+  </section>
+
+  <section id="dash" class="hide">
+    <div class="kpis" id="kpis"></div>
+    <div id="charts"></div>
+    <div class="card">
+      <h3>8. ข้อเสนอแนะและคำฝากถึงทีมงาน</h3>
+      <div class="qsub" id="commentCount"></div>
+      <div class="comments" id="comments"></div>
+    </div>
+  </section>
+
+  <div class="foot" id="foot"></div>
+</main>
+
+<script>
+/* ------------------------------------------------------------------
+   Staff feedback dashboard.
+   The sheet URL is kept in localStorage, never committed — this repo is
+   public, so a published-CSV link in the source would be a public link to
+   every response.
+   ------------------------------------------------------------------ */
+const KEY = 'ss45.feedback.csv';
+const REFRESH_MS = 5 * 60 * 1000;
+
+/* Questions, taken from the live form so column matching survives edits
+   to wording as long as the leading number stays. */
+const Q3_ROWS = [
+  '📱 การจองล่วงหน้า ระบบโอนเงิน & ลงทะเบียนหน้างาน',
+  '🏰 สถานที่จัดงาน การเดินทาง & ที่จอดรถ',
+  '🍽️ รสชาติ ปริมาณอาหาร & เครื่องดื่ม',
+  '🎨 บรรยากาศ การตกแต่งธีม Collect the Dots & มุมถ่ายรูป',
+  '🎁 คุณภาพของชำร่วย & เสื้อรุ่น Oversize',
+  '🎤 พิธีกร ดนตรี กิจกรรมบนเวที & Lucky Draw'
+];
+const Q2_OPTIONS = [
+  '🤝 การได้เจอกับเพื่อนเก่า / บรรยากาศความหลัง (Collect the Dots)',
+  '🍽️ อาหารและเครื่องดื่มในงาน',
+  '🎁 ชุดของชำร่วย (แก้วเก็บความเย็น + กระเป๋าผ้า Canvas)',
+  '👕 เสื้อยืด Oversize Samsen 45 : Collect the Dots',
+  '🎤 กิจกรรม ดนตรี และเกมบนเวที',
+  '🎰 การลุ้นรางวัล Lucky Draw และของรางวัลพิเศษ',
+  '📱 ระบบลงทะเบียนและรับของหน้างานที่สะดวกรวดเร็ว',
+  '📸 คลังภาพถ่ายและมุมถ่ายรูปในงาน'
+];
+const MC = [
+  {no:'4', title:'4. อยากให้จัดงาน Reunion ใหญ่แบบนี้อีกทีเมื่อไหร่ดี?'},
+  {no:'5', title:'5. ระยะทางของสถานที่จัดงาน'},
+  {no:'6', title:'6. โครงสร้างราคาบัตรและของชำร่วย'},
+  {no:'7', title:'7. ครั้งหน้าควรดูแลเพื่อนที่จองไม่ทันอย่างไร'}
+];
+
+/* --- CSV parsing: quoted fields, embedded commas and newlines. The free
+   text answers contain all three, so a split(',') would shred them. --- */
+function parseCSV(text){
+  const rows=[]; let row=[], cell='', q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){ cell+='"'; i++; } else q=false; }
+      else cell+=c;
+    } else if(c==='"') q=true;
+    else if(c===','){ row.push(cell); cell=''; }
+    else if(c==='\n'){ row.push(cell); rows.push(row); row=[]; cell=''; }
+    else if(c!=='\r') cell+=c;
+  }
+  if(cell!=='' || row.length){ row.push(cell); rows.push(row); }
+  return rows.filter(r=>r.some(v=>v.trim()!==''));
+}
+
+/* Accepts a published-CSV link, or a normal sheet link which we convert. */
+function normaliseUrl(raw){
+  const u=raw.trim();
+  if(!u) return null;
+  if(u.includes('/spreadsheets/d/e/') && u.includes('output=csv')) return u;
+  const m=u.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+  if(m){
+    const gid=(u.match(/[#&?]gid=(\d+)/)||[])[1] || '0';
+    return `https://docs.google.com/spreadsheets/d/${m[1]}/gviz/tq?tqx=out:csv&gid=${gid}`;
+  }
+  return u.includes('output=csv') ? u : null;
+}
+
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const findCol=(head,pred)=>head.findIndex(pred);
+
+function render(rows){
+  const head=rows[0].map(h=>h.trim());
+  const body=rows.slice(1);
+  const n=body.length;
+
+  const iQ1=findCol(head,h=>h.startsWith('1.'));
+  const iQ2=findCol(head,h=>h.startsWith('2.'));
+  const iQ8=findCol(head,h=>h.startsWith('8.'));
+  const iTime=0;
+
+  /* KPI: overall satisfaction */
+  let sum=0,cnt=0; const dist=[0,0,0,0,0];
+  if(iQ1>=0) body.forEach(r=>{
+    const v=parseInt((r[iQ1]||'').trim(),10);
+    if(v>=1&&v<=5){ sum+=v; cnt++; dist[v-1]++; }
+  });
+  const avg=cnt?(sum/cnt):0;
+  const promoters=dist[4]+dist[3];
+  const pctTop=cnt?Math.round(promoters/cnt*100):0;
+
+  let last='—';
+  if(n){ const t=(body[n-1][iTime]||'').trim(); if(t) last=t; }
+
+  $('kpis').innerHTML=`
+    <div class="kpi"><div class="n">${n}</div><div class="k">คำตอบทั้งหมด</div>
+      <div class="s">ล่าสุด ${esc(last)}</div></div>
+    <div class="kpi alt"><div class="n">${avg?avg.toFixed(2):'—'}</div><div class="k">ความพึงพอใจภาพรวม</div>
+      <div class="s">จาก 5 คะแนน · ${cnt} คำตอบ</div></div>
+    <div class="kpi"><div class="n">${pctTop}%</div><div class="k">ให้ 4–5 คะแนน</div>
+      <div class="s">${promoters} จาก ${cnt} คน</div></div>`;
+
+  let html='';
+
+  /* Q1 distribution */
+  if(cnt){
+    html+=`<div class="card"><h3>1. ภาพรวมความพึงพอใจ</h3>
+      <div class="qsub">เฉลี่ย ${avg.toFixed(2)} / 5 · ${cnt} คำตอบ</div><div class="bars">`;
+    for(let s=5;s>=1;s--){
+      const c=dist[s-1], p=cnt?c/cnt*100:0;
+      html+=`<div class="bar-row"><span class="bar-label">${s} คะแนน</span>
+        <span class="bar-val">${c} · ${Math.round(p)}%</span>
+        <span class="bar-track"><span class="bar-fill" style="width:${p}%"></span></span></div>`;
+    }
+    html+='</div></div>';
+  }
+
+  /* Q3 grid — average per experience, out of 4 */
+  const gridCols=Q3_ROWS.map(lab=>({lab,i:findCol(head,h=>h.startsWith('3.')&&h.includes(lab.slice(2,18).trim()))}));
+  if(gridCols.some(g=>g.i>=0)){
+    html+=`<div class="card"><h3>3. คะแนนแยกตามจุดประสบการณ์</h3>
+      <div class="qsub">เต็ม 4 คะแนน · เรียงจากคะแนนน้อยไปมาก เพื่อให้เห็นจุดที่ควรปรับก่อน</div>`;
+    const scored=gridCols.filter(g=>g.i>=0).map(g=>{
+      let s=0,c=0;
+      body.forEach(r=>{ const v=parseInt((r[g.i]||'').trim(),10); if(v>=1&&v<=4){s+=v;c++;} });
+      return {lab:g.lab, avg:c?s/c:0, c};
+    }).sort((a,b)=>a.avg-b.avg);
+    scored.forEach(g=>{
+      const cls=g.avg>=3.5?'good':g.avg>=3?'mid':'low';
+      html+=`<div class="gridrow"><span class="lab">${esc(g.lab)}</span>
+        <span class="sc ${cls}">${g.avg?g.avg.toFixed(2):'—'}</span>
+        <span class="meter"><i class="${cls}" style="width:${g.avg/4*100}%"></i></span></div>`;
+    });
+    html+='</div>';
+  }
+
+  /* Q2 checkboxes — matched by option text, not by splitting on commas */
+  if(iQ2>=0){
+    const tally=Q2_OPTIONS.map(o=>({o,c:0}));
+    body.forEach(r=>{
+      const cell=r[iQ2]||'';
+      tally.forEach(t=>{ if(cell.includes(t.o)) t.c++; });
+    });
+    tally.sort((a,b)=>b.c-a.c);
+    const max=Math.max(1,...tally.map(t=>t.c));
+    html+=`<div class="card"><h3>2. สิ่งที่ประทับใจมากที่สุด</h3>
+      <div class="qsub">เลือกได้มากกว่า 1 ข้อ · คิดเป็น % ของผู้ตอบ ${n} คน</div><div class="bars">`;
+    tally.forEach((t,k)=>{
+      html+=`<div class="bar-row${k%2?' alt':''}"><span class="bar-label">${esc(t.o)}</span>
+        <span class="bar-val">${t.c} · ${n?Math.round(t.c/n*100):0}%</span>
+        <span class="bar-track"><span class="bar-fill" style="width:${t.c/max*100}%"></span></span></div>`;
+    });
+    html+='</div></div>';
+  }
+
+  /* Q4–Q7 multiple choice — tally whatever values actually appear */
+  MC.forEach((q,qi)=>{
+    const i=findCol(head,h=>h.startsWith(q.no+'.'));
+    if(i<0) return;
+    const map=new Map();
+    body.forEach(r=>{ const v=(r[i]||'').trim(); if(v) map.set(v,(map.get(v)||0)+1); });
+    if(!map.size) return;
+    const arr=[...map.entries()].sort((a,b)=>b[1]-a[1]);
+    const tot=arr.reduce((s,x)=>s+x[1],0);
+    html+=`<div class="card"><h3>${esc(head[i].split('(')[0].trim().slice(0,90))}</h3>
+      <div class="qsub">${tot} คำตอบ</div><div class="bars">`;
+    arr.forEach(([v,c],k)=>{
+      html+=`<div class="bar-row${(qi+k)%2?' alt':''}"><span class="bar-label">${esc(v)}</span>
+        <span class="bar-val">${c} · ${Math.round(c/tot*100)}%</span>
+        <span class="bar-track"><span class="bar-fill" style="width:${c/tot*100}%"></span></span></div>`;
+    });
+    html+='</div></div>';
+  });
+
+  $('charts').innerHTML=html;
+
+  /* Q8 free text — newest first, since staff check back for what is new */
+  const notes=[];
+  if(iQ8>=0) body.forEach(r=>{
+    const t=(r[iQ8]||'').trim();
+    if(t) notes.push({t, when:(r[iTime]||'').trim()});
+  });
+  notes.reverse();
+  $('commentCount').textContent=`${notes.length} ข้อความ จากผู้ตอบ ${n} คน · เรียงจากใหม่ไปเก่า`;
+  $('comments').innerHTML = notes.length
+    ? notes.map(c=>`<div class="comment"><p>${esc(c.t)}</p><div class="meta">${esc(c.when)}</div></div>`).join('')
+    : '<div class="empty">ยังไม่มีข้อความ</div>';
+
+  const now=new Date();
+  $('stamp').textContent='อัปเดต '+now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+  $('foot').innerHTML='รีเฟรชอัตโนมัติทุก 5 นาที · '+
+    '<button id="forget">ล้างลิงก์ชีตออกจากเบราว์เซอร์นี้</button>';
+  $('forget').onclick=()=>{ localStorage.removeItem(KEY); location.reload(); };
+}
+
+async function load(url){
+  const bust=url+(url.includes('?')?'&':'?')+'_t='+Date.now();
+  const res=await fetch(bust);
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  const text=await res.text();
+  if(/^\s*</.test(text)) throw new Error('ได้ HTML แทน CSV — ชีตอาจยังไม่ได้เผยแพร่เป็น .csv');
+  const rows=parseCSV(text);
+  if(rows.length<1) throw new Error('ไฟล์ว่าง');
+  $('setup').classList.add('hide');
+  $('dash').classList.remove('hide');
+  render(rows);
+}
+
+function fail(e){
+  $('setup').classList.remove('hide');
+  $('dash').classList.add('hide');
+  const el=$('err');
+  el.textContent='เชื่อมต่อไม่สำเร็จ: '+e.message;
+  el.classList.add('show');
+}
+
+let current=localStorage.getItem(KEY);
+if(current) load(current).catch(fail);
+
+$('connect').onclick=()=>{
+  const u=normaliseUrl($('csvUrl').value);
+  if(!u){ $('err').textContent='ลิงก์ไม่ถูกต้อง — ต้องเป็นลิงก์ Google Sheets หรือลิงก์เผยแพร่แบบ .csv';
+          $('err').classList.add('show'); return; }
+  localStorage.setItem(KEY,u); current=u;
+  $('err').classList.remove('show');
+  load(u).catch(fail);
+};
+$('csvUrl').addEventListener('keydown',e=>{ if(e.key==='Enter') $('connect').click(); });
+$('refresh').onclick=()=>{ if(current) load(current).catch(fail); };
+$('printBtn').onclick=()=>print();
+$('change').onclick=()=>{ $('setup').classList.remove('hide'); $('dash').classList.add('hide');
+  $('csvUrl').value=current||''; };
+setInterval(()=>{ if(current && !document.hidden) load(current).catch(()=>{}); }, REFRESH_MS);
+</script>
+</body>
+</html>
