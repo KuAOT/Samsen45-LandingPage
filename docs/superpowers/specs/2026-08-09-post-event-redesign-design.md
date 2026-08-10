@@ -26,12 +26,14 @@ Every section serves that line.
 | 250 seats, sold out | existing page copy |
 | 932 photos, `[Official] รูปจากทีมงาน` | Drive folder `1IHzvyv3kAkp-wQPk14aRvKsfbWr1lja-` |
 | 213 photobooth shots, `fotoshare` | subfolder `1amASpMRbDCuN3ePHeEjuCl9ydsscuYX2` |
-| 52 items, `[Community] รูปจากเพื่อนๆ` | Drive folder `1Y4AoabbdOMt3WMtiKc88Utb1kY4T9Ldm` |
-| **1,197 photos total** | sum of the above |
+| 63 images and growing, `[Community] รูปจากเพื่อนๆ` | Drive folder `1Y4AoabbdOMt3WMtiKc88Utb1kY4T9Ldm` |
+| **1,208 photos** as of 2026-08-10, rising | sum of the above |
+| `fotoshare/covers` (126 files) excluded | cover frames of the clips — same timestamps, not new photos |
 | Photobooth ran 17:31 → 20:00 | filename timestamps in `fotoshare` |
 
 ## External links
 
+- Face search: https://www.pixid.app/g/APZX9
 - Photos (team): https://drive.google.com/drive/folders/1IHzvyv3kAkp-wQPk14aRvKsfbWr1lja-
 - Photos (friends): https://drive.google.com/drive/folders/1Y4AoabbdOMt3WMtiKc88Utb1kY4T9Ldm
 - Evaluation form: https://forms.gle/bqeEbEQCnCTLVfBS6
@@ -75,3 +77,10 @@ sponsor packages, all `register.samsen45.com` links.
 
 - No backend, no build step. Vanilla HTML/CSS/JS on Firebase Hosting, as today.
 - No photo upload feature — community submissions continue via the Drive folder.
+
+## Counting caveat
+
+The community folder is open for uploads, so any exact total goes stale.
+The page says "กว่า 1,200 ภาพ" rather than a fixed figure. Do not reintroduce a precise
+number unless uploads are closed. `fotoshare/covers` duplicates the boomerangs and must
+never be added to the count.
